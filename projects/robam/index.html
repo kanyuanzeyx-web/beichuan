@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>老板电器官网项目复盘 | Portfolio Case Study</title>
+    <meta
+      name="description"
+      content="个人作品集案例：老板电器官网项目复盘，聚焦项目角色、原有问题、解决策略、核心页面与设计沉淀。"
+    />
+    <link rel="stylesheet" href="./styles.css?v=20260623-1" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar" aria-label="页面导航">
+        <a class="brand-mark" href="../../index.html#projects" aria-label="返回个人网站项目列表">
+          <span class="brand-mark__symbol">BC</span>
+          <span>
+            <strong>BEI CHUAN</strong>
+            <small>Robam Case Study</small>
+          </span>
+        </a>
+        <nav class="topbar__nav" aria-label="章节导航">
+          <a class="topbar__home-link" href="../../index.html#projects">返回作品集</a>
+          <a href="#snapshot">项目概览</a>
+          <a href="#problem">问题</a>
+          <a href="#solution">方案</a>
+          <a href="#screens">页面</a>
+          <a href="#system">规范</a>
+        </nav>
+        <button class="theme-button" type="button" data-theme-toggle aria-label="切换显示模式">
+          <span></span>
+        </button>
+      </header>
+
+      <main id="top">
+        <section class="hero-section">
+          <div class="container hero-grid">
+            <div class="hero-copy">
+              <p class="section-label">Portfolio Case Study / Official Website Upgrade</p>
+              <h1>老板电器官网项目复盘</h1>
+              <p class="hero-lede">
+                围绕老板电器官网与官方商城体验升级，重新组织品牌表达、产品理解、活动承接与交易路径，让官网从品牌门面延展为可运营、可转化、可持续服务的线上阵地。
+              </p>
+              <div class="hero-tags" aria-label="项目标签">
+                <span>官网升级</span>
+                <span>商城体验</span>
+                <span>运营模块</span>
+                <span>规范沉淀</span>
+              </div>
+            </div>
+
+            <div class="hero-preview" aria-label="老板电器官网主视觉预览">
+              <div class="kitchen-photo">
+                <div class="appliance appliance--hood"></div>
+                <div class="appliance appliance--oven"></div>
+                <div class="cooktop">
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="steam steam--one"></div>
+                <div class="steam steam--two"></div>
+              </div>
+              <div class="hero-browser">
+                <div class="browser-bar">
+                  <span></span><span></span><span></span>
+                  <small>robam.com.cn</small>
+                </div>
+                <div class="site-hero">
+                  <div class="site-nav">
+                    <strong>ROBAM 老板</strong>
+                    <span>油烟机</span>
+                    <span>蒸烤箱</span>
+                    <span>洗碗机</span>
+                    <span>服务</span>
+                  </div>
+                  <div class="site-hero__content">
+                    <small>全新官方商城</small>
+                    <strong>专业厨电套系，一站式选购</strong>
+                    <button type="button">查看新品</button>
+                  </div>
+                  <div class="site-categories">
+                    <span>油烟机</span>
+                    <span>灶具</span>
+                    <span>蒸烤</span>
+                    <span>洗碗</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="overview-section" id="snapshot">
+          <div class="container">
+            <div class="section-heading">
+              <p class="section-label">01 / Project Overview</p>
+              <h2>一次官方商城升级，背后是品牌、产品与服务的重新编排</h2>
+              <p>
+                老板电器的官网不只是品牌展示页，它同时承接新品发布、产品教育、活动流量、官方商城和售后服务。改版的核心，是把这些分散任务整理成一条更顺畅的用户旅程。
+              </p>
+            </div>
+            <div class="snapshot-grid">
+              <article>
+                <span>Project Scope</span>
+                <h3>官网与官方商城体验整合</h3>
+                <p>覆盖首页、品类入口、活动专题、商品详情、交易流程和服务触点，形成品牌内容到购买动作的连续体验。</p>
+              </article>
+              <article>
+                <span>Design Challenge</span>
+                <h3>高端品牌感与购买效率并行</h3>
+                <p>厨电产品客单高、信息复杂，页面既要建立专业可信的品牌印象，也要让用户更快理解产品价值。</p>
+              </article>
+              <article>
+                <span>Design Role</span>
+                <h3>核心页面设计与规范协作</h3>
+                <p>参与视觉语言、页面结构、商品展示、活动模块与交易状态设计，并将高频模块沉淀为可复用规范。</p>
+              </article>
+              <article>
+                <span>Outcome</span>
+                <h3>可运营的官网页面系统</h3>
+                <p>通过模块化页面和统一视觉规则，支持新品、促销、套系推荐、订单反馈等场景持续复用。</p>
+              </article>
+            </div>
+            <div class="narrative-line" aria-label="官网体验路径">
+              <span>品牌吸引</span>
+              <span>品类理解</span>
+              <span>活动承接</span>
+              <span>商品决策</span>
+              <span>订单服务</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="problem-section" id="problem">
+          <div class="container two-column">
+            <div class="section-heading sticky-heading">
+              <p class="section-label">02 / Problem</p>
+              <h2>从品牌展示到交易闭环，旧官网需要承担更多角色</h2>
+              <p>
+                随着官方商城和运营活动的权重提升，官网需要同时服务品牌认知、产品选择和下单转化。原有信息组织方式已经难以支撑这种复合任务。
+              </p>
+            </div>
+            <div class="problem-list">
+              <article>
+                <span>01</span>
+                <div>
+                  <h3>品牌认知没有被稳定地传递</h3>
+                  <p>高端、专业、科技的品牌感需要贯穿首页、品类页和商品页，而不是只停留在单个主视觉。</p>
+                </div>
+              </article>
+              <article>
+                <span>02</span>
+                <div>
+                  <h3>厨电决策成本高，用户需要被解释</h3>
+                  <p>吸力、蒸烤、清洁、安装、售后等信息复杂，页面需要把卖点转化为可判断的购买理由。</p>
+                </div>
+              </article>
+              <article>
+                <span>03</span>
+                <div>
+                  <h3>活动流量与商城购买之间缺少承接</h3>
+                  <p>活动页需要快速传达利益点，商品列表和详情页则需要承接价格、权益和下一步动作。</p>
+                </div>
+              </article>
+              <article>
+                <span>04</span>
+                <div>
+                  <h3>售后、会员和订单状态没有形成信任感</h3>
+                  <p>官网需要让用户感到“官方、安全、可追踪”，尤其是在下单支付和售后服务阶段。</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="solution-section" id="solution">
+          <div class="container">
+            <div class="section-heading">
+              <p class="section-label">03 / Design Strategy</p>
+              <h2>建立一条从品牌认知到购买决策的体验路径</h2>
+            </div>
+            <div class="solution-grid">
+              <article>
+                <span class="solution-index">Brand</span>
+                <h3>品牌表达</h3>
+                <p>首页和重点专题使用深色科技感、真实厨房场景和克制动效，强化“专业高端厨电”的第一印象。</p>
+              </article>
+              <article>
+                <span class="solution-index">Product</span>
+                <h3>产品决策</h3>
+                <p>用场景卖点、参数分组、权益提示和套系推荐降低理解成本，让用户知道为什么值得买。</p>
+              </article>
+              <article>
+                <span class="solution-index">Commerce</span>
+                <h3>交易闭环</h3>
+                <p>活动承接、购物车、支付和订单状态形成连续反馈，减少从官网内容到商城购买的断点。</p>
+              </article>
+            </div>
+
+            <div class="before-after">
+              <div class="compare-copy">
+                <p class="section-label">Before / After</p>
+                <h3>从信息堆叠，到可被快速理解的页面秩序</h3>
+                <p>
+                  视觉升级不是单纯替换风格，而是重新定义页面的阅读顺序：先建立品牌信任，再解释产品价值，最后承接商城动作。
+                </p>
+              </div>
+              <div class="compare-board">
+                <article class="mini-page mini-page--old">
+                  <div class="mini-page__header">原体验结构</div>
+                  <div class="mini-page__banner"></div>
+                  <div class="mini-page__dense">
+                    <span>促销活动</span><span>产品参数</span><span>新闻资讯</span><span>服务入口</span>
+                    <span>会员权益</span><span>招商信息</span><span>售后政策</span><span>门店查询</span>
+                  </div>
+                  <p>入口多、重点弱，用户需要自己拼出购买路径。</p>
+                </article>
+                <article class="mini-page mini-page--new">
+                  <div class="mini-page__header">升级后体验组织</div>
+                  <div class="mini-page__hero">
+                    <strong>高端厨电套系</strong>
+                    <span>新品发布 / 官方商城 / 服务保障</span>
+                  </div>
+                  <div class="mini-products">
+                    <span>烟机</span><span>蒸烤</span><span>洗碗</span>
+                  </div>
+                  <p>先给品牌价值，再给品类入口和转化动作。</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="screens-section" id="screens">
+          <div class="container">
+            <div class="section-heading">
+              <p class="section-label">04 / Core Screens</p>
+              <h2>核心页面展示</h2>
+              <p>四类页面对应四个关键任务：建立品牌、承接活动、解释商品、确认交易。</p>
+            </div>
+            <div class="screen-tabs" role="tablist" aria-label="核心页面切换">
+              <button class="screen-tab is-active" type="button" data-screen="home">官网首页</button>
+              <button class="screen-tab" type="button" data-screen="campaign">活动承接</button>
+              <button class="screen-tab" type="button" data-screen="detail">商品详情</button>
+              <button class="screen-tab" type="button" data-screen="checkout">支付订单</button>
+            </div>
+            <div class="screen-showcase">
+              <div class="screen-copy">
+                <p class="section-label" data-screen-kicker>Official Website Home</p>
+                <h3 data-screen-title>官网首页：建立品牌第一印象</h3>
+                <p data-screen-body>
+                  首页首屏负责建立高端厨电品牌感，下方通过品类、套系、活动和服务入口承接不同用户意图。
+                </p>
+                <ul data-screen-points>
+                  <li>深色主视觉强化科技感和专业感</li>
+                  <li>品类入口前置，减少用户寻找成本</li>
+                  <li>活动与商城入口保持一致的转化路径</li>
+                </ul>
+              </div>
+              <div class="screen-device" data-screen-device>
+                <div class="mock-page mock-page--home">
+                  <div class="mock-topline">
+                    <strong>ROBAM 老板</strong>
+                    <span>产品</span><span>商城</span><span>服务</span>
+                  </div>
+                  <div class="mock-hero">
+                    <small>全新数字化厨房体验</small>
+                    <strong>用专业科技重塑烹饪日常</strong>
+                  </div>
+                  <div class="mock-category-row">
+                    <span>油烟机</span><span>蒸烤箱</span><span>洗碗机</span><span>集成灶</span>
+                  </div>
+                  <div class="mock-card-row">
+                    <span>新品首发</span><span>套系推荐</span><span>服务保障</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="journey-section">
+          <div class="container">
+            <div class="section-heading">
+              <p class="section-label">05 / Commerce Flow</p>
+              <h2>官方商城关键交易链路</h2>
+            </div>
+            <ol class="flow-list">
+              <li><span>01</span>选择商品</li>
+              <li><span>02</span>提交订单</li>
+              <li><span>03</span>支付成功</li>
+              <li><span>04</span>订单生成</li>
+              <li><span>05</span>入库核验</li>
+              <li><span>06</span>仓库出货</li>
+              <li><span>07</span>订单待收货</li>
+              <li><span>08</span>订单签收</li>
+              <li><span>09</span>订单评价</li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="system-section" id="system">
+          <div class="container">
+            <div class="section-heading">
+              <p class="section-label">06 / Design System</p>
+              <h2>把单次改版沉淀为可长期运营的页面资产</h2>
+            </div>
+            <div class="system-visual-stack">
+              <section class="layout-showcase" aria-labelledby="layout-title">
+                <div class="system-copy">
+                  <p class="section-label">Layout / 12 Columns</p>
+                  <h3 id="layout-title">1200px 版心区域</h3>
+                  <p>官网页面采用固定版心与弹性内容区，保障首页、商品详情、活动专题在不同屏幕下保持稳定阅读节奏。</p>
+                </div>
+                <div class="grid-visual" aria-label="1200px 版心与十二栅格示意">
+                  <div class="grid-browser">
+                    <div class="grid-browser__bar">
+                      <span></span><span></span><span></span>
+                      <small>https://www.robam.com</small>
+                    </div>
+                    <div class="grid-browser__canvas">
+                      <div class="grid-overlay">
+                        <span></span><span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span><span></span>
+                      </div>
+                      <div class="grid-page-grid">
+                        <div class="grid-hero-block">Hero</div>
+                        <div class="grid-card grid-card--one">Category</div>
+                        <div class="grid-card grid-card--two">Product</div>
+                        <div class="grid-card grid-card--three">Service</div>
+                      </div>
+                      <div class="grid-measure">
+                        <span></span>
+                        <strong>1200px</strong>
+                        <span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <div class="responsive-visual" aria-label="响应式断点">
+                <div class="device-card device-card--desktop">
+                  <span>Desktop</span>
+                  <strong>1200px</strong>
+                </div>
+                <div class="device-card device-card--tablet">
+                  <span>Tablet</span>
+                  <strong>768px</strong>
+                </div>
+                <div class="device-card device-card--mobile">
+                  <span>Mobile</span>
+                  <strong>375px</strong>
+                </div>
+              </div>
+
+              <div class="spec-visual-grid">
+                <section class="type-scale-board" aria-labelledby="type-title">
+                  <div>
+                    <p class="section-label">Typography</p>
+                    <h3 id="type-title">字体层级</h3>
+                  </div>
+                  <div class="type-scale-list">
+                    <div>
+                      <span>H1</span>
+                      <strong>大标题</strong>
+                      <em>48px / 1.12</em>
+                    </div>
+                    <div>
+                      <span>H2</span>
+                      <strong>二级标题</strong>
+                      <em>32px / 1.25</em>
+                    </div>
+                    <div>
+                      <span>H3</span>
+                      <strong>模块标题</strong>
+                      <em>22px / 1.3</em>
+                    </div>
+                    <div>
+                      <span>Body</span>
+                      <strong>信息说明文本</strong>
+                      <em>16px / 1.78</em>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="color-plate-board" aria-labelledby="color-title">
+                  <div class="color-title-row">
+                    <div>
+                      <p class="section-label">Color Plate</p>
+                      <h3 id="color-title">品牌与运营色板</h3>
+                    </div>
+                    <span>Blue / Orange / Red / Neutral</span>
+                  </div>
+                  <div class="color-plate">
+                    <span class="color-plate__blue">#007FDE</span>
+                    <span class="color-plate__orange">#F59B54</span>
+                    <span class="color-plate__red">#F04438</span>
+                    <span class="color-plate__dark">#111820</span>
+                  </div>
+                  <div class="gray-ramp" aria-hidden="true">
+                    <span></span><span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span><span></span>
+                  </div>
+                </section>
+              </div>
+
+              <section class="rhythm-board" aria-labelledby="rhythm-title">
+                <div>
+                  <p class="section-label">Spacing / Components</p>
+                  <h3 id="rhythm-title">8px 节奏与运营模块复用</h3>
+                </div>
+                <div class="rhythm-demo">
+                  <div class="spacing-scale">
+                    <span style="--w: 8px">8</span>
+                    <span style="--w: 16px">16</span>
+                    <span style="--w: 24px">24</span>
+                    <span style="--w: 32px">32</span>
+                    <span style="--w: 48px">48</span>
+                  </div>
+                  <div class="component-samples">
+                    <div class="sample-button">查看新品</div>
+                    <div class="sample-product">
+                      <span></span>
+                      <strong>大吸力油烟机</strong>
+                      <em>官方到手价 ¥4299</em>
+                    </div>
+                    <div class="sample-status">
+                      <span>订单待支付</span>
+                      <strong>14:59</strong>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section class="role-section" id="role">
+          <div class="container role-layout">
+            <div class="section-heading">
+              <p class="section-label">07 / Project Contribution</p>
+              <h2>我的参与集中在页面体验、视觉语言与落地规范</h2>
+              <p>
+                在这个项目里，我的工作不是孤立地完成某几张页面，而是参与把复杂的官网任务整理成可设计、可协作、可复用的模块系统。
+              </p>
+            </div>
+            <div class="role-answer">
+              <article>
+                <h3>视觉语言梳理</h3>
+                <p>围绕高端厨电的专业、科技与可信赖气质，协助建立深色主视觉、蓝色科技感、促销强调色和内容留白规则。</p>
+              </article>
+              <article>
+                <h3>核心页面设计</h3>
+                <p>参与首页、品类入口、活动承接、商品详情与商城页面设计，让用户在不同入口下都能快速找到下一步动作。</p>
+              </article>
+              <article>
+                <h3>商城链路体验</h3>
+                <p>梳理从商品选择、提交订单、支付成功到订单状态反馈的关键节点，强化官方交易的确定感和安全感。</p>
+              </article>
+              <article>
+                <h3>规范与协同沉淀</h3>
+                <p>沉淀颜色、字体、按钮、商品卡、活动模块和订单状态等基础规范，降低后续运营页面的重复设计成本。</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="closing-section">
+          <div class="container">
+            <p class="section-label">08 / Reflection</p>
+            <h2>品牌官网的价值，在于让认知、决策和服务持续发生</h2>
+            <p>
+              这个项目让我更明确地理解到，官网不是一张漂亮的品牌封面。它需要在用户每一次浏览、比较、下单和售后查询里持续建立信任，设计也需要把这种信任落到清晰的结构、稳定的模块和可复用的规范里。
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./script.js?v=20260623-1"></script>
+  </body>
+</html>

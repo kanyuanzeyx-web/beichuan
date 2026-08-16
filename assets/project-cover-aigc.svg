@@ -1,0 +1,65 @@
+<svg width="1600" height="980" viewBox="0 0 1600 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="980" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#161A20"/>
+      <stop offset="0.48" stop-color="#282D35"/>
+      <stop offset="1" stop-color="#111318"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1180 268) rotate(142) scale(690 440)">
+      <stop stop-color="#C64640" stop-opacity="0.76"/>
+      <stop offset="0.42" stop-color="#C64640" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#C64640" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="grain" x="0" y="0" width="1600" height="980" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" seed="31"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.16"/>
+      </feComponentTransfer>
+    </filter>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="34" stdDeviation="32" flood-color="#030405" flood-opacity="0.48"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="980" fill="url(#bg)"/>
+  <rect width="1600" height="980" fill="url(#glow)"/>
+  <rect width="1600" height="980" filter="url(#grain)" opacity="0.92"/>
+
+  <g opacity="0.26">
+    <path d="M-80 220H1680" stroke="#F0ECD9" stroke-opacity="0.32"/>
+    <path d="M-80 490H1680" stroke="#F0ECD9" stroke-opacity="0.18"/>
+    <path d="M-80 760H1680" stroke="#F0ECD9" stroke-opacity="0.14"/>
+    <path d="M300 -80V1060" stroke="#F0ECD9" stroke-opacity="0.14"/>
+    <path d="M780 -80V1060" stroke="#F0ECD9" stroke-opacity="0.12"/>
+    <path d="M1260 -80V1060" stroke="#F0ECD9" stroke-opacity="0.14"/>
+  </g>
+
+  <text x="62" y="842" fill="#F0ECD9" fill-opacity="0.38" font-family="Arial Black, Arial, sans-serif" font-size="590" font-weight="900" letter-spacing="-52">02</text>
+
+  <g filter="url(#shadow)" opacity="0.96">
+    <rect x="388" y="172" width="822" height="516" rx="34" fill="#11151B" fill-opacity="0.68" stroke="#F0ECD9" stroke-opacity="0.24" stroke-width="2"/>
+    <rect x="432" y="224" width="734" height="80" rx="20" fill="#F0ECD9" fill-opacity="0.08"/>
+    <circle cx="476" cy="264" r="12" fill="#C64640"/>
+    <circle cx="518" cy="264" r="12" fill="#F0ECD9" fill-opacity="0.56"/>
+    <circle cx="560" cy="264" r="12" fill="#F0ECD9" fill-opacity="0.28"/>
+    <rect x="458" y="368" width="270" height="152" rx="24" fill="#C64640" fill-opacity="0.58"/>
+    <rect x="762" y="368" width="350" height="152" rx="24" fill="#F0ECD9" fill-opacity="0.12"/>
+    <path d="M494 482C574 380 654 572 728 442C815 292 916 544 1080 406" stroke="#F0ECD9" stroke-opacity="0.72" stroke-width="8" stroke-linecap="round"/>
+    <path d="M494 552C612 500 682 642 820 534C914 460 1006 480 1080 552" stroke="#C64640" stroke-opacity="0.84" stroke-width="8" stroke-linecap="round"/>
+    <rect x="458" y="590" width="142" height="20" rx="10" fill="#F0ECD9" fill-opacity="0.56"/>
+    <rect x="626" y="590" width="288" height="20" rx="10" fill="#F0ECD9" fill-opacity="0.18"/>
+  </g>
+
+  <g transform="translate(995 586) rotate(7)" filter="url(#shadow)">
+    <rect width="380" height="212" rx="28" fill="#F0ECD9" fill-opacity="0.12" stroke="#F0ECD9" stroke-opacity="0.24"/>
+    <rect x="38" y="42" width="88" height="88" rx="20" fill="#C64640" fill-opacity="0.68"/>
+    <rect x="152" y="46" width="160" height="18" rx="9" fill="#F0ECD9" fill-opacity="0.48"/>
+    <rect x="152" y="82" width="190" height="12" rx="6" fill="#F0ECD9" fill-opacity="0.2"/>
+    <rect x="152" y="110" width="140" height="12" rx="6" fill="#F0ECD9" fill-opacity="0.16"/>
+    <path d="M46 164H320" stroke="#F0ECD9" stroke-opacity="0.22"/>
+  </g>
+
+  <text x="1160" y="122" fill="#F0ECD9" font-family="Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="8">AIGC VIDEO</text>
+  <text x="1160" y="170" fill="#F0ECD9" fill-opacity="0.5" font-family="Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="5">PROMPT / FRAME / EDIT</text>
+</svg>

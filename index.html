@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="北川的个人数字设计作品集">
+  <title>北川 / Digital Designer</title>
+  <link rel="stylesheet" href="./styles.css?v=20260809-6">
+</head>
+<body class="personal-template">
+  <div id="noise" aria-hidden="true"></div>
+  <div id="transition-bg" aria-hidden="true"></div>
+  <div id="mobile-menu-bg" aria-hidden="true"></div>
+
+  <header id="menu">
+    <a href="#home" id="logo" aria-label="返回首页">
+      <span>BEI CHUAN</span>
+      <small>SENIOR UI DESIGNER / HANGZHOU</small>
+    </a>
+
+    <nav id="nav" aria-label="主导航">
+      <a class="nav-link" href="#experience">EXPERIENCE</a>
+      <a class="nav-link" href="#projects">PROJECTS</a>
+      <a class="nav-link" href="#contact">CONTACT</a>
+    </nav>
+
+    <button class="hamburger" aria-label="打开菜单" aria-expanded="false">
+      <i></i>
+      <i></i>
+    </button>
+  </header>
+
+  <main id="smooth-wrapper">
+    <div id="smooth-content" class="home">
+      <section class="hero panel" id="home" data-section="home">
+        <div class="hero-background" aria-hidden="true">
+          <div class="hero-mouse-light" id="hero-mouse-light"></div>
+          <canvas id="hero-particle-canvas"></canvas>
+        </div>
+
+        <div class="hero-stage reveal">
+          <div class="hero-kicker">
+            <span>PORTFOLIO / 2026</span>
+            <span>
+              <span class="desktop-only-copy">SCROLL TO EXPLORE</span>
+              <span class="mobile-only-copy">SCROLL TO EXPLORE</span>
+            </span>
+          </div>
+
+          <div class="hero-state-cue" aria-hidden="true">
+            <span class="desktop-only-copy">← BUILD MODE · THINK MODE →</span>
+            <span class="mobile-only-copy">TAP TO SWITCH MODE</span>
+          </div>
+
+          <h1 class="hero-title" aria-label="Building products after midnight">
+            <span class="hero-line">BUILDING</span>
+            <span class="hero-line hero-line-accent">PRODUCTS</span>
+            <span class="hero-line">AFTER</span>
+            <span class="hero-line">MIDNIGHT</span>
+          </h1>
+
+          <div class="hero-bottom">
+            <p class="hero-sub">
+              UI/UX · AI PRODUCT · DESIGN SYSTEMS<br>
+              Turning complex technology into clear, usable products.
+            </p>
+            <a class="button hero-cta-alt" href="#projects">
+              <span class="cta-label">VIEW PROJECTS</span>
+              <img class="cta-arrow" src="./assets/group-3-arrow.svg" alt="" aria-hidden="true">
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-illustration is-working reveal" id="hero-illustration" data-state="working" aria-hidden="true">
+          <video class="hero-state-media hero-state-working" src="./assets/hero-working.mp4?v=20260615-2" poster="./assets/hero-working.webp" muted loop playsinline autoplay preload="auto"></video>
+          <video class="hero-state-media hero-state-thinking" src="./assets/hero-thinking-hq.mov?v=20260722-1" poster="./assets/hero-thinking.png" muted loop playsinline preload="metadata"></video>
+          <div class="hero-state-fx hero-state-fx-working"></div>
+          <div class="hero-state-fx hero-state-fx-thinking"></div>
+        </div>
+
+        <div class="hero-index" aria-hidden="true">
+          <span>01</span>
+          <span>HOME / INTRODUCTION</span>
+        </div>
+      </section>
+
+      <section class="experience panel" id="experience" data-section="experience">
+        <div class="experience-layout">
+          <div class="experience-top-block reveal">
+            <header class="section-meta">
+              <span>02 / EXPERIENCE</span>
+              <span>2018 — 2026</span>
+            </header>
+
+            <div class="experience-fixed">
+              <div class="experience-identity">
+                <span>DESIGNER PROFILE / BEI CHUAN</span>
+                <h2>你好，我是北川<br><em>高级 UI 设计师｜AI 产品方向</em></h2>
+              </div>
+
+              <div class="experience-intro">
+                <span>个人简介 / AT A GLANCE</span>
+                <p>常驻杭州，拥有 8 年 UI 与产品设计经验，聚焦 B 端 AI 产品、移动应用及 AIGC 商业视觉。</p>
+                <p>能够独立完成需求分析、信息架构、交互设计、UI 视觉及设计规范建设，并具备跨团队协作、项目管理与上线落地经验。</p>
+              </div>
+
+              <div class="experience-profile">
+                <dl>
+                  <div>
+                    <dt>所在城市</dt>
+                    <dd>中国·杭州</dd>
+                  </div>
+                  <div>
+                    <dt>工作经验</dt>
+                    <dd>8 年</dd>
+                  </div>
+                  <div>
+                    <dt>学历背景</dt>
+                    <dd>大专｜艺术设计</dd>
+                  </div>
+                  <div>
+                    <dt>求职意向</dt>
+                    <dd>高级 UI 设计师｜AI 产品方向</dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="experience-bottom-block reveal">
+            <div class="experience-slider" id="experience-slider">
+              <div class="experience-page">
+                <article class="experience-item">
+                  <span class="experience-number">01</span>
+                  <div class="experience-copy">
+                    <div class="experience-overview">
+                      <span class="experience-year">2025.07 — 2026.07</span>
+                      <p class="experience-company">上海天开物有限公司（杭州分公司）</p>
+                    </div>
+                    <div class="experience-role">
+                      <h3>高级 UI 设计师</h3>
+                    </div>
+                    <div class="experience-discipline">
+                      <div class="experience-tags" aria-label="参与类型">
+                        <span>B 端 AI 平台</span>
+                        <span>品牌官网</span>
+                        <span>AIGC 商品视频</span>
+                      </div>
+                    </div>
+                    <p class="experience-scope">主导 B.THREE AI 商品视频生成平台从 0 到 1 的产品设计与上线落地，将复杂的 AI 与 3D 能力转化为清晰可用的 B 端产品体验，并负责品牌 AIGC 商品视频的脚本、分镜与生成制作。</p>
+                  </div>
+                </article>
+
+                <article class="experience-item">
+                  <span class="experience-number">02</span>
+                  <div class="experience-copy">
+                    <div class="experience-overview">
+                      <span class="experience-year">2021.12 — 2024.04</span>
+                      <p class="experience-company">虎哥回收数字有限公司</p>
+                    </div>
+                    <div class="experience-role">
+                      <h3>设计主管</h3>
+                    </div>
+                    <div class="experience-discipline">
+                      <div class="experience-tags" aria-label="参与类型">
+                        <span>移动端 APP</span>
+                        <span>B 端系统</span>
+                        <span>数据可视化</span>
+                        <span>设计管理</span>
+                      </div>
+                    </div>
+                    <p class="experience-scope">负责设计团队管理与项目统筹，主导虎哥 APP、B 端系统及数据可视化大屏等项目，并结合用户反馈与调研数据持续推动产品迭代和体验优化。</p>
+                  </div>
+                </article>
+              </div>
+
+              <div class="experience-page">
+                <article class="experience-item">
+                  <span class="experience-number">03</span>
+                  <div class="experience-copy">
+                    <div class="experience-overview">
+                      <span class="experience-year">2020.12 — 2021.12</span>
+                      <p class="experience-company">FANCY TECHNOLOGY</p>
+                    </div>
+                    <div class="experience-role">
+                      <h3>设计主管</h3>
+                    </div>
+                    <div class="experience-discipline">
+                      <div class="experience-tags" aria-label="参与类型">
+                        <span>品牌小程序</span>
+                        <span>B 端后台</span>
+                        <span>电商视觉</span>
+                        <span>团队管理</span>
+                      </div>
+                    </div>
+                    <p class="experience-scope">负责设计团队排期、评审与招聘，统筹 DELL、ALIENWARE 等品牌及电商项目，覆盖小程序、B 端后台、品牌官网与营销视觉设计。</p>
+                  </div>
+                </article>
+
+                <article class="experience-item">
+                  <span class="experience-number">04</span>
+                  <div class="experience-copy">
+                    <div class="experience-overview">
+                      <span class="experience-year">2020.03 — 2020.11</span>
+                      <p class="experience-company">杭州思阳广告有限公司</p>
+                    </div>
+                    <div class="experience-role">
+                      <h3>UI 设计师</h3>
+                    </div>
+                    <div class="experience-discipline">
+                      <div class="experience-tags" aria-label="参与类型">
+                        <span>品牌小程序</span>
+                        <span>官网迭代</span>
+                        <span>交互设计</span>
+                      </div>
+                    </div>
+                    <p class="experience-scope">服务老板电器旗下数字化项目，负责需求梳理、产品框架、交互流程与 UI 视觉设计，并协同开发推进小程序及官网项目落地。</p>
+                  </div>
+                </article>
+              </div>
+
+              <div class="experience-page experience-page-single">
+                <article class="experience-item">
+                  <span class="experience-number">05</span>
+                  <div class="experience-copy">
+                    <div class="experience-overview">
+                      <span class="experience-year">2018.10 — 2020.02</span>
+                      <p class="experience-company">杭州唯二科技网络科技公司</p>
+                    </div>
+                    <div class="experience-role">
+                      <h3>UI 设计师</h3>
+                    </div>
+                    <div class="experience-discipline">
+                      <div class="experience-tags" aria-label="参与类型">
+                        <span>移动端 APP</span>
+                        <span>产品设计</span>
+                        <span>体验优化</span>
+                      </div>
+                    </div>
+                    <p class="experience-scope">参与移动端产品从需求分析到设计落地的完整流程，负责竞品研究、产品框架、交互设计、UI 视觉及设计规范建设。</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="work panel" id="projects" data-section="projects">
+        <header class="section-meta reveal">
+          <span>03 / SELECTED PROJECTS</span>
+          <span>DESIGN · MOTION · AI</span>
+        </header>
+
+        <div class="work-layout">
+          <div class="work-left">
+            <div class="work-heading reveal">
+              <p>SELECTED<br>WORKS</p>
+              <span>CASE NOTES ACROSS UI SYSTEMS, AIGC VIDEO AND DIGITAL EXPERIENCE.</span>
+            </div>
+
+            <div class="work-listing" id="work-listing">
+              <article class="work-box reveal is-active" data-index="01" data-client="ROBAM 老板电器 / OFFICIAL WEBSITE" data-title="老板电器官网项目复盘" data-description="围绕官网与官方商城升级，重组品牌表达、产品理解、活动承接和交易路径。" data-period="官网复盘 / 设计系统整理" data-time="2020 · 官方网站升级" data-project-role="UI 设计 / 页面体验 / 规范沉淀" data-cover="./assets/project-material-cover.svg" data-foot="UI/UX DESIGN · OFFICIAL WEBSITE · CASE STUDY" data-kicker="OFFICIAL WEBSITE / ROBAM" data-mark="ROBAM" data-role="UI DESIGN / PAGE EXPERIENCE / DESIGN SYSTEM" data-output="官网首页 · 商品页 · 活动页 · 订单链路 · 规范沉淀" data-status="FULL CASE AVAILABLE" data-background="官网同时承接品牌展示、厨电产品教育、官方商城转化和售后信任，但旧页面的信息层级、运营模块和交易反馈缺少连续性。" data-role-detail="参与官网视觉升级、核心页面模块、商城链路梳理与设计规范沉淀，负责把复杂页面整理成可复用、可落地的设计资产。" data-process="先从面试官视角重排案例叙事，再用问题诊断、体验路径、页面样机、栅格系统和规范板块呈现设计思考。" data-solution="以品牌首屏、品类入口、活动承接、商品详情、支付订单和服务反馈组成完整体验闭环，并用统一栅格、色彩、字号和组件规范支撑后续运营。" data-result="整理为可放进个人网站的完整子页：先回答角色、问题、方案与结果，再通过视觉化页面证明设计落地能力。" data-assets="完整案例页已接入 /projects/robam/index.html，可继续替换为真实截图或上线数据。" data-link="./projects/robam/index.html">
+                <button class="work-hit" type="button">
+                  <span class="work-index">01</span>
+                  <span class="work-title">老板电器官网项目复盘</span>
+                  <span class="work-type">UI/UX · WEB</span>
+                </button>
+              </article>
+
+              <article class="work-box reveal" data-index="02" data-client="AUSMAN / AIGC VIDEO" data-title="澳芝曼维 C 洁面泡沫新品宣传视频" data-description="面向电商新品展示，在 3 周内将客户基础脚本推进为完整传播路径与统一视觉的 AIGC 宣传视频。" data-period="3 WEEKS / SKINCARE AIGC VIDEO" data-time="2026 · 维 C 洁面泡沫新品" data-project-role="内容策划 / 分镜设计 / AIGC 视觉落地" data-cover="./assets/project-cover-aigc.svg" data-foot="AIGC VIDEO DESIGN · SKINCARE CAMPAIGN · 2026" data-kicker="SKINCARE AIGC / AUSMAN" data-mark="AUSMAN" data-role="CONTENT PLANNING / STORYBOARD / AIGC VISUAL" data-output="SCRIPT OPTIMIZATION / STORYBOARD / KEY FRAMES / FINAL FILM" data-status="PROJECT STORY AVAILABLE" data-background="项目面向新品展示期的电商传播场景。客户提供了基础脚本与核心卖点，但内容节奏、分镜表达和视觉统一性仍需补充，需要在较短周期内完成从内容梳理到视觉落地的完整推进。" data-role-detail="在客户基础脚本之上参与内容优化建议、分镜策划、镜头运动与转场表达梳理，并主导 AIGC 画面生成、重绘优化与提示词迭代，完成新品宣传视频的核心视觉表达。" data-process="围绕来源认知、卖点理解、使用代入、效果验证建立观看路径：先确立原料产地与自然氛围，再强化成分来源和用户痛点，最后以使用过程、效果验证与生活化场景收束。" data-solution="通过统一叠化转场、克制的镜头运动与泡沫细节停留衔接全片；结合关键帧生成、筛选、重绘、节点修复和高清重建，控制人物一致性、画面清晰度与整体风格。" data-result="完成澳芝曼维 C 洁面泡沫新品宣传视频的内容策划、分镜结构、AIGC 画面生成与成片视觉落地，验证从内容判断、画面控制到视频交付的可控生产路径。" data-assets="项目材料已整理：基础脚本优化、分镜线稿与定稿画面、AIGC 生成修复对比、镜头与转场设计、最终成片视觉。" data-pdf="./assets/pdf/ausman-case-study.pdf" data-preview-image="./assets/projects/ausman/case-page-01.png">
+                <button class="work-hit" type="button">
+                  <span class="work-index">02</span>
+                  <span class="work-title">澳芝曼 AIGC 新品宣传视频</span>
+                  <span class="work-type">AIGC · VIDEO</span>
+                </button>
+              </article>
+
+              <article class="work-box reveal" data-index="03" data-client="SKECHERS KIDS / AIGC VIDEO" data-title="斯凯奇童鞋新品宣传视频" data-description="用 AIGC 场景、角色化视觉和动态节奏，构建轻快的童鞋新品传播表达。" data-period="新品宣传片 / 镜头视觉" data-time="2025 · 童鞋新品传播" data-project-role="AIGC 场景设计 / 商业分镜" data-cover="./assets/project-cover-motion.svg" data-foot="AIGC VIDEO DESIGN · MOTION VISUAL · 2025" data-kicker="AIGC PRODUCT FILM / SKECHERS KIDS" data-mark="SKECHERS" data-role="AIGC SCENE / COMMERCIAL STORYBOARD" data-output="PRODUCT PROMOTION VIDEO" data-status="VISUAL ASSETS PENDING" data-background="童鞋新品需要更轻快、有角色感和场景感的传播方式，让产品特点在社交媒体中更容易被看见和记住。" data-role-detail="负责 AIGC 场景与动态视觉设计，推进视觉概念、画面生成、镜头节奏和短视频包装。" data-process="围绕童趣氛围、产品特征和动作节奏建立视觉关键词，生成并筛选片段，再剪辑成适合传播的动态版本。" data-solution="产品宣传短片、主视觉帧、动态片段和可继续延展的场景化素材方向。" data-result="公开数据与最终物料后续补充；当前作为 AIGC 商业视频表达案例占位。" data-assets="待补充：视频成片、封面图、关键镜头、可公开范围说明。">
+                <button class="work-hit" type="button">
+                  <span class="work-index">03</span>
+                  <span class="work-title">斯凯奇童鞋新品宣传视频</span>
+                  <span class="work-type">MOTION · AI</span>
+                </button>
+              </article>
+
+              <article class="work-box reveal" data-index="04" data-client="虎哥数字科技 / PRODUCT EXPERIENCE" data-title="虎哥数字化产品体验" data-description="围绕 APP、数据大屏与助手产品，推进体验优化、视觉一致性和持续迭代。" data-period="长期产品迭代 / 多端体验" data-time="2021.12 — 2024.04" data-project-role="设计主管 / UIUX / 项目推进" data-cover="./assets/project-cover-product.svg" data-foot="UI/UX LEAD · APP · DATA SCREEN · 2021—2024" data-kicker="PRODUCT EXPERIENCE / HUGO TECH" data-mark="虎哥数字科技" data-role="UI/UX LEAD / DESIGN MANAGEMENT" data-output="APP / DATA SCREEN / ASSISTANT" data-status="SELECTED WORK HISTORY" data-background="在多个数字化产品并行推进的阶段，需要保持产品体验、品牌视觉和交付节奏的一致性。" data-role-detail="负责设计团队管理、项目推进、产品体验优化和跨团队沟通协作。" data-process="围绕用户反馈、业务目标和产品迭代节奏，推动界面规范、体验优化和关键功能落地。" data-solution="虎哥 APP、数据大屏、小蚂哥助手等产品体验与视觉系统迭代。" data-result="用户参与率 +30%，用户满意度 +20%；详细案例素材后续筛选公开范围。" data-assets="待补充：可公开界面、数据大屏、产品流程、项目复盘。">
+                <button class="work-hit" type="button">
+                  <span class="work-index">04</span>
+                  <span class="work-title">虎哥数字化产品体验</span>
+                  <span class="work-type">APP · DATA</span>
+                </button>
+              </article>
+            </div>
+          </div>
+
+          <aside class="work-detail reveal" id="work-detail" data-project="01">
+            <div class="detail-visual" aria-hidden="true">
+              <img class="detail-cover" id="detail-cover" src="./assets/project-material-cover.svg" alt="">
+            </div>
+            <a class="detail-enter-link" id="detail-enter-link" href="./projects/robam/index.html" aria-label="进入老板电器官网项目复盘完整案例">
+              <span>进入项目</span>
+              <img src="./assets/group-3-arrow.svg" alt="" aria-hidden="true">
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <section class="contact panel" id="contact" data-section="contact">
+        <header class="section-meta reveal">
+          <span>04 / CONTACT</span>
+          <span>OPEN TO FULL-TIME OPPORTUNITIES</span>
+        </header>
+
+        <div class="contact-main">
+          <div class="contact-message">
+            <p class="contact-kicker reveal">HAVE SOMETHING IN MIND?</p>
+            <h2 class="contact-title reveal">LET'S MAKE YOUR NEXT PAGE <em>IMPOSSIBLE</em> TO IGNORE.</h2>
+          </div>
+
+          <aside class="wechat-card reveal" id="wechat-card" aria-label="微信联系方式" tabindex="-1">
+            <div class="wechat-card-copy">
+              <span>WECHAT / DIRECT CONTACT</span>
+              <strong>K_Jul25_Leo</strong>
+              <p>扫描二维码添加微信</p>
+            </div>
+            <div class="wechat-qr-shell">
+              <img src="./assets/wechat-qr-beichuan.jpg" alt="北川的微信二维码">
+            </div>
+          </aside>
+        </div>
+
+        <div class="contact-footer reveal">
+          <p>UI/UX · AIGC VIDEO · MOTION VISUAL · DIGITAL EXPERIENCE</p>
+          <div class="contact-links">
+            <a href="mailto:kanyuanzeyx@163.com">EMAIL</a>
+            <a href="#wechat-card">WECHAT</a>
+            <span class="contact-link-placeholder">UI CHINA</span>
+            <span class="contact-link-placeholder">RESUME PDF</span>
+          </div>
+          <p>HANGZHOU / CHINA<br>LOCAL TIME GMT+8</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <dialog class="story-dialog" id="project-story-dialog" aria-labelledby="story-title">
+    <div class="story-dialog__header">
+      <p class="story-dialog__eyebrow" id="story-index">PROJECT STORY / 01</p>
+      <button class="story-dialog__close" id="story-dialog-close" type="button" aria-label="关闭项目摘要">关闭</button>
+    </div>
+    <div class="story-dialog__intro">
+      <p id="story-client">ROBAM 老板电器 / OFFICIAL WEBSITE</p>
+      <h2 id="story-title">老板电器官网项目复盘</h2>
+      <p id="story-description">围绕官网与官方商城升级，重组品牌表达、产品理解、活动承接和交易路径。</p>
+    </div>
+    <dl class="story-dialog__list">
+      <div>
+        <dt>项目背景</dt>
+        <dd id="story-background"></dd>
+      </div>
+      <div>
+        <dt>我的职责</dt>
+        <dd id="story-role"></dd>
+      </div>
+      <div>
+        <dt>设计方法</dt>
+        <dd id="story-process"></dd>
+      </div>
+      <div>
+        <dt>方案产出</dt>
+        <dd id="story-solution"></dd>
+      </div>
+      <div>
+        <dt>结果与素材</dt>
+        <dd id="story-result"></dd>
+      </div>
+    </dl>
+  </dialog>
+
+  <dialog class="case-preview-dialog" id="case-preview-dialog" aria-labelledby="case-preview-title">
+    <header class="case-preview-dialog__header">
+      <div class="case-preview-dialog__brand" aria-label="北川案例作品集">
+        <span class="case-preview-dialog__brand-symbol">BC</span>
+        <span class="case-preview-dialog__brand-copy">
+          <strong>BEI CHUAN</strong>
+          <small id="case-preview-subtitle">AUSMAN Case Study</small>
+        </span>
+      </div>
+      <nav class="case-preview-dialog__nav" aria-label="案例章节导航">
+        <button class="case-preview-dialog__nav-back" id="case-preview-close" type="button">返回作品集</button>
+        <button type="button" data-preview-progress="0.14">项目概览</button>
+        <button type="button" data-preview-progress="0.31">核心策略</button>
+        <button type="button" data-preview-progress="0.47">脚本分镜</button>
+        <button type="button" data-preview-progress="0.63">视频表达</button>
+        <button type="button" data-preview-progress="0.80">AIGC 生产</button>
+        <button type="button" data-preview-progress="0.95">项目复盘</button>
+      </nav>
+    </header>
+    <h2 class="case-preview-dialog__visually-hidden" id="case-preview-title">澳芝曼维 C 洁面泡沫新品宣传视频</h2>
+    <div class="case-preview-dialog__document">
+      <img id="case-preview-image" alt="案例预览页面" loading="lazy">
+    </div>
+  </dialog>
+
+  <script src="./script.js?v=20260809-5"></script>
+</body>
+</html>
