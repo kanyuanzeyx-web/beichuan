@@ -8,12 +8,12 @@
       name="description"
       content="个人作品集案例：老板电器官网项目复盘，聚焦项目角色、原有问题、解决策略、核心页面与设计沉淀。"
     />
-    <link rel="stylesheet" href="./styles.css?v=20260623-1" />
+    <link rel="stylesheet" href="./styles.css?v=20260901-2" />
   </head>
   <body>
     <div class="page-shell">
       <header class="topbar" aria-label="页面导航">
-        <a class="brand-mark" href="../../index.html#projects" aria-label="返回个人网站项目列表">
+        <a class="brand-mark" data-case-return href="../../index.html?return=projects#projects" aria-label="返回个人网站项目列表">
           <span class="brand-mark__symbol">BC</span>
           <span>
             <strong>BEI CHUAN</strong>
@@ -21,11 +21,12 @@
           </span>
         </a>
         <nav class="topbar__nav" aria-label="章节导航">
-          <a class="topbar__home-link" href="../../index.html#projects">返回作品集</a>
+          <a class="topbar__home-link" data-case-return href="../../index.html?return=projects#projects">返回作品集</a>
           <a href="#snapshot">项目概览</a>
           <a href="#problem">问题</a>
           <a href="#solution">方案</a>
           <a href="#screens">页面</a>
+          <a href="#motion">动效</a>
           <a href="#system">规范</a>
         </nav>
         <button class="theme-button" type="button" data-theme-toggle aria-label="切换显示模式">
@@ -280,10 +281,40 @@
           </div>
         </section>
 
+        <section class="motion-section" id="motion" aria-labelledby="motion-title">
+          <div class="container">
+            <div class="section-heading section-heading--motion">
+              <p class="section-label">05 / Interaction Motion</p>
+              <h2 id="motion-title">商品详情动效串联卖点与浏览节奏</h2>
+              <p>真实项目动效将烟机结构、核心卖点和页面叙事串联起来，让用户在滚动过程中逐步理解产品，而不是一次面对大量参数。</p>
+            </div>
+            <figure class="motion-showcase">
+              <div class="motion-showcase__media">
+                <video
+                  src="../../assets/projects/robam/product-detail-motion.mp4"
+                  poster="../../assets/projects/robam/product-detail-motion-poster.png"
+                  muted
+                  loop
+                  playsinline
+                  autoplay
+                  controls
+                  preload="metadata"
+                  aria-label="老板电器 5915S 油烟机商品详情页动效演示"
+                ></video>
+              </div>
+              <figcaption>
+                <span>REAL PROJECT MOTION / PRODUCT DETAIL</span>
+                <strong>5915S 油烟机详情页动效</strong>
+                <p>以产品结构为视觉中心，通过分段文案、视角切换和滚动节奏突出“三面拢烟”等核心卖点，同时保持品牌官网的克制与专业感。</p>
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
         <section class="journey-section">
           <div class="container">
             <div class="section-heading">
-              <p class="section-label">05 / Commerce Flow</p>
+              <p class="section-label">06 / Commerce Flow</p>
               <h2>官方商城关键交易链路</h2>
             </div>
             <ol class="flow-list">
@@ -303,7 +334,7 @@
         <section class="system-section" id="system">
           <div class="container">
             <div class="section-heading">
-              <p class="section-label">06 / Design System</p>
+              <p class="section-label">07 / Design System</p>
               <h2>把单次改版沉淀为可长期运营的页面资产</h2>
             </div>
             <div class="system-visual-stack">
@@ -440,7 +471,7 @@
         <section class="role-section" id="role">
           <div class="container role-layout">
             <div class="section-heading">
-              <p class="section-label">07 / Project Contribution</p>
+              <p class="section-label">08 / Project Contribution</p>
               <h2>我的参与集中在页面体验、视觉语言与落地规范</h2>
               <p>
                 在这个项目里，我的工作不是孤立地完成某几张页面，而是参与把复杂的官网任务整理成可设计、可协作、可复用的模块系统。
@@ -469,7 +500,7 @@
 
         <section class="closing-section">
           <div class="container">
-            <p class="section-label">08 / Reflection</p>
+            <p class="section-label">09 / Reflection</p>
             <h2>品牌官网的价值，在于让认知、决策和服务持续发生</h2>
             <p>
               这个项目让我更明确地理解到，官网不是一张漂亮的品牌封面。它需要在用户每一次浏览、比较、下单和售后查询里持续建立信任，设计也需要把这种信任落到清晰的结构、稳定的模块和可复用的规范里。
@@ -479,6 +510,7 @@
       </main>
     </div>
 
+    <script src="../../scripts/case-return.js?v=20260901-2"></script>
     <script src="./script.js?v=20260623-1"></script>
   </body>
 </html>

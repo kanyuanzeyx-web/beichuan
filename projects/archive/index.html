@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11151b">
+  <meta name="description" content="北川作品集案例阅读页">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="BEI CHUAN DESIGN">
+  <meta property="og:image" content="../../assets/portfolio-og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>案例阅读 / BEI CHUAN</title>
+  <link rel="icon" href="../../assets/favicon.png" type="image/png">
+  <link rel="stylesheet" href="./styles.css?v=20260901-2">
+</head>
+<body>
+  <a class="skip-link" href="#case-pages">跳到案例内容</a>
+
+  <header class="case-header">
+    <a class="case-back" data-case-return href="../../index.html?return=projects#projects" aria-label="返回作品集项目列表">
+      <span class="case-back__symbol" aria-hidden="true">BC</span>
+      <span class="case-back__copy"><strong>BEI CHUAN</strong><small id="header-case-title">CASE STUDY</small></span>
+    </a>
+    <nav class="chapter-nav" aria-label="案例章节">
+      <a class="chapter-nav__home" data-case-return href="../../index.html?return=projects#projects">返回作品集</a>
+      <div class="chapter-nav__links" id="chapter-links"></div>
+    </nav>
+    <div class="case-progress" aria-live="polite">
+      <span id="current-page">01</span>
+      <span>/</span>
+      <span id="total-pages">01</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="case-intro" aria-labelledby="case-title">
+      <p class="case-eyebrow" id="case-eyebrow">ARCHIVE CASE / 2021</p>
+      <h1 id="case-title">案例加载中</h1>
+      <p class="case-summary" id="case-summary"></p>
+      <dl class="case-meta">
+        <div>
+          <dt>项目时间</dt>
+          <dd id="case-year"></dd>
+        </div>
+        <div>
+          <dt>项目角色</dt>
+          <dd id="case-role"></dd>
+        </div>
+        <div>
+          <dt>内容范围</dt>
+          <dd id="case-scope"></dd>
+        </div>
+      </dl>
+      <p class="case-notice" id="case-notice" hidden></p>
+    </section>
+
+    <section class="case-pages" id="case-pages" aria-label="案例页面"></section>
+  </main>
+
+  <nav class="page-controls" aria-label="案例翻页">
+    <button id="previous-page" type="button" aria-label="查看上一页">
+      <span aria-hidden="true">←</span>
+      <span class="page-controls__label">上一页</span>
+    </button>
+    <span class="page-controls__status" aria-live="polite">
+      <b id="control-current-page">01</b>
+      <i>/</i>
+      <span id="control-total-pages">01</span>
+    </span>
+    <button id="next-page" type="button" aria-label="查看下一页">
+      <span class="page-controls__label">下一页</span>
+      <span aria-hidden="true">→</span>
+    </button>
+  </nav>
+
+  <script src="../../scripts/case-return.js?v=20260901-2"></script>
+  <script src="./script.js?v=20260901-2"></script>
+</body>
+</html>

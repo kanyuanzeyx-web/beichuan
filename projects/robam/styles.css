@@ -96,11 +96,13 @@ a {
   z-index: 30;
   top: 0;
   left: 0;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(12rem, 1fr) auto minmax(12rem, 1fr);
   align-items: center;
-  justify-content: space-between;
+  gap: 1rem;
   width: 100%;
-  padding: 18px 32px;
+  min-height: 68px;
+  padding: 12px 24px;
   color: #fff;
   background: linear-gradient(180deg, rgba(32, 36, 43, 0.94), rgba(32, 36, 43, 0));
   pointer-events: none;
@@ -119,18 +121,19 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  min-width: 160px;
+  min-width: 0;
+  justify-self: start;
 }
 
 .brand-mark__symbol {
   display: grid;
-  width: 40px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   place-items: center;
   border-radius: 50%;
   background: var(--red);
   color: #fff;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 900;
   letter-spacing: 0;
 }
@@ -142,7 +145,7 @@ a {
 
 .brand-mark strong {
   font-family: "Grand Bold", "PP Neue Montreal", sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.1;
   letter-spacing: 0.04em;
 }
@@ -150,21 +153,29 @@ a {
 .brand-mark small {
   margin-top: 2px;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 10px;
 }
 
 .topbar__nav {
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-self: center;
+  gap: 0;
   min-height: 40px;
-  padding: 0 18px;
+  padding: 4px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: rgba(24, 27, 32, 0.62);
   backdrop-filter: blur(18px);
   color: rgba(255, 255, 255, 0.84);
-  font-size: 13px;
+  font-size: 12px;
+}
+
+.topbar__nav a {
+  padding: 7px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
 :root[data-theme="light"] .topbar__nav {
@@ -173,11 +184,13 @@ a {
 }
 
 .topbar__nav a:hover {
-  color: var(--red);
+  color: var(--text);
+  background: rgba(240, 236, 217, 0.1);
 }
 
 .topbar__home-link {
-  padding-right: 18px;
+  margin-right: 4px;
+  padding-right: 14px !important;
   border-right: 1px solid var(--line);
   color: #fff;
   font-weight: 800;
@@ -189,8 +202,9 @@ a {
 
 .theme-button {
   display: grid;
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
+  justify-self: end;
   place-items: center;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -797,6 +811,76 @@ p {
   grid-template-columns: 0.34fr 0.66fr;
   gap: 28px;
   align-items: stretch;
+}
+
+.motion-section {
+  background: var(--bg-soft);
+}
+
+.section-heading--motion {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.7fr);
+  gap: 1rem clamp(2rem, 6vw, 7rem);
+  align-items: end;
+}
+
+.section-heading--motion .section-label {
+  grid-column: 1 / -1;
+}
+
+.section-heading--motion h2,
+.section-heading--motion > p:last-child {
+  margin-bottom: 0;
+}
+
+.motion-showcase {
+  margin: clamp(2.5rem, 5vw, 4.5rem) 0 0;
+  border: 1px solid var(--line);
+  background: #080b0e;
+  box-shadow: var(--shadow);
+}
+
+.motion-showcase__media {
+  position: relative;
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
+  background: #050607;
+}
+
+.motion-showcase__media video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  background: #050607;
+}
+
+.motion-showcase figcaption {
+  display: grid;
+  grid-template-columns: minmax(13rem, 0.55fr) minmax(15rem, 0.8fr) minmax(20rem, 1.2fr);
+  gap: 1.25rem 2rem;
+  align-items: start;
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  border-top: 1px solid var(--line);
+}
+
+.motion-showcase figcaption span {
+  color: var(--red);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.motion-showcase figcaption strong {
+  font-size: clamp(1.15rem, 1.6vw, 1.55rem);
+  line-height: 1.25;
+}
+
+.motion-showcase figcaption p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.7;
 }
 
 .screen-copy {
@@ -1594,11 +1678,20 @@ p {
   .two-column,
   .before-after,
   .screen-showcase,
+  .section-heading--motion,
   .layout-showcase,
   .spec-visual-grid,
   .rhythm-board,
   .role-layout {
     grid-template-columns: 1fr;
+  }
+
+  .motion-showcase figcaption {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .motion-showcase figcaption p {
+    grid-column: 1 / -1;
   }
 
   .hero-preview {
@@ -1637,7 +1730,16 @@ p {
   }
 
   .topbar {
+    grid-template-columns: minmax(0, 1fr) auto;
     padding: 14px 16px;
+  }
+
+  .brand-mark {
+    grid-column: 1;
+  }
+
+  .theme-button {
+    grid-column: 2;
   }
 
   .brand-mark {
@@ -1709,6 +1811,18 @@ p {
   .screen-device {
     min-height: auto;
     padding: 14px;
+  }
+
+  .motion-showcase__media {
+    aspect-ratio: 16 / 9;
+  }
+
+  .motion-showcase figcaption {
+    grid-template-columns: 1fr;
+  }
+
+  .motion-showcase figcaption p {
+    grid-column: auto;
   }
 
   .mock-page {
