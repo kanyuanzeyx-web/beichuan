@@ -61,24 +61,6 @@ const crumbLabel = document.getElementById("demo-crumb-label");
 const demoIndex = document.getElementById("demo-index");
 const demoDecision = document.getElementById("demo-decision");
 const demoImage = document.getElementById("demo-image");
-const scenarioExperience = document.querySelector(".scenario__experience");
-const scenarioPanel = document.getElementById("scenario-panel");
-const scenarioButtons = [...document.querySelectorAll("button[data-scenario]")];
-const scenarioKicker = document.getElementById("scenario-kicker");
-const scenarioTitle = document.getElementById("scenario-title");
-const scenarioCopy = document.getElementById("scenario-copy");
-const scenarioPath = document.getElementById("scenario-path");
-const scenarioImage = document.getElementById("scenario-image");
-const scenarioPlaceholder = document.getElementById("scenario-placeholder");
-const scenarioExpand = document.getElementById("scenario-expand");
-const scenarioLightbox = document.getElementById("scenario-lightbox");
-const scenarioLightboxImage = document.getElementById("scenario-lightbox-image");
-const scenarioLightboxKicker = document.getElementById("scenario-lightbox-kicker");
-const scenarioLightboxTitle = document.getElementById("scenario-lightbox-title");
-const scenarioLightboxCount = document.getElementById("scenario-lightbox-count");
-const scenarioLightboxPrev = document.getElementById("scenario-lightbox-prev");
-const scenarioLightboxNext = document.getElementById("scenario-lightbox-next");
-const scenarioLightboxClose = document.getElementById("scenario-lightbox-close");
 const heroPreview = document.querySelector(".product-preview");
 const heroStepButtons = [...document.querySelectorAll("[data-hero-step]")];
 const heroStepKicker = document.getElementById("hero-step-kicker");
@@ -86,41 +68,6 @@ const heroStepTitle = document.getElementById("hero-step-title");
 const heroStepCopy = document.getElementById("hero-step-copy");
 const heroStepAdvance = document.getElementById("hero-step-advance");
 const heroPreviewCaption = document.getElementById("hero-preview-caption");
-const scenarioData = {
-  context: {
-    kicker: "输入 / 已有 Figma 规范",
-    title: "已有 Figma 规范成为 AI 协作的共同上下文",
-    copy: "我整理已有组件、视觉规则、业务对象和页面关系，作为 Gemini、Figma AI 与 Codex 共用的设计上下文。",
-    path: "规范输入 → 上下文确认 → 开始协作",
-    image: "../../assets/projects/bthree/component-guidelines.png",
-    alt: "输入给 AI 的 B.THREE 组件与交互状态规范",
-  },
-  structure: {
-    kicker: "建模 / 脱敏项目上下文",
-    title: "真实业务被整理为 AI 可理解的项目上下文",
-    copy: "我将项目背景、目标用户、核心任务、业务对象、约束与验收标准整理为脱敏文件，让 AI 在真实规则内协助分析。",
-    path: "业务事实 → 上下文建模 → AI 协作输入",
-    image: "../../assets/projects/bthree/ai-project-context.png",
-    alt: "B.THREE AI 商品内容生成平台的脱敏项目上下文文件",
-  },
-  flow: {
-    kicker: "推演 / 核心用户流程",
-    title: "模型准备、内容生成与交付被串成完整闭环",
-    copy: "我围绕上传模型与预约扫描两种入口展开分支，补齐失败重试、结果审核与项目资产沉淀，再收敛为可开发的用户流程。",
-    path: "模型准备 → 内容生成 → 审核调整 → 资产交付",
-    image: "../../assets/projects/bthree/ai-product-user-flow.png",
-    alt: "B.THREE 从模型准备到 AI 内容生成和交付的完整用户流程图",
-  },
-  validate: {
-    kicker: "验证 / Codex 前端实现",
-    title: "方案在真实页面环境中完成前端验证",
-    copy: "通过 Codex 验证交互状态、响应式表现和页面反馈，再将发现的问题回收到设计方案并完成开发交付。",
-    path: "前端实现 → 交互检查 → 修正交付",
-    image: "../../assets/projects/bthree/upload-materials-home.png",
-    alt: "通过 Codex 实现并验证的 B.THREE 真实产品页面",
-  },
-};
-
 const heroStepData = {
   asset: {
     kicker: "01 / 04 真实产品界面",
@@ -182,75 +129,6 @@ function activateStage(button, focus = false) {
   if (focus) button.focus();
 }
 
-function activateScenario(button, focus = false) {
-  const state = button.dataset.scenario;
-  const content = scenarioData[state];
-  if (!scenarioExperience || !content) return;
-
-  scenarioExperience.dataset.scenario = state;
-  scenarioPanel?.setAttribute("aria-labelledby", button.id);
-  setActiveTab(scenarioButtons, button);
-  if (scenarioKicker) scenarioKicker.textContent = content.kicker;
-  if (scenarioTitle) scenarioTitle.textContent = content.title;
-  if (scenarioCopy) scenarioCopy.textContent = content.copy;
-  if (scenarioPath) scenarioPath.textContent = content.path;
-  const showPlaceholder = Boolean(content.placeholder);
-  if (scenarioImage) scenarioImage.hidden = showPlaceholder;
-  if (scenarioExpand) scenarioExpand.hidden = showPlaceholder;
-  if (scenarioPlaceholder) scenarioPlaceholder.hidden = !showPlaceholder;
-  scenarioPanel?.classList.remove("is-updating");
-  void scenarioPanel?.offsetWidth;
-  scenarioPanel?.classList.add("is-updating");
-  if (scenarioImage && !showPlaceholder) {
-    scenarioImage.src = content.image;
-    scenarioImage.alt = content.alt;
-  }
-  if (focus) button.focus();
-}
-
-function openScenarioLightbox() {
-  if (!scenarioLightbox || !scenarioImage || scenarioImage.hidden) return;
-  const activeIndex = scenarioButtons.findIndex((button) => button.classList.contains("is-active"));
-  showScenarioInLightbox(activeIndex < 0 ? 0 : activeIndex);
-  document.body.classList.add("has-open-dialog");
-  scenarioLightbox.showModal();
-}
-
-function showScenarioInLightbox(index) {
-  const total = scenarioButtons.length;
-  if (!total) return;
-  const safeIndex = (index + total) % total;
-  const button = scenarioButtons[safeIndex];
-  const content = scenarioData[button.dataset.scenario];
-  if (!content?.image) return;
-
-  activateScenario(button);
-  if (scenarioLightboxImage) {
-    scenarioLightboxImage.classList.remove("is-changing");
-    void scenarioLightboxImage.offsetWidth;
-    scenarioLightboxImage.classList.add("is-changing");
-    scenarioLightboxImage.src = content.image;
-    scenarioLightboxImage.alt = content.alt;
-  }
-  if (scenarioLightboxKicker) scenarioLightboxKicker.textContent = content?.kicker || "AI COLLABORATION";
-  if (scenarioLightboxTitle) scenarioLightboxTitle.textContent = content?.title || "阶段证据图";
-  if (scenarioLightboxCount) scenarioLightboxCount.textContent = `${String(safeIndex + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
-  scenarioLightbox.dataset.index = String(safeIndex);
-}
-
-scenarioExpand?.addEventListener("click", openScenarioLightbox);
-scenarioLightboxPrev?.addEventListener("click", () => showScenarioInLightbox(Number(scenarioLightbox?.dataset.index || 0) - 1));
-scenarioLightboxNext?.addEventListener("click", () => showScenarioInLightbox(Number(scenarioLightbox?.dataset.index || 0) + 1));
-scenarioLightboxClose?.addEventListener("click", () => scenarioLightbox?.close());
-scenarioLightbox?.addEventListener("click", (event) => {
-  if (event.target === scenarioLightbox) scenarioLightbox.close();
-});
-scenarioLightbox?.addEventListener("close", () => document.body.classList.remove("has-open-dialog"));
-scenarioLightbox?.addEventListener("keydown", (event) => {
-  if (event.key === "ArrowLeft") showScenarioInLightbox(Number(scenarioLightbox.dataset.index || 0) - 1);
-  if (event.key === "ArrowRight") showScenarioInLightbox(Number(scenarioLightbox.dataset.index || 0) + 1);
-});
-
 function activateHeroStep(button, focus = false) {
   const step = button.dataset.heroStep;
   const content = heroStepData[step];
@@ -284,7 +162,6 @@ function enableArrowTabNavigation(buttons, activate) {
 }
 
 enableArrowTabNavigation(stageButtons, activateStage);
-enableArrowTabNavigation(scenarioButtons, activateScenario);
 enableArrowTabNavigation(heroStepButtons, activateHeroStep);
 
 heroStepAdvance?.addEventListener("click", () => {

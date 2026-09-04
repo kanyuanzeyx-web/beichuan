@@ -20,7 +20,7 @@
       }
     </script>
     <link rel="icon" href="../../assets/favicon.png" type="image/png" />
-    <link rel="stylesheet" href="./styles.css?v=20260901-2" />
+    <link rel="stylesheet" href="./styles.css?v=20260904-3" />
     <link rel="preload" href="../../assets/projects/bthree/content-scanner-arm-v2-optimized.glb" as="fetch" type="model/gltf-binary" crossorigin="anonymous" />
     <script type="importmap">
       { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.166.1/build/three.module.js" } }
@@ -41,7 +41,7 @@
         <a href="#overview">项目概览</a>
         <a href="#problem">产品问题</a>
         <a href="#scenario">AI 方法</a>
-        <a href="#decisions">关键决策</a>
+        <a href="#decisions">协作实例</a>
         <a href="#workflow">产品链路</a>
         <a href="#delivery">项目结果</a>
       </nav>
@@ -127,24 +127,35 @@
       </section>
 
       <section class="scenario" id="scenario">
-        <div class="container split-layout">
-          <div class="section-heading sticky-copy">
-            <p class="eyebrow">04 / WHY AI &amp; WORKING METHOD</p>
-            <h2><span>AI 加速产品迭代</span><span>推演验证更高效</span></h2>
-            <p>AI 在产品后期迭代中进入：此时已有真实业务、Figma 规范和开发约束。我的方法是先提供上下文，再让 AI 参与整理与探索，由我收敛方案，最后进入真实前端验证。</p>
-          </div>
-          <div class="scenario__experience" data-scenario="context" data-reveal>
-            <div class="scenario__tabs" role="tablist" aria-label="AI 协同设计阶段">
-              <button class="is-active" id="scenario-tab-context" type="button" data-scenario="context" role="tab" aria-controls="scenario-panel" aria-selected="true" tabindex="0">01 规范输入</button>
-              <button id="scenario-tab-structure" type="button" data-scenario="structure" role="tab" aria-controls="scenario-panel" aria-selected="false" tabindex="-1">02 业务建模</button>
-              <button id="scenario-tab-flow" type="button" data-scenario="flow" role="tab" aria-controls="scenario-panel" aria-selected="false" tabindex="-1">03 流程推演</button>
-              <button id="scenario-tab-validate" type="button" data-scenario="validate" role="tab" aria-controls="scenario-panel" aria-selected="false" tabindex="-1">04 前端验证</button>
+        <div class="container">
+          <div class="ai-process" data-reveal>
+            <div class="section-heading ai-process__heading">
+              <p class="eyebrow">04 / AI-ASSISTED PRODUCT WORKFLOW</p>
+              <h2>AI 缩短的不是思考，<br>而是从需求到验证的距离。</h2>
+              <p>传统流程中，需求文档、流程图、原型与开发评估依次交接；在 B.THREE 后期迭代中，我把真实需求、业务规则和既有设计规范整理成 AI 上下文，让这些步骤在同一个设计循环中更早发生。</p>
             </div>
-            <div class="scenario__screen" id="scenario-panel" role="tabpanel" aria-labelledby="scenario-tab-context" aria-live="polite">
-              <img id="scenario-image" src="../../assets/projects/bthree/component-guidelines.png" alt="输入给 AI 的 B.THREE 组件与交互状态规范" />
-              <button class="scenario__expand" id="scenario-expand" type="button" aria-label="全屏查看当前阶段配图">全屏查看</button>
+            <div class="ai-process__compare" aria-label="传统产品流程与 AI 协同流程对比">
+              <article class="ai-process__lane">
+                <header><span>BEFORE</span><strong>传统串行流程</strong></header>
+                <ol>
+                  <li><b>01</b><span>产品输出 PRD</span></li>
+                  <li><b>02</b><span>设计梳理流程图</span></li>
+                  <li><b>03</b><span>绘制低保真原型</span></li>
+                  <li><b>04</b><span>与开发评估可行性</span></li>
+                  <li><b>05</b><span>回到设计继续修改</span></li>
+                </ol>
+              </article>
+              <article class="ai-process__lane ai-process__lane--active">
+                <header><span>NOW</span><strong>AI 协同闭环</strong></header>
+                <ol>
+                  <li><b>01</b><span>输入需求与业务约束</span></li>
+                  <li><b>02</b><span>同步推演流程与异常分支</span></li>
+                  <li><b>03</b><span>生成可讨论的原型骨架</span></li>
+                  <li><b>04</b><span>调用设计规范生成高保真方案</span></li>
+                  <li><b>05</b><span>在真实前端中验证并修正</span></li>
+                </ol>
+              </article>
             </div>
-            <p class="scenario__decision"><span>责任边界</span><b>AI 负责加速整理、推演与实现；我负责业务判断、体验取舍、规范一致性、评审和最终交付。</b></p>
           </div>
         </div>
       </section>
@@ -152,42 +163,20 @@
       <section class="decisions" id="decisions">
         <div class="container">
           <div class="section-heading section-heading--row">
-            <div><p class="eyebrow">05 / KEY PRODUCT DECISIONS</p><h2>两项关键判断，确定了模型入口与生成配置。</h2></div>
-            <p>这里关注我做出的产品判断：为什么这样组织流程、舍弃了什么，以及最终如何降低理解和交付成本。</p>
+            <div><p class="eyebrow">05 / ONE REQUIREMENT, ONE AI LOOP</p><h2>一条真实需求，如何从描述走到可开发页面。</h2></div>
+            <p>以下用“没有 3D 模型的客户也能开始任务”这一条需求，说明 AI 参与的位置，以及我必须完成的判断。</p>
           </div>
-          <div class="decisions__grid" data-reveal-group>
-            <article class="decision-case">
-              <div class="decision-case__visual decision-case__visual--filled decision-entry-evidence">
-                <figure><img src="../../assets/projects/bthree/workflow-01-start-method.png" alt="选择上传模型或预约扫描服务的开始方式页面"><figcaption><span>01 / 两种起点</span><b>上传模型｜预约扫描</b></figcaption></figure>
-                <figure><img src="../../assets/projects/bthree/workflow-02-model-selection.png" alt="确认商品模型资产的模型选择页面"><figcaption><span>02 / 统一汇入</span><b>确认商品模型资产</b></figcaption></figure>
-                <div class="decision-entry-evidence__path" aria-hidden="true">两种准备方式&nbsp;&nbsp;→&nbsp;&nbsp;同一商品资产</div>
-              </div>
-              <div class="decision-case__content">
-                <p class="eyebrow">DECISION 01 / MODEL ENTRY</p>
-                <h3>模型准备统一为上传与扫描两种入口</h3>
-                <dl>
-                  <div><dt>原始问题</dt><dd>不同客户拥有不同模型条件，流程容易在入口处分裂。</dd></div>
-                  <div><dt>我的判断</dt><dd>只询问“是否已有可用模型”，将上传和扫描视为两种准备方式。</dd></div>
-                  <div><dt>产生价值</dt><dd>模型准备完成后统一进入商品资产，后续模板与生成流程不再分叉。</dd></div>
-                </dl>
-              </div>
-            </article>
-            <article class="decision-case">
-              <div class="decision-case__visual decision-case__visual--filled decision-config-evidence">
-                <img src="../../assets/projects/bthree/workflow-04-generation-config.png" alt="将专业生成参数转化为业务选项的生成配置页面">
-                <div class="decision-config-evidence__legend"><span>输出类型</span><span>分辨率</span><span>商品模型</span><span>颜色适配</span></div>
-                <p>将底层 AI、渲染与打光能力转译为用户能够直接判断的配置项</p>
-              </div>
-              <div class="decision-case__content">
-                <p class="eyebrow">DECISION 02 / GENERATION CONFIG</p>
-                <h3>专业生成参数被转化为用户可判断的业务选项</h3>
-                <dl>
-                  <div><dt>原始问题</dt><dd>AI、渲染和打光参数专业度高，品牌客户难以理解。</dd></div>
-                  <div><dt>我的判断</dt><dd>围绕输出类型、分辨率、商品模型和颜色适配重新组织配置。</dd></div>
-                  <div><dt>产生价值</dt><dd>用户在生成前即可检查关键条件，减少不可控结果和重复沟通。</dd></div>
-                </dl>
-              </div>
-            </article>
+          <div class="decision-story" data-reveal>
+            <figure class="decision-story__evidence">
+              <img src="../../assets/projects/bthree/ai-product-user-flow.png" alt="围绕无模型用户开始任务需求收敛后的 B.THREE 产品流程图">
+              <figcaption><span>FINAL FLOW / 经过业务判断后的流程</span><b>上传模型与预约扫描最终汇入同一个商品资产入口</b></figcaption>
+            </figure>
+            <div class="decision-story__steps">
+              <article><span>01 / 原始需求</span><h3>没有 3D 模型的客户，也要能够开始任务。</h3><p>这不是简单增加一个入口，还涉及扫描服务、模型生产周期、任务状态和后续生成条件。</p></article>
+              <article><span>02 / AI 展开</span><h3>快速补齐角色、前置条件与异常分支。</h3><p>AI 把口头描述展开成多套流程草案，并标出需要产品、设计和开发共同确认的问题。</p></article>
+              <article class="is-key"><span>03 / 我的决策</span><h3>“可用商品模型”仍然是进入生成链路的唯一前提。</h3><p>上传模型与预约扫描不是两套产品流程，而是两种模型准备方式；模型就绪后统一进入商品资产。</p></article>
+              <article><span>04 / 最终结果</span><h3>两个起点，一条稳定的内容生产路径。</h3><p>客户可以从不同条件开始，但模板选择、内容生成和项目交付始终围绕同一个商品资产继续。</p></article>
+            </div>
           </div>
         </div>
       </section>
@@ -195,7 +184,7 @@
       <section class="workflow" id="workflow">
         <div class="container">
           <div class="section-heading section-heading--row">
-            <div><p class="eyebrow">06 / DELIVERED PRODUCT FLOW</p><h2>最终产品形成了一条五步交付链路。</h2></div>
+            <div><p class="eyebrow">06 / DELIVERED PRODUCT FLOW</p><h2>两个模型起点，最终汇入同一条内容生产链路。</h2></div>
             <p>用户只有两个模型起点：上传已有 3D 模型；没有模型时预约扫描服务。模型准备完成后，再进入模板、生成与项目资产环节。</p>
           </div>
           <div class="workflow__tabs" role="tablist" aria-label="商品内容生成流程" data-reveal>
@@ -224,29 +213,12 @@
         </div>
       </section>
 
-      <section class="key-screens" id="screens">
-        <div class="container">
-          <div class="section-heading section-heading--row">
-            <div><p class="eyebrow">07 / AI DESIGN EVIDENCE</p><h2>AI 输出经过判断与修正后进入真实交付。</h2></div>
-            <p>以下证据基于真实交付过程复盘整理，聚焦输入依据、流程判断、人工修正与前端验证。</p>
-          </div>
-          <div class="key-screens__grid" data-reveal-group>
-            <figure class="case-placeholder case-placeholder--wide"><div class="case-placeholder__media" aria-hidden="true"></div><figcaption><span>01 / CONTEXT · 规范输入</span><strong>已有 Figma 规范构成 AI 协作上下文</strong><p>展示组件、状态、业务对象和关键约束如何成为共同输入。</p></figcaption></figure>
-            <figure class="case-placeholder"><div class="case-placeholder__media" aria-hidden="true"></div><figcaption><span>02 / REQUIREMENT · 复盘还原</span><strong>真实需求被整理为模型与服务分支</strong><p>用结构图还原模型上传、扫描服务与异常分支的梳理结果。</p></figcaption></figure>
-            <figure class="case-placeholder"><div class="case-placeholder__media" aria-hidden="true"></div><figcaption><span>03 / FLOW · 设计判断</span><strong>多套流程方案收敛为最终产品链路</strong><p>用流程对比图呈现备选方案、取舍依据与最终可交付路径。</p></figcaption></figure>
-            <figure class="case-placeholder"><div class="case-placeholder__media" aria-hidden="true"></div><figcaption><span>04 / UI &amp; JUDGEMENT · 人工修正</span><strong>AI 初稿经过人工判断与规范修正</strong><p>展示 AI 初稿的问题、修改标注与规范化后的最终界面。</p></figcaption></figure>
-            <figure class="case-placeholder"><div class="case-placeholder__media" aria-hidden="true"></div><figcaption><span>05 / VALIDATION · 真实交付</span><strong>Codex 前端验证支撑真实交付</strong><p>展示完整页面、响应式状态和前端验证结果。</p></figcaption></figure>
-          </div>
-        </div>
-      </section>
-
       <section class="system" id="system">
         <div class="container split-layout">
-          <div class="section-heading sticky-copy"><p class="eyebrow">08 / DESIGN CONTEXT &amp; HANDOFF</p><h2>既有 Figma 规范成为 AI 协作与开发验收的共同依据。</h2><p>已经验证过的品牌色、排版、组件、状态、业务对象与开发约束共同限制 AI 输出，也成为设计评审与前端验收的依据。</p></div>
+          <div class="section-heading sticky-copy"><p class="eyebrow">07 / DESIGN CONTEXT &amp; HANDOFF</p><h2>一套规范，同时约束设计、AI 输出与开发验收。</h2><p>已经验证过的品牌色、排版、组件、状态、业务对象与开发约束共同限制 AI 输出，也成为设计评审与前端验收的依据。</p></div>
           <div class="system__board" data-reveal>
             <article class="token-panel"><span>Visual Context</span><div class="swatches"><i></i><i></i><i></i><i></i></div><p>向 AI 明确近黑工具界面、品牌蓝操作焦点、语义状态色和对比度规则，限制视觉输出的基本方向。</p></article>
             <article class="type-panel"><span>Context Layers</span><strong>01</strong><b>产品目标与用户角色</b><strong>02</strong><b>模型、模板与资产关系</b><strong>03</strong><b>组件、排版与交互状态</b><strong>04</strong><b>开发约束与验收标准</b></article>
-            <article class="component-panel"><span>AI Review Checklist</span><div class="component-row" aria-label="设计评审状态"><span>符合规范</span><span class="is-quiet">需要修正</span><em>前端已验证</em></div><div class="component-list"><b>业务完整</b><b>状态完整</b><b>组件复用</b><b>响应式</b><b>可开发性</b></div></article>
             <div class="system__references">
               <figure><img src="../../assets/projects/bthree/component-guidelines.png" alt="输入给 AI 的 B.THREE 基础组件与交互状态规范" loading="lazy"><figcaption><span>AI 输入依据 / 01</span><strong>导航、筛选、输入与任务状态</strong><p>把真实组件和状态作为 AI 的参考边界，避免新方案脱离已有产品语言。</p></figcaption></figure>
               <figure><img src="../../assets/projects/bthree/asset-states-guidelines.png" alt="输入给 AI 的 B.THREE 资产管理规范" loading="lazy"><figcaption><span>AI 输入依据 / 02</span><strong>模型、项目、渲染与材质资产</strong><p>先向 AI 说明业务对象及其关系，再让它参与流程与页面方案推演。</p></figcaption></figure>
@@ -257,64 +229,20 @@
 
       <section class="delivery" id="delivery">
         <div class="container delivery__grid">
-          <div class="section-heading"><p class="eyebrow">09 / DELIVERY & REFLECTION</p><h2>平台正式上线，并进入百雀羚真实项目。</h2></div>
+          <div class="section-heading"><p class="eyebrow">08 / DELIVERY &amp; OUTCOME</p><h2>平台正式上线，并进入真实品牌项目。</h2></div>
           <ol class="delivery__list" data-reveal>
             <li><span>01</span><div><h3>完成正式上线与开发交付</h3><p>B.THREE 已完成开发交付并正式上线，核心链路覆盖模型准备、模板选择、内容生成和项目资产沉淀。</p></div></li>
             <li><span>02</span><div><h3>进入真实客户项目</h3><p>平台已用于百雀羚的真实品牌项目，设计方案从内部验证进入实际商品内容生产场景。</p></div></li>
-            <li><span>03</span><div><h3>显著提升迭代效率</h3><p>Gemini、Figma AI 与 Codex 缩短了需求整理、方案探索和前端验证所需时间，让问题更早被发现，也减少了重复沟通与返工。</p></div></li>
-            <li><span>04</span><div><h3>设计师负责最终判断</h3><p>业务规则、体验取舍、规范一致性和验收标准仍由我控制。AI 提升执行效率，但不替代产品设计中的关键决策。</p></div></li>
+            <li><span>03</span><div><h3>核心生产链路完整落地</h3><p>不同模型起点、模板选择、图片与视频生成、任务状态及项目资产管理被组织为一条可持续使用的产品链路。</p></div></li>
+            <li><span>04</span><div><h3>为后续迭代留下统一基础</h3><p>组件规范、业务对象和验收标准已在真实页面中对齐，后续功能可以沿用同一套产品语言继续扩展。</p></div></li>
           </ol>
-        </div>
-        <div class="container delivery-impact" id="value-model" data-reveal>
-          <header class="delivery-impact__header">
-            <div>
-              <span>VALUE MODEL / 10S PRODUCT MOTION</span>
-              <h3>一支 10 秒商品动效的效率账</h3>
-            </div>
-            <p>以下按已有商品 3D 模型、需完成策划、画面制作与两轮修改的常规项目估算，用于说明流程差异，不代表百雀羚的财务披露或固定报价。</p>
-          </header>
-          <div class="delivery-impact__compare">
-            <article>
-              <span>传统拍摄与后期制作</span>
-              <strong>8–12 个工作日</strong>
-              <b>约 ¥45,000–¥80,000</b>
-              <p>包含创意与分镜、摄影棚和灯光、拍摄团队、道具准备、剪辑合成及修改沟通。</p>
-            </article>
-            <article class="is-platform">
-              <span>B.THREE 内容生产链路</span>
-              <strong>2–4 个工作日</strong>
-              <b>约 ¥10,000–¥20,000</b>
-              <p>复用商品模型和品牌模板，集中完成场景配置、AI 生成、结果审核、修改与版本交付。</p>
-            </article>
-          </div>
-          <dl class="delivery-impact__metrics">
-            <div><dt>制作周期</dt><dd>约缩短 70%</dd></div>
-            <div><dt>制作成本</dt><dd>约减少 75%</dd></div>
-            <div><dt>持续价值</dt><dd>模型与模板可继续复用</dd></div>
-          </dl>
-          <p class="delivery-impact__note">测算方法：以传统制作中位值 10 天 / 6 万元，对比平台链路中位值 3 天 / 1.5 万元；实际结果会随画面复杂度、模型准备情况和修改轮次变化。</p>
         </div>
       </section>
     </main>
 
-    <dialog class="scenario-lightbox" id="scenario-lightbox" aria-labelledby="scenario-lightbox-title">
-      <div class="scenario-lightbox__frame">
-        <header>
-          <div><span id="scenario-lightbox-kicker">AI COLLABORATION</span><strong id="scenario-lightbox-title">阶段证据图</strong></div>
-          <div class="scenario-lightbox__controls">
-            <span id="scenario-lightbox-count">01 / 04</span>
-            <button id="scenario-lightbox-prev" type="button" aria-label="查看上一张" title="上一张">←</button>
-            <button id="scenario-lightbox-next" type="button" aria-label="查看下一张" title="下一张">→</button>
-            <button class="scenario-lightbox__close" id="scenario-lightbox-close" type="button" aria-label="关闭全屏预览">关闭</button>
-          </div>
-        </header>
-        <div class="scenario-lightbox__media"><img id="scenario-lightbox-image" alt="" /></div>
-      </div>
-    </dialog>
-
     <footer class="footer"><a data-case-return href="../../index.html?return=projects#projects">返回北川作品集</a><span>B.THREE AI CONTENT PLATFORM CASE STUDY</span></footer>
     <script src="../../scripts/case-return.js?v=20260901-2"></script>
     <script type="module" src="./model-viewer.js?v=20260830-1"></script>
-    <script src="./script.js?v=20260829-5"></script>
+    <script src="./script.js?v=20260904-1"></script>
   </body>
 </html>

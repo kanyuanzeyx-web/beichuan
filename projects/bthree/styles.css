@@ -1,7 +1,7 @@
 @font-face { font-family: "PP Neue Montreal"; src: url("../../assets/stiff-ref/fonts/PPNeueMontreal-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
 @font-face { font-family: "PP Neue Montreal"; src: url("../../assets/stiff-ref/fonts/PPNeueMontreal-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
 
-:root { --bg:#171717; --bg-soft:#0a0a0a; --surface:#202020; --surface-soft:#292929; --text:#f5f5f5; --muted:rgba(255,255,255,.62); --line:rgba(255,255,255,.12); --red:#c64640; --blue:#4390ff; --primary-deep:#7f2d28; --lime:#16a34a; --paper:#eee9d8; --ink:#171717; --container:1180px; }
+:root { --bg:#171717; --bg-soft:#0a0a0a; --surface:#202020; --surface-soft:#292929; --text:#f5f5f5; --muted:rgba(255,255,255,.62); --line:rgba(255,255,255,.12); --red:#79a9ff; --blue:#4390ff; --primary-deep:#2e2899; --lime:#16a34a; --paper:#eee9d8; --ink:#171717; --container:1180px; }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body { margin:0; color:var(--text); background:var(--bg); font-family:"PP Neue Montreal","PingFang SC","Microsoft YaHei",sans-serif; }
@@ -229,7 +229,7 @@ section[id] { scroll-margin-top:0; }
 }
 .system__board { grid-template-columns:repeat(2,minmax(0,1fr)); }
 .system__board article { min-height:170px; }
-.system__board .component-panel,.system__references { grid-column:1 / -1; }
+.system__references { grid-column:1 / -1; }
 .component-row > span,.component-row em {
   padding:8px 10px;
   color:#fff;
@@ -245,7 +245,7 @@ section[id] { scroll-margin-top:0; }
   html { scroll-padding-top:116px; }
   section[id] { scroll-margin-top:0; }
   .system__board { grid-template-columns:1fr; }
-  .system__board .component-panel,.system__references { grid-column:auto; }
+  .system__references { grid-column:auto; }
 }
 
 @media (max-width:560px) {
@@ -262,28 +262,100 @@ section[id] { scroll-margin-top:0; }
   .problem__title span { display:inline; white-space:normal; }
 }
 
-.delivery-impact { margin-top:clamp(4rem,8vw,7rem); padding-top:clamp(2rem,4vw,3.5rem); border-top:1px solid var(--line); }
-.delivery-impact__header { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(18rem,.8fr); gap:2rem 5rem; align-items:end; }
-.delivery-impact__header span { color:var(--red); font-size:10px; font-weight:700; letter-spacing:.12em; }
-.delivery-impact__header h3 { max-width:12ch; margin:16px 0 0; font-size:clamp(2rem,4vw,4.2rem); line-height:1.04; }
-.delivery-impact__header p { margin:0; color:var(--muted); font-size:13px; line-height:1.75; }
-.delivery-impact__compare { display:grid; grid-template-columns:1fr 1fr; gap:1px; margin-top:36px; border:1px solid var(--line); background:var(--line); }
-.delivery-impact__compare article { min-height:280px; display:flex; flex-direction:column; padding:clamp(24px,3vw,38px); background:#151515; }
-.delivery-impact__compare article.is-platform { background:linear-gradient(145deg,rgba(198,70,64,.2),rgba(20,20,20,.98) 58%); }
-.delivery-impact__compare span { color:var(--muted); font-size:11px; font-weight:700; letter-spacing:.08em; }
-.delivery-impact__compare strong { margin-top:36px; font-size:clamp(1.8rem,3vw,3.2rem); line-height:1; }
-.delivery-impact__compare b { margin-top:12px; color:var(--red); font-size:clamp(1rem,1.6vw,1.35rem); }
-.delivery-impact__compare p { max-width:34rem; margin:auto 0 0; color:var(--muted); font-size:13px; line-height:1.7; }
-.delivery-impact__metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; margin:1px 0 0; background:var(--line); }
-.delivery-impact__metrics div { padding:22px; background:#171717; }
-.delivery-impact__metrics dt { color:var(--muted); font-size:11px; }
-.delivery-impact__metrics dd { margin:10px 0 0; color:var(--text); font-size:clamp(1.2rem,2vw,1.8rem); font-weight:700; }
-.delivery-impact__note { max-width:760px; margin:18px 0 0; color:rgba(255,255,255,.46); font-size:11px; line-height:1.65; }
+/* 2026-09 AI workflow narrative: separate design efficiency from platform value. */
+.ai-process {
+  display:grid;
+  grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);
+  gap:clamp(3rem,8vw,8rem);
+  align-items:end;
+}
+.ai-process__heading { max-width:34rem; }
+.ai-process__heading h2 { max-width:12ch; }
+.ai-process__compare {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1px;
+  border:1px solid var(--line);
+  background:var(--line);
+}
+.ai-process__lane { min-width:0; padding:clamp(1.25rem,2.5vw,2rem); background:#0c0f13; }
+.ai-process__lane--active { background:#101925; }
+.ai-process__lane header { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; padding-bottom:1.25rem; border-bottom:1px solid var(--line); }
+.ai-process__lane header span { color:rgba(255,255,255,.4); font-size:.65rem; font-weight:700; letter-spacing:.12em; }
+.ai-process__lane--active header span { color:#8eb9ff; }
+.ai-process__lane header strong { font-size:.95rem; }
+.ai-process__lane ol { display:grid; gap:0; margin:0; padding:0; list-style:none; }
+.ai-process__lane li { display:grid; grid-template-columns:2.2rem 1fr; gap:.65rem; align-items:center; min-height:3.8rem; border-bottom:1px solid rgba(255,255,255,.08); }
+.ai-process__lane li:last-child { border-bottom:0; }
+.ai-process__lane li b { color:rgba(255,255,255,.32); font-size:.65rem; }
+.ai-process__lane--active li b { color:#79a9ff; }
+.ai-process__lane li span { color:rgba(255,255,255,.68); font-size:.78rem; line-height:1.45; }
+.ai-process__lane--active li span { color:rgba(255,255,255,.9); }
+.scenario__detail { margin-top:clamp(5rem,10vw,9rem); padding-top:clamp(3rem,6vw,5rem); border-top:1px solid var(--line); }
+.decision-entry-evidence img { object-fit:contain; background:#030405; }
+.decision-config-evidence > img { object-fit:contain; background:#030405; }
+/* 04 states the method once; 05 proves it through one concrete product decision. */
+.decision-story {
+  display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);
+  gap:clamp(2.5rem,6vw,6rem);
+  align-items:start;
+  margin-top:clamp(3rem,6vw,5.5rem);
+}
+.decision-story__evidence {
+  position:sticky;
+  top:112px;
+  margin:0;
+  border:1px solid rgba(255,255,255,.15);
+  background:#030405;
+}
+.decision-story__evidence img {
+  display:block;
+  width:100%;
+  aspect-ratio:16 / 10;
+  object-fit:contain;
+}
+.decision-story__evidence figcaption {
+  display:grid;
+  gap:8px;
+  padding:20px 22px 22px;
+  border-top:1px solid var(--line);
+}
+.decision-story__evidence span,
+.decision-story__steps article > span {
+  color:#79a9ff;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.1em;
+}
+.decision-story__evidence b { font-size:14px; line-height:1.55; }
+.decision-story__steps { border-top:1px solid var(--line); }
+.decision-story__steps article {
+  display:grid;
+  grid-template-columns:112px 1fr;
+  gap:12px 22px;
+  padding:clamp(24px,3vw,34px) 0;
+  border-bottom:1px solid var(--line);
+}
+.decision-story__steps article > span { grid-row:1 / span 2; padding-top:7px; }
+.decision-story__steps h3 { margin:0; font-size:clamp(1.3rem,2vw,2rem); line-height:1.25; }
+.decision-story__steps p { margin:0; color:var(--muted); font-size:13px; line-height:1.75; }
+@media (max-width:900px) {
+  .decision-story { grid-template-columns:1fr; }
+  .decision-story__evidence { position:relative; top:auto; }
+}
+@media (max-width:560px) {
+  .decision-story__steps article { grid-template-columns:1fr; }
+  .decision-story__steps article > span { grid-row:auto; padding-top:0; }
+}
 
 @media (max-width:900px) {
-  .delivery-impact__header,.delivery-impact__compare { grid-template-columns:1fr; }
-  .delivery-impact__metrics { grid-template-columns:1fr; }
-  .delivery-impact__compare article { min-height:240px; }
+  .ai-process { grid-template-columns:1fr; align-items:start; }
+  .ai-process__heading h2 { max-width:15ch; }
+}
+@media (max-width:620px) {
+  .ai-process__compare { grid-template-columns:1fr; }
+  .ai-process__lane li { min-height:3.4rem; }
 }
 
 /* Dense AI evidence stays complete in-card and can open as an isolated full-screen view. */
@@ -504,4 +576,11 @@ a,button,[role="button"] { cursor:pointer !important; }
   .decision-entry-evidence__path { top:50%; transform:translate(-50%,-50%); }
   .decision-case__content h3 { font-size:1.65rem; }
   .decision-case__content dl div { grid-template-columns:1fr; gap:7px; }
+}
+
+/* Keep the AI evidence legible after the legacy decision-card rules above. */
+.decision-entry-evidence img,
+.decision-config-evidence > img {
+  object-fit:contain;
+  background:#030405;
 }
