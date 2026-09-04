@@ -39,6 +39,7 @@
   --motion-detail-swap: 1.02s;
   --motion-reveal: 1.08s;
   --header-h: 68px;
+  --page-gutter: clamp(1.25rem, 4vw, 2rem);
 }
 
 * {
@@ -91,8 +92,38 @@ html.is-preloading .site-loader {
   position: relative;
   width: min(76vw, 72rem);
   aspect-ratio: 1881 / 835;
-  transform-origin: 26.58% 52.99%;
+  transform-origin: 44.92% 61.08%;
   will-change: transform;
+}
+
+.site-loader__hint {
+  position: absolute;
+  top: auto;
+  bottom: clamp(2.5rem, 6vh, 4rem);
+  left: 50%;
+  width: 0.78rem;
+  height: 0.78rem;
+  border-right: 2px solid #272b30;
+  border-bottom: 2px solid #272b30;
+  opacity: 0;
+  transform: translate3d(-50%, -0.3rem, 0) rotate(45deg);
+  transition: opacity 0.3s ease, transform 0.45s var(--motion-enter);
+  pointer-events: none;
+}
+
+.site-loader.is-ready .site-loader__hint {
+  opacity: 0.74;
+  transform: translate3d(-50%, 0, 0) rotate(45deg);
+  animation: site-loader-hint 1.35s ease-in-out infinite;
+}
+
+.site-loader.is-zooming .site-loader__hint {
+  opacity: 0;
+  animation: none;
+}
+
+@keyframes site-loader-hint {
+  50% { transform: translate3d(-50%, 0.38rem, 0) rotate(45deg); }
 }
 
 .site-loader__logo-fill,
@@ -289,17 +320,19 @@ body.menu-open #mobile-menu-bg {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0 1.2rem;
+  padding: 0 var(--page-gutter);
   border-right: 1px solid var(--line);
   color: var(--cream);
   text-decoration: none;
 }
 
-#logo span {
-  font-family: "Grand Bold", sans-serif;
-  font-size: 1.35rem;
-  line-height: 1;
-  letter-spacing: 0.04em;
+.header-brand-logo {
+  display: block;
+  width: clamp(6.8rem, 8vw, 8.2rem);
+  height: auto;
+  margin-right: -1.7rem;
+  filter: brightness(0) invert(1);
+  transform: translateX(-21%);
 }
 
 #logo small {
@@ -459,7 +492,7 @@ body.menu-open .hamburger i:last-child {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.7rem 1.15rem;
+  padding: 0.7rem var(--page-gutter);
   border-bottom: 1px solid var(--line);
   color: var(--cream-dim);
   font-size: 0.68rem;
@@ -535,7 +568,7 @@ body.menu-open .hamburger i:last-child {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: clamp(1.8rem, 3vw, 3.2rem) 0 2rem clamp(1.2rem, 1.6vw, 1.8rem);
+  padding: clamp(1.8rem, 3vw, 3.2rem) 0 2rem var(--page-gutter);
 }
 
 .hero-kicker {
@@ -559,7 +592,7 @@ body.menu-open .hamburger i:last-child {
 .hero-state-cue {
   position: absolute;
   top: clamp(5.4rem, 12vh, 7.4rem);
-  left: clamp(1.2rem, 1.6vw, 1.8rem);
+  left: var(--page-gutter);
   z-index: 4;
   display: inline-flex;
   align-items: center;
@@ -636,11 +669,6 @@ body.menu-open .hamburger i:last-child {
   padding-block: 0.04em;
   transform-origin: left center;
   will-change: opacity, transform;
-}
-
-.hero-line:nth-child(2),
-.hero-line:nth-child(4) {
-  margin-left: 0.12em;
 }
 
 .hero-line-accent {
@@ -859,8 +887,8 @@ body.menu-open .hamburger i:last-child {
 }
 
 .hero-state-fx-thinking {
-  background: radial-gradient(circle at 86% 19%, rgba(240, 236, 217, 0.18), transparent 17%);
-  animation: hero-state-pulse 5.2s var(--motion-editorial) infinite reverse;
+  background: none;
+  animation: none;
 }
 
 .hero-illustration.is-working .hero-state-fx-working,
@@ -876,7 +904,7 @@ body.menu-open .hamburger i:last-child {
 
 .hero-index {
   position: absolute;
-  right: 1.35rem;
+  right: var(--page-gutter);
   bottom: 1.2rem;
   z-index: 5;
   display: flex;
@@ -930,7 +958,7 @@ body.menu-open .hamburger i:last-child {
 .experience-intro,
 .experience-profile {
   min-width: 0;
-  padding: 1.2rem;
+  padding: 1.2rem var(--page-gutter);
   border-right: 1px solid var(--line);
 }
 
@@ -1154,28 +1182,9 @@ body.menu-open .hamburger i:last-child {
   transition: background-color 0.4s var(--ease);
 }
 
-.experience-intro::before,
-.experience-profile::before {
-  content: "";
-  position: absolute;
-  top: 3.6rem;
-  left: 1.2rem;
-  width: 2.6rem;
-  height: 2px;
-  background: var(--red);
-  transform: scaleX(0.28);
-  transform-origin: left;
-  transition: transform 0.4s var(--ease);
-}
-
 .experience-intro:hover,
 .experience-profile:hover {
   background: rgba(240, 236, 217, 0.025);
-}
-
-.experience-intro:hover::before,
-.experience-profile:hover::before {
-  transform: scaleX(1);
 }
 
 .experience-intro p {
@@ -1189,7 +1198,7 @@ body.menu-open .hamburger i:last-child {
 .experience-profile {
   position: relative;
   display: grid;
-  padding-right: 1.2rem;
+  padding-right: var(--page-gutter);
   border-right: 0;
   transition: background-color 0.4s var(--ease);
 }
@@ -1240,8 +1249,8 @@ body.menu-open .hamburger i:last-child {
 .experience-track {
   position: absolute;
   z-index: 4;
-  left: 1.2rem;
-  right: 1.2rem;
+  left: var(--page-gutter);
+  right: var(--page-gutter);
   bottom: -1px;
   height: 1px;
   background: var(--line-soft);
@@ -1318,7 +1327,7 @@ body.menu-open .hamburger i:last-child {
   display: grid;
   grid-template-columns: clamp(8.5rem, 11vw, 11rem) minmax(0, 1fr);
   gap: clamp(0.8rem, 1.4vw, 1.5rem);
-  padding: clamp(1.2rem, 1.8vw, 2rem);
+  padding: clamp(1.2rem, 1.8vw, 2rem) var(--page-gutter);
   border-right: 1px solid var(--line);
   background:
     linear-gradient(135deg, rgba(240, 236, 217, 0.018), transparent 40%),
@@ -1501,7 +1510,7 @@ body.menu-open .hamburger i:last-child {
 .work-case-rail {
   position: absolute;
   z-index: 6;
-  right: 0.75rem;
+  right: var(--page-gutter);
   top: 50%;
   display: grid;
   gap: 0.42rem;
@@ -2013,7 +2022,7 @@ body.menu-open .hamburger i:last-child {
   align-items: flex-end;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1.1rem 1.2rem;
+  padding: 1.1rem var(--page-gutter);
   border-bottom: 1px solid var(--line);
   overflow: hidden;
 }
@@ -3019,7 +3028,7 @@ html.is-returning-to-portfolio body {
   grid-template-columns: minmax(0, 1fr) clamp(250px, 22vw, 360px);
   align-items: center;
   gap: clamp(2rem, 5vw, 6rem);
-  padding: 1.2rem;
+  padding: 1.2rem var(--page-gutter);
 }
 
 .contact-message {
@@ -3082,7 +3091,7 @@ html.is-returning-to-portfolio body {
 
 .contact-orbit {
   position: absolute;
-  right: clamp(0rem, 4vw, 4rem);
+  right: var(--page-gutter);
   bottom: clamp(0rem, 5vh, 3rem);
   width: clamp(9rem, 13vw, 13rem);
   aspect-ratio: 1;
@@ -3330,7 +3339,7 @@ html.is-returning-to-portfolio body {
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 2rem;
-  padding: 1rem 1.2rem;
+  padding: 1rem var(--page-gutter);
   border-top: 1px solid var(--line);
   background: linear-gradient(180deg, rgba(240, 236, 217, 0.018), rgba(12, 15, 19, 0.09));
 }
@@ -3496,12 +3505,13 @@ html.is-returning-to-portfolio body {
   #logo {
     min-width: 0;
     flex: 1;
-    padding: 0 0.9rem;
+    padding: 0 var(--page-gutter);
     border-right: 0;
   }
 
-  #logo span {
-    font-size: 1.1rem;
+  .header-brand-logo {
+    width: 6.5rem;
+    margin-right: 0;
   }
 
   #logo small {
@@ -3564,7 +3574,7 @@ html.is-returning-to-portfolio body {
 
   .section-meta {
     min-height: 38px;
-    padding: 0.65rem 0.85rem;
+    padding: 0.65rem var(--page-gutter);
   }
 
   .section-meta span:last-child {
@@ -3583,7 +3593,7 @@ html.is-returning-to-portfolio body {
   .hero-stage {
     width: 100%;
     min-height: inherit;
-    padding: 1.2rem 0.85rem 1rem;
+    padding: 1.2rem var(--page-gutter) 1rem;
   }
 
   .hero-kicker {
@@ -3606,7 +3616,7 @@ html.is-returning-to-portfolio body {
 
   .hero-state-cue {
     top: 5.7rem;
-    left: 0.85rem;
+    left: var(--page-gutter);
     padding: 0.34rem 0.5rem 0.32rem;
     border: 1px solid rgba(240, 236, 217, 0.12);
     border-radius: 999px;
@@ -3697,7 +3707,7 @@ html.is-returning-to-portfolio body {
     flex-direction: column;
     justify-content: flex-end;
     gap: 0.62rem;
-    padding: 1rem 0.85rem 2.4rem;
+    padding: 1rem var(--page-gutter) 2.4rem;
     border-right: 0;
     border-bottom: 1px solid var(--line);
   }
@@ -3732,7 +3742,7 @@ html.is-returning-to-portfolio body {
 
   .experience-intro,
   .experience-profile {
-    padding: 1.5rem 0.85rem;
+    padding: 1.5rem var(--page-gutter);
     border-right: 0;
     border-bottom: 1px solid var(--line);
   }
@@ -3751,8 +3761,8 @@ html.is-returning-to-portfolio body {
   }
 
   .experience-track {
-    left: 0.85rem;
-    right: 0.85rem;
+    left: var(--page-gutter);
+    right: var(--page-gutter);
   }
 
   .experience-bottom-block {
@@ -3774,7 +3784,7 @@ html.is-returning-to-portfolio body {
     --experience-number-size: 3.4rem;
     min-height: 45svh;
     grid-template-columns: 4.2rem 1fr;
-    padding: 1.2rem 0.85rem;
+    padding: 1.2rem var(--page-gutter);
     border-right: 0;
     border-bottom: 1px solid var(--line);
   }
@@ -3835,7 +3845,7 @@ html.is-returning-to-portfolio body {
     grid-template-columns: 1fr;
     align-content: start;
     gap: 1.5rem;
-    padding: 1.25rem 0.85rem 2.5rem;
+    padding: 1.25rem var(--page-gutter) 2.5rem;
   }
 
   .work-case-slide--more {
@@ -3921,7 +3931,7 @@ html.is-returning-to-portfolio body {
     align-content: end;
     min-height: 34svh;
     gap: 1rem;
-    padding: 1rem 0.85rem;
+    padding: 1rem var(--page-gutter);
   }
 
   .work-heading::after {
@@ -3955,7 +3965,7 @@ html.is-returning-to-portfolio body {
     grid-template-columns: 2rem 1fr;
     gap: 0.5rem;
     min-height: 82px;
-    padding: 0.7rem 0.85rem;
+    padding: 0.7rem var(--page-gutter);
   }
 
   .work-type {
@@ -3968,7 +3978,7 @@ html.is-returning-to-portfolio body {
 
   .work-detail {
     min-height: auto;
-    padding: 0.85rem;
+    padding: var(--page-gutter);
     overflow: visible;
   }
 
@@ -4003,8 +4013,8 @@ html.is-returning-to-portfolio body {
       "description"
       "meta"
       "actions";
-    margin: -6.2rem 0.85rem 0;
-    padding: 1rem 0.85rem 1.4rem;
+    margin: -6.2rem var(--page-gutter) 0;
+    padding: 1rem var(--page-gutter) 1.4rem;
     overflow: visible;
   }
 
@@ -4081,7 +4091,7 @@ html.is-returning-to-portfolio body {
     grid-template-columns: 1fr;
     align-content: start;
     gap: 3rem;
-    padding: 4rem 0.85rem 2rem;
+    padding: 4rem var(--page-gutter) 2rem;
   }
 
   .contact-title {
@@ -4121,7 +4131,7 @@ html.is-returning-to-portfolio body {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.3rem;
-    padding: 1.2rem 0.85rem;
+    padding: 1.2rem var(--page-gutter);
   }
 
   .contact-links {
@@ -4157,8 +4167,8 @@ html.is-returning-to-portfolio body {
   }
 
   .detail-enter-link {
-    left: 0.85rem;
-    bottom: 0.85rem;
+    left: var(--page-gutter);
+    bottom: var(--page-gutter);
   }
 }
 

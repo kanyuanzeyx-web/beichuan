@@ -187,15 +187,17 @@ const initSiteLoader = () => {
     siteLoaderStatus.textContent = "正在进入北川作品集";
 
     const rect = siteLoaderLogo.getBoundingClientRect();
-    const focusX = 500 / 1881;
-    const focusY = 442.5 / 835;
+    // Zoom through the broad lower-left stroke of the C, which sits closer to
+    // the viewport center and leaves more solid fill around the focal point.
+    const focusX = 845 / 1881;
+    const focusY = 510 / 835;
     const focusScreenX = rect.left + rect.width * focusX;
     const focusScreenY = rect.top + rect.height * focusY;
     const shiftX = window.innerWidth * 0.5 - focusScreenX;
     const shiftY = window.innerHeight * 0.5 - focusScreenY;
-    const focusRadius = Math.max(9, rect.width * (34 / 1881));
+    const focusRadius = Math.max(7, rect.width * (16 / 1881));
     const viewportRadius = Math.hypot(window.innerWidth, window.innerHeight) * 0.5;
-    const coverScale = clamp((viewportRadius / focusRadius) * 1.5, 34, 120);
+    const coverScale = clamp((viewportRadius / focusRadius) * 1.9, 52, 280);
     const duration = prefersReducedMotion() ? 420 : 1180;
 
     siteLoaderLogo.style.transformOrigin = `${focusX * 100}% ${focusY * 100}%`;
@@ -1140,10 +1142,29 @@ const lockCasePreviewScroll = () => {
 };
 
 const unlockCasePreviewScroll = () => {
+  const restoreY = casePreviewScrollY;
   document.documentElement.classList.remove("case-preview-open");
   document.body.classList.remove("case-preview-open");
   document.body.style.removeProperty("--case-preview-scroll-y");
-  window.scrollTo({ top: casePreviewScrollY, behavior: "auto" });
+
+  if (isDesktopHorizontal()) {
+    setupHorizontalScroll();
+    syncScrollBoundary(restoreY);
+  } else {
+    window.scrollTo({ left: 0, top: restoreY, behavior: "auto" });
+    onWindowScroll();
+  }
+};
+
+const closeCasePreview = () => {
+  if (!casePreviewDialog?.open) {
+    return;
+  }
+
+  // Restore the portfolio while the full-screen dialog still covers it, so
+  // closing the Ausman case never exposes the home panel for a frame.
+  unlockCasePreviewScroll();
+  casePreviewDialog.close();
 };
 
 if (detailEnterLink) {
@@ -1225,10 +1246,16 @@ const updateCasePreviewNavigation = () => {
 casePreviewDocument?.addEventListener("scroll", updateCasePreviewNavigation, { passive: true });
 updateCasePreviewNavigation();
 
-  casePreviewClose.addEventListener("click", () => casePreviewDialog.close());
+  casePreviewClose.addEventListener("click", closeCasePreview);
+  casePreviewDialog.addEventListener("cancel", (event) => {
+    event.preventDefault();
+    closeCasePreview();
+  });
   casePreviewDialog.addEventListener("close", () => {
+    if (document.documentElement.classList.contains("case-preview-open")) {
+      unlockCasePreviewScroll();
+    }
     casePreviewPages?.replaceChildren();
-    unlockCasePreviewScroll();
     window.setTimeout(() => detailEnterLink?.focus(), 0);
   });
 }
@@ -1786,6 +1813,33 @@ const updateExperienceFocus = (progress) => {
   });
 };
 
+const updateMobileExperienceFocus = () => {
+  if (!experienceItems.length) {
+    return;
+  }
+
+  const viewportAnchor = window.innerHeight * 0.5;
+  let activeIndex = 0;
+  let closestDistance = Infinity;
+
+  experienceItems.forEach((item, index) => {
+    const rect = item.getBoundingClientRect();
+    const itemCenter = rect.top + rect.height * 0.5;
+    const distance = Math.abs(itemCenter - viewportAnchor);
+    if (distance < closestDistance) {
+      closestDistance = distance;
+      activeIndex = index;
+    }
+  });
+
+  experienceItems.forEach((item, index) => {
+    item.classList.toggle("is-current", index === activeIndex);
+  });
+  updateExperienceTimeline(
+    experienceItems.length > 1 ? activeIndex / (experienceItems.length - 1) : 0
+  );
+};
+
 const updateExperienceMotion = (xPos, forcedProgress = null) => {
   if (!experiencePanel) {
     return;
@@ -1798,8 +1852,7 @@ const updateExperienceMotion = (xPos, forcedProgress = null) => {
     if (experienceSlider) {
       experienceSlider.style.transform = "translate3d(0, 0, 0)";
     }
-    updateExperienceTimeline(0);
-    updateExperienceFocus(0);
+    updateMobileExperienceFocus();
     return;
   }
 
@@ -2032,6 +2085,7 @@ const setupHorizontalScroll = () => {
 const onWindowScroll = () => {
   if (!isDesktopHorizontal()) {
     updateActiveMobile();
+    updateMobileExperienceFocus();
     return;
   }
 
