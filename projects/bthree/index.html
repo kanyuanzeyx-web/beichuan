@@ -20,7 +20,7 @@
       }
     </script>
     <link rel="icon" href="../../assets/favicon.png" type="image/png" />
-    <link rel="stylesheet" href="./styles.css?v=20260904-5" />
+    <link rel="stylesheet" href="./styles.css?v=20260905-2" />
     <link rel="preload" href="../../assets/projects/bthree/content-scanner-arm-v2-optimized.glb" as="fetch" type="model/gltf-binary" crossorigin="anonymous" />
     <script type="importmap">
       { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.166.1/build/three.module.js" } }
@@ -40,32 +40,42 @@
         <a class="topbar__home" data-case-return href="../../index.html?return=projects#projects">返回作品集</a>
         <a href="#overview">项目概览</a>
         <a href="#problem">产品问题</a>
-        <a href="#scenario">AI 方法</a>
-        <a href="#decisions">协作实例</a>
+        <a href="#decisions">设计决策</a>
         <a href="#workflow">产品链路</a>
+        <a href="#system">设计系统</a>
         <a href="#delivery">项目结果</a>
       </nav>
     </header>
+
+    <nav class="case-rail" aria-label="案例阅读进度">
+      <a href="#overview"><span>01</span><b>概览</b></a>
+      <a href="#problem"><span>02</span><b>问题</b></a>
+      <a href="#decisions"><span>03</span><b>决策</b></a>
+      <a href="#workflow"><span>04</span><b>链路</b></a>
+      <a href="#system"><span>05</span><b>系统</b></a>
+      <a href="#delivery"><span>06</span><b>结果</b></a>
+    </nav>
 
     <main id="main-content" tabindex="-1">
       <section class="hero" id="top" data-reveal>
         <div class="container hero__grid">
           <div class="hero__copy">
-            <p class="eyebrow">01 / B.THREE AI CONTENT PLATFORM</p>
-            <h1>B.THREE<br>AI 商品内容平台<br>从 0 到 1。</h1>
+            <p class="eyebrow">01 / AI PRODUCT CASE STUDY</p>
+            <h1><span class="hero__product">B.THREE<i>.</i></span><span class="hero__category">AI CONTENT PLATFORM</span></h1>
+            <p class="hero__statement">将复杂的 3D 与 AI 工作流，转化为清晰、可控、可交付的商品内容生产体验。</p>
             <p class="hero__lede">
-              B.THREE 是面向品牌方与电商内容团队的 B 端 AI 商品内容生产平台。我负责把商品模型、内容模板、AI 生成与项目交付组织成可用的生产链路，并在后期迭代中引入 AI 协助需求整理、流程推演、UI 探索与前端验证。
+              B.THREE 面向品牌与电商内容团队，将 3D 商品资产、内容模板与 AI 图片 / 视频生成整合成一条可交付的生产链路。我负责从需求、信息架构、交互到设计系统与开发落地的完整产品设计。
             </p>
             <div class="hero__tags" aria-label="项目标签">
-              <span>B 端 AI 平台</span>
-              <span>Figma 设计规范</span>
-              <span>Codex 前端验证</span>
-              <span>百雀羚真实项目</span>
+              <span>B 端产品设计</span>
+              <span>3D 商品资产</span>
+              <span>AI 图片 / 视频</span>
+              <span>正式上线</span>
             </div>
             <a class="hero__action" href="#overview">先了解这个项目 <b>↓</b></a>
             <dl class="hero__meta">
               <div><dt>项目周期</dt><dd>2025.07 - 2026.07</dd></div>
-              <div><dt>我的角色</dt><dd>高级 UI 设计师</dd></div>
+              <div><dt>我的角色</dt><dd>高级 UI / 产品设计师</dd></div>
               <div><dt>交付状态</dt><dd>正式上线｜持续迭代</dd></div>
             </dl>
           </div>
@@ -92,7 +102,7 @@
               <p class="eyebrow">02 / PROJECT OVERVIEW</p>
               <h2>一套面向品牌内容团队的 B 端 AI 生产平台。</h2>
             </div>
-            <p class="project-brief__summary">B.THREE 是面向品牌方、电商内容团队与平台服务人员的 B 端 AI 商品内容平台。用户上传已有 3D 模型；没有模型时可预约扫描服务，获得模型后选择专属模板，生成图片、关键帧与视频，并将结果沉淀为项目资产。</p>
+            <p class="project-brief__summary">用户先从内容模板确认想要的画面，再在模板中选择系统示例模型、已有商品模型或本地上传；没有模型时，也可以进入扫描建模服务。模型就绪后，用户完成位置与输出配置，生成图片或视频，并将结果沉淀为项目资产。</p>
           </div>
           <div class="project-brief__facts" data-reveal-group>
             <dl><dt>项目类型</dt><dd>B 端 AI 商品内容生产平台</dd></dl>
@@ -100,61 +110,29 @@
             <dl><dt>项目阶段</dt><dd>从 0 到 1｜正式上线｜持续迭代</dd></dl>
             <dl><dt>我的职责</dt><dd>产品体验｜UI 视觉｜设计规范｜前端验证</dd></dl>
           </div>
-          <div class="project-brief__progress" data-reveal-group aria-label="项目从 0 到 1 的阶段">
-            <article><span>01</span><strong>建立产品基础</strong><p>在 Figma 中完成核心流程、组件与基础设计规范。</p></article>
-            <article><span>02</span><strong>完成核心链路</strong><p>打通模型准备、模板选择、内容生成与项目资产管理。</p></article>
-            <article><span>03</span><strong>引入 AI 协作</strong><p>在后期迭代中用既有规范约束需求、流程、UI 与文案推演。</p></article>
-            <article><span>04</span><strong>验证并正式上线</strong><p>通过 Codex 验证真实页面，由我评审、修正并完成开发交付。</p></article>
+          <div class="project-brief__progress" data-reveal-group aria-label="商品内容生产链路">
+            <article><span>01</span><strong>选择内容模板</strong><p>先看结果方向，再进入具体配置。</p></article>
+            <article><span>02</span><strong>关联商品模型</strong><p>系统示例、已有模型与本地上传共享一个入口。</p></article>
+            <article><span>03</span><strong>调整并生成</strong><p>用实时预览承接位置、比例与输出设置。</p></article>
+            <article><span>04</span><strong>管理与交付</strong><p>统一查看任务状态、结果版本与下载内容。</p></article>
           </div>
         </div>
       </section>
 
       <section class="problem" id="problem">
-        <div class="container">
-          <div class="section-heading">
-            <p class="eyebrow">03 / PRODUCT CHALLENGES</p>
-            <h2 class="problem__title"><span>平台真正需要解决的，</span><span>是商品一致性与规模化交付。</span></h2>
-            <p>品牌客户并不关心底层 AI 与 3D 技术如何运行，他们需要在不同模型条件下开始任务，稳定保持商品一致性，并能够管理生成过程与最终交付。</p>
-          </div>
-          <div class="problem__grid" data-reveal>
-            <article><span>01</span><h3>商品模型来源不同</h3><p>已有模型的客户可以直接上传，没有模型的客户则需要预约扫描；两种起点最终必须汇入同一条内容生产路径。</p></article>
-            <article><span>02</span><h3>商品一致性难控制</h3><p>图片、关键帧和视频需要围绕同一商品模型持续生成，避免外形、材质与品牌特征在不同内容中发生漂移。</p></article>
-            <article><span>03</span><h3>专业参数难理解</h3><p>模型、模板、渲染、打光和 AI 适配需要转换成品牌客户能够判断的业务选项，而不是暴露复杂技术参数。</p></article>
-            <article><span>04</span><h3>生成结果不等于交付</h3><p>团队还需要管理文件夹、任务状态、失败结果、输出规格和交付版本，让一次生成沉淀为可复用项目资产。</p></article>
-          </div>
-          <p class="problem__thesis">设计目标：先固定商品主体，再把模板与生成能力转化为可判断的操作，最后让所有结果回到可管理、可复用的项目资产。</p>
-        </div>
-      </section>
-
-      <section class="scenario" id="scenario">
-        <div class="container">
-          <div class="ai-process" data-reveal>
-            <div class="section-heading ai-process__heading">
-              <p class="eyebrow">04 / AI-ASSISTED PRODUCT WORKFLOW</p>
-              <h2>AI 缩短的不是思考，<br>而是从需求到验证的距离。</h2>
-              <p>传统流程中，需求文档、流程图、原型与开发评估依次交接；在 B.THREE 后期迭代中，我把真实需求、业务规则和既有设计规范整理成 AI 上下文，让这些步骤在同一个设计循环中更早发生。</p>
+        <div class="problem__story" data-problem-story>
+          <div class="container problem__sticky">
+            <div class="section-heading problem__heading">
+              <p class="eyebrow">03 / PRODUCT CHALLENGES</p>
+              <h2 class="problem__title"><span>问题不在于能不能生成，</span><span>而在于怎样把生成变成生产。</span></h2>
+              <p>品牌与运营用户不需要理解底层 3D 和 AI 技术。他们需要先看见目标效果，快速开始，再在必要时获得足够控制。</p>
+              <p class="problem__thesis">让用户先看到可能的结果，再逐步补齐商品模型与生成配置。</p>
             </div>
-            <div class="ai-process__compare" aria-label="传统产品流程与 AI 协同流程对比">
-              <article class="ai-process__lane">
-                <header><span>BEFORE</span><strong>传统串行流程</strong></header>
-                <ol>
-                  <li><b>01</b><span>产品输出 PRD</span></li>
-                  <li><b>02</b><span>设计梳理流程图</span></li>
-                  <li><b>03</b><span>绘制低保真原型</span></li>
-                  <li><b>04</b><span>与开发评估可行性</span></li>
-                  <li><b>05</b><span>回到设计继续修改</span></li>
-                </ol>
-              </article>
-              <article class="ai-process__lane ai-process__lane--active">
-                <header><span>NOW</span><strong>AI 协同闭环</strong></header>
-                <ol>
-                  <li><b>01</b><span>输入需求与业务约束</span></li>
-                  <li><b>02</b><span>同步推演流程与异常分支</span></li>
-                  <li><b>03</b><span>生成可讨论的原型骨架</span></li>
-                  <li><b>04</b><span>调用设计规范生成高保真方案</span></li>
-                  <li><b>05</b><span>在真实前端中验证并修正</span></li>
-                </ol>
-              </article>
+            <div class="problem__stage" aria-live="polite">
+              <article class="is-active" data-problem-step><span>01 / ENTRY</span><b aria-hidden="true">01</b><h3>先准备资产，用户很难想象结果</h3><p>如果任务从上传与建模开始，用户要先投入成本，却还不知道能做出什么。入口需要先展示模板和产出方向。</p></article>
+              <article data-problem-step><span>02 / ONBOARDING</span><b aria-hidden="true">02</b><h3>快速体验与真实生产，需要共用一条路</h3><p>系统示例模型帮助用户立即体验；自己的模型、上传与扫描服务承接真实任务，但不能因此拆成多套流程。</p></article>
+              <article data-problem-step><span>03 / CONTROL</span><b aria-hidden="true">03</b><h3>简单操作与专业控制，必须同时存在</h3><p>位置、旋转、缩放和输出规格不能全部隐藏，也不能直接暴露技术参数，需要被转译成可预览、可判断的操作。</p></article>
+              <div class="problem__progress" aria-hidden="true"><i></i></div>
             </div>
           </div>
         </div>
@@ -163,19 +141,27 @@
       <section class="decisions" id="decisions">
         <div class="container">
           <div class="section-heading section-heading--row">
-            <div><p class="eyebrow">05 / ONE REQUIREMENT, ONE AI LOOP</p><h2>一条真实需求，如何从描述走到可开发页面。</h2></div>
-            <p>以下用“没有 3D 模型的客户也能开始任务”这一条需求，说明 AI 参与的位置，以及我必须完成的判断。</p>
+            <div><p class="eyebrow">04 / KEY DESIGN DECISIONS</p><h2>四个决定，把复杂能力收进一条清晰路径。</h2></div>
+            <p>选择不同决策，查看它解决的问题、界面证据与最终带来的产品变化。</p>
           </div>
-          <div class="decision-story" data-reveal>
-            <figure class="decision-story__evidence">
-              <img src="../../assets/projects/bthree/ai-product-user-flow.png" alt="围绕无模型用户开始任务需求收敛后的 B.THREE 产品流程图">
-              <figcaption><span>FINAL FLOW / 经过业务判断后的流程</span><b>上传模型与预约扫描最终汇入同一个商品资产入口</b></figcaption>
-            </figure>
-            <div class="decision-story__steps">
-              <article><span>01 / 原始需求</span><h3>没有 3D 模型的客户，也要能够开始任务。</h3><p>这不是简单增加一个入口，还涉及扫描服务、模型生产周期、任务状态和后续生成条件。</p></article>
-              <article><span>02 / AI 展开</span><h3>快速补齐角色、前置条件与异常分支。</h3><p>AI 把口头描述展开成多套流程草案，并标出需要产品、设计和开发共同确认的问题。</p></article>
-              <article class="is-key"><span>03 / 我的决策</span><h3>“可用商品模型”仍然是进入生成链路的唯一前提。</h3><p>上传模型与预约扫描不是两套产品流程，而是两种模型准备方式；模型就绪后统一进入商品资产。</p></article>
-              <article><span>04 / 最终结果</span><h3>两个起点，一条稳定的内容生产路径。</h3><p>客户可以从不同条件开始，但模板选择、内容生成和项目交付始终围绕同一个商品资产继续。</p></article>
+          <div class="decision-explorer" data-reveal>
+            <div class="decision-explorer__tabs" role="tablist" aria-label="关键设计决策">
+              <button class="is-active" id="decision-tab-template" type="button" role="tab" aria-controls="decision-panel" aria-selected="true" tabindex="0" data-decision="template">01 模板先行</button>
+              <button id="decision-tab-trial" type="button" role="tab" aria-controls="decision-panel" aria-selected="false" tabindex="-1" data-decision="trial">02 降低冷启动</button>
+              <button id="decision-tab-control" type="button" role="tab" aria-controls="decision-panel" aria-selected="false" tabindex="-1" data-decision="control">03 直接操作</button>
+              <button id="decision-tab-result" type="button" role="tab" aria-controls="decision-panel" aria-selected="false" tabindex="-1" data-decision="result">04 结果闭环</button>
+            </div>
+            <div class="decision-explorer__panel" id="decision-panel" role="tabpanel" aria-labelledby="decision-tab-template" tabindex="0">
+              <figure><img id="decision-image" src="../../assets/projects/bthree/workflow-03-template-selection.png" alt="B.THREE 内容模板库，用户先浏览目标画面再开始任务"></figure>
+              <div class="decision-explorer__copy">
+                <p id="decision-index">DECISION 01 / ENTRY</p>
+                <h3 id="decision-title">先选择内容模板，再补齐商品模型。</h3>
+                <p id="decision-copy">用户首先看见可以产出的画面与内容类型，在确认方向后进入模板编辑，再选择自己的商品模型。</p>
+                <dl>
+                  <div><dt>解决</dt><dd id="decision-problem">避免用户在还看不到结果时，就先处理上传与建模成本。</dd></div>
+                  <div><dt>结果</dt><dd id="decision-outcome">任务入口从“我有什么资产”转向“我想做什么内容”。</dd></div>
+                </dl>
+              </div>
             </div>
           </div>
         </div>
@@ -184,30 +170,30 @@
       <section class="workflow" id="workflow">
         <div class="container">
           <div class="section-heading section-heading--row">
-            <div><p class="eyebrow">06 / DELIVERED PRODUCT FLOW</p><h2>两个模型起点，最终汇入同一条内容生产链路。</h2></div>
-            <p>用户只有两个模型起点：上传已有 3D 模型；没有模型时预约扫描服务。模型准备完成后，再进入模板、生成与项目资产环节。</p>
+            <div><p class="eyebrow">05 / DELIVERED PRODUCT FLOW</p><h2>从想要的画面出发，逐步完成真实生产。</h2></div>
+            <p>点击下方五个阶段，查看用户如何从模板进入任务，并在需要时选择系统示例、自己的模型或扫描服务。</p>
           </div>
           <div class="workflow__tabs" role="tablist" aria-label="商品内容生成流程" data-reveal>
-            <button class="is-active" id="workflow-tab-template" type="button" data-stage="template" role="tab" aria-controls="workflow-panel" aria-selected="true" tabindex="0">01 选择开始方式</button>
-            <button id="workflow-tab-asset" type="button" data-stage="asset" role="tab" aria-controls="workflow-panel" aria-selected="false" tabindex="-1">02 建立商品模型</button>
-            <button id="workflow-tab-edit" type="button" data-stage="edit" role="tab" aria-controls="workflow-panel" aria-selected="false" tabindex="-1">03 选择模板</button>
-            <button id="workflow-tab-generate" type="button" data-stage="generate" role="tab" aria-controls="workflow-panel" aria-selected="false" tabindex="-1">04 生成内容</button>
-            <button id="workflow-tab-result" type="button" data-stage="result" role="tab" aria-controls="workflow-panel" aria-selected="false" tabindex="-1">05 沉淀交付</button>
+            <button class="is-active" id="workflow-tab-template" type="button" data-stage="template" role="tab" aria-controls="workflow-demo" aria-selected="true" tabindex="0">01 选择内容模板</button>
+            <button id="workflow-tab-asset" type="button" data-stage="asset" role="tab" aria-controls="workflow-demo" aria-selected="false" tabindex="-1">02 选择商品模型</button>
+            <button id="workflow-tab-edit" type="button" data-stage="edit" role="tab" aria-controls="workflow-demo" aria-selected="false" tabindex="-1">03 调整实时预览</button>
+            <button id="workflow-tab-generate" type="button" data-stage="generate" role="tab" aria-controls="workflow-demo" aria-selected="false" tabindex="-1">04 配置并生成</button>
+            <button id="workflow-tab-result" type="button" data-stage="result" role="tab" aria-controls="workflow-demo" aria-selected="false" tabindex="-1">05 管理与交付</button>
           </div>
           <div class="workflow__demo" id="workflow-demo" data-stage="template" role="tabpanel" aria-labelledby="workflow-tab-template" tabindex="0" data-reveal>
             <aside class="demo__aside">
               <p class="demo__index" id="demo-index">01 / 05</p>
-              <span class="demo__label" id="demo-screen-label">开始方式</span>
-              <strong id="demo-title">任务入口与商品模型来源在第一步完成确认</strong>
-              <p id="demo-copy">用户可以从内容模板开始任务；进入商品生产前仍需关联已有 3D 模型，没有模型时则预约扫描服务。</p>
-              <ul id="demo-list"><li>添加内容模板</li><li>上传已有模型</li><li>预约扫描服务</li></ul>
+              <span class="demo__label" id="demo-screen-label">内容模板</span>
+              <strong id="demo-title">先通过模板理解可以获得什么结果</strong>
+              <p id="demo-copy">用户从图片或视频模板开始，按行业、比例与内容方向筛选，先确认目标画面，再进入具体任务。</p>
+              <ul id="demo-list"><li>图片或视频</li><li>行业与画面比例</li><li>专属内容模板</li></ul>
             </aside>
             <div class="demo__canvas" aria-live="polite">
               <div class="demo__browser">
-                <div class="demo__browser-bar"><i></i><i></i><i></i><span>B.THREE / 内容工作台</span><b id="demo-crumb-label">开始方式</b></div>
-                <img id="demo-image" src="../../assets/projects/bthree/workflow-01-start-method.png" alt="B.THREE 选择开始方式页面，包含添加内容模板、上传模型和预约扫描服务入口">
+                <div class="demo__browser-bar"><i></i><i></i><i></i><span>B.THREE / 内容工作台</span><b id="demo-crumb-label">内容模板</b></div>
+                <img id="demo-image" src="../../assets/projects/bthree/workflow-03-template-selection.png" alt="B.THREE 内容模板库，展示图片视频类型与模板筛选">
               </div>
-              <div class="demo__decision"><span>设计决策</span><b id="demo-decision">将内容入口与模型准备放在同一工作台，但始终以可用的商品模型作为稳定生成的前提。</b></div>
+              <div class="demo__decision"><span>设计决策</span><b id="demo-decision">让模板成为任务入口，先帮助用户判断内容方向，再逐步暴露模型与生成配置。</b></div>
             </div>
           </div>
         </div>
@@ -215,26 +201,43 @@
 
       <section class="system" id="system">
         <div class="container split-layout">
-          <div class="section-heading sticky-copy"><p class="eyebrow">07 / DESIGN CONTEXT &amp; HANDOFF</p><h2>一套规范，同时约束设计、AI 输出与开发验收。</h2><p>已经验证过的品牌色、排版、组件、状态、业务对象与开发约束共同限制 AI 输出，也成为设计评审与前端验收的依据。</p></div>
+          <div class="section-heading sticky-copy"><p class="eyebrow">06 / DESIGN SYSTEM &amp; HANDOFF</p><h2>用统一的对象、状态与组件支撑持续生产。</h2><p>模型、模板、项目和生成结果都有清晰状态；界面组件、交互反馈与开发验收围绕同一套规则持续迭代。</p></div>
           <div class="system__board" data-reveal>
-            <article class="token-panel"><span>Visual Context</span><div class="swatches"><i></i><i></i><i></i><i></i></div><p>向 AI 明确近黑工具界面、品牌蓝操作焦点、语义状态色和对比度规则，限制视觉输出的基本方向。</p></article>
-            <article class="type-panel"><span>Context Layers</span><strong>01</strong><b>产品目标与用户角色</b><strong>02</strong><b>模型、模板与资产关系</b><strong>03</strong><b>组件、排版与交互状态</b><strong>04</strong><b>开发约束与验收标准</b></article>
+            <article class="token-panel"><span>Visual Language</span><div class="swatches"><i></i><i></i><i></i><i></i></div><p>近黑工具界面承载高密度任务，品牌蓝只提示主操作与当前状态，语义色负责区分进行中、成功与失败。</p></article>
+            <article class="type-panel"><span>System Layers</span><strong>01</strong><b>模型、模板与项目对象</b><strong>02</strong><b>创建、处理中与可用状态</b><strong>03</strong><b>组件、排版与交互反馈</b><strong>04</strong><b>研发规则与验收标准</b></article>
             <div class="system__references">
-              <figure><img src="../../assets/projects/bthree/component-guidelines.png" alt="输入给 AI 的 B.THREE 基础组件与交互状态规范" loading="lazy"><figcaption><span>AI 输入依据 / 01</span><strong>导航、筛选、输入与任务状态</strong><p>把真实组件和状态作为 AI 的参考边界，避免新方案脱离已有产品语言。</p></figcaption></figure>
-              <figure><img src="../../assets/projects/bthree/asset-states-guidelines.png" alt="输入给 AI 的 B.THREE 资产管理规范" loading="lazy"><figcaption><span>AI 输入依据 / 02</span><strong>模型、项目、渲染与材质资产</strong><p>先向 AI 说明业务对象及其关系，再让它参与流程与页面方案推演。</p></figcaption></figure>
+              <figure><img src="../../assets/projects/bthree/component-guidelines.png" alt="B.THREE 基础组件与交互状态规范" loading="lazy"><figcaption><span>DESIGN SYSTEM / 01</span><strong>导航、筛选、输入与任务状态</strong><p>让相同操作在不同生产环节保持一致，减少学习成本与开发偏差。</p></figcaption></figure>
+              <figure><img src="../../assets/projects/bthree/asset-states-guidelines.png" alt="B.THREE 资产管理规范" loading="lazy"><figcaption><span>DESIGN SYSTEM / 02</span><strong>模型、项目、渲染与材质资产</strong><p>统一业务对象与状态语言，为后续模型来源和生成能力扩展留下结构基础。</p></figcaption></figure>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="scenario scenario--compact" id="scenario">
+        <div class="container">
+          <div class="ai-process" data-reveal>
+            <div class="section-heading ai-process__heading">
+              <p class="eyebrow">07 / MY AI-ASSISTED WORKFLOW</p>
+              <h2>AI 加速推演，判断与交付仍由我负责。</h2>
+              <p>我把真实需求、业务规则和设计规范整理成上下文，让流程、异常分支与原型更早进入讨论；再由我完成业务取舍、体验整合、规范校准与开发验收。</p>
+            </div>
+            <ol class="ai-process__steps" aria-label="AI 辅助设计流程">
+              <li><span>01</span><b>输入上下文</b><p>需求、角色、业务规则与验收标准</p></li>
+              <li><span>02</span><b>并行推演</b><p>流程分支、异常状态与原型骨架</p></li>
+              <li><span>03</span><b>设计收敛</b><p>调用既有规范形成可讨论方案</p></li>
+              <li><span>04</span><b>真实验证</b><p>前端验证、跨团队评审与最终交付</p></li>
+            </ol>
           </div>
         </div>
       </section>
 
       <section class="delivery" id="delivery">
         <div class="container delivery__grid">
-          <div class="section-heading"><p class="eyebrow">08 / DELIVERY &amp; OUTCOME</p><h2>平台正式上线，并进入真实品牌项目。</h2></div>
+          <div class="section-heading"><p class="eyebrow">08 / DELIVERY &amp; OUTCOME</p><h2>从复杂技术能力，到真实可用的生产工具。</h2></div>
           <ol class="delivery__list" data-reveal>
             <li><span>01</span><div><h3>完成正式上线与开发交付</h3><p>B.THREE 已完成开发交付并正式上线，核心链路覆盖模型准备、模板选择、内容生成和项目资产沉淀。</p></div></li>
-            <li><span>02</span><div><h3>进入真实客户项目</h3><p>平台已用于百雀羚的真实品牌项目，设计方案从内部验证进入实际商品内容生产场景。</p></div></li>
-            <li><span>03</span><div><h3>核心生产链路完整落地</h3><p>不同模型起点、模板选择、图片与视频生成、任务状态及项目资产管理被组织为一条可持续使用的产品链路。</p></div></li>
-            <li><span>04</span><div><h3>为后续迭代留下统一基础</h3><p>组件规范、业务对象和验收标准已在真实页面中对齐，后续功能可以沿用同一套产品语言继续扩展。</p></div></li>
+            <li><span>02</span><div><h3>进入真实品牌项目</h3><p>平台从内部验证进入实际商品内容生产场景，开始承担真实的图片与视频内容任务。</p></div></li>
+            <li><span>03</span><div><h3>建立可持续扩展的产品基础</h3><p>统一的业务对象、状态和组件体系，让新的模型来源、模板与生成能力能够沿用同一条产品路径继续扩展。</p></div></li>
           </ol>
         </div>
       </section>
@@ -243,6 +246,6 @@
     <footer class="footer"><a data-case-return href="../../index.html?return=projects#projects">返回北川作品集</a><span>B.THREE AI CONTENT PLATFORM CASE STUDY</span></footer>
     <script src="../../scripts/case-return.js?v=20260901-2"></script>
     <script type="module" src="./model-viewer.js?v=20260830-1"></script>
-    <script src="./script.js?v=20260904-1"></script>
+    <script src="./script.js?v=20260905-2"></script>
   </body>
 </html>

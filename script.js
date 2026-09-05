@@ -387,7 +387,8 @@ const heroTitleContent = {
       { text: "MIDNIGHT" },
     ],
     subLines: [
-      "UI/UX · AI PRODUCT · DESIGN SYSTEMS",
+      "SENIOR UI / PRODUCT DESIGNER",
+      "AI PRODUCTS · B2B SYSTEMS · AIGC EXPERIENCE",
       "Turning complex technology into clear, usable products.",
     ],
   },
@@ -400,6 +401,7 @@ const heroTitleContent = {
       { text: "THEY MOVE" },
     ],
     subLines: [
+      "SENIOR UI / PRODUCT DESIGNER",
       "STORY · FRAME · VISUAL DIRECTION",
       "Shaping the story before the frame begins to move.",
     ],

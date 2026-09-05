@@ -222,8 +222,8 @@ a {
 
 a:focus-visible,
 button:focus-visible {
-  outline: 1px solid rgba(198, 70, 64, 0.9);
-  outline-offset: -2px;
+  outline: 2px solid var(--cream);
+  outline-offset: 3px;
 }
 
 button {
@@ -731,6 +731,15 @@ body.menu-open .hamburger i:last-child {
   will-change: opacity, transform;
 }
 
+.hero-sub span:first-child {
+  color: var(--cream);
+  font-weight: 700;
+}
+
+.hero-sub span:nth-child(2) {
+  color: rgba(240, 236, 217, 0.82);
+}
+
 .hero-sub.is-switching span {
   animation: hero-sub-enter 1.06s var(--motion-enter) both;
   animation-delay: calc(0.18s + var(--sub-line-index) * var(--motion-sub-stagger));
@@ -951,6 +960,7 @@ body.menu-open .hamburger i:last-child {
   height: 100%;
   display: grid;
   grid-template-columns: 43% 31% 26%;
+  grid-template-rows: 56% 44%;
   padding-top: 40px;
 }
 
@@ -964,6 +974,7 @@ body.menu-open .hamburger i:last-child {
 
 .experience-identity {
   position: relative;
+  grid-row: 1 / -1;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -1244,6 +1255,62 @@ body.menu-open .hamburger i:last-child {
 .experience-profile dd,
 .experience-profile dt {
   overflow-wrap: anywhere;
+}
+
+.design-approach {
+  grid-column: 2 / -1;
+  display: grid;
+  grid-template-columns: minmax(9.5rem, 0.76fr) repeat(3, minmax(0, 1fr));
+  min-width: 0;
+  border-top: 1px solid var(--line);
+}
+
+.design-approach__heading,
+.design-approach__item {
+  min-width: 0;
+  padding: clamp(0.72rem, 1.2vw, 1.2rem);
+  border-right: 1px solid var(--line-soft);
+}
+
+.design-approach__heading span,
+.design-approach__item > span {
+  color: var(--cream-dim);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+}
+
+.design-approach__heading h2,
+.design-approach__item h3 {
+  margin: 0.45rem 0 0;
+  letter-spacing: 0;
+}
+
+.design-approach__heading h2 {
+  max-width: 12rem;
+  font-size: clamp(0.82rem, 1vw, 1.08rem);
+  line-height: 1.12;
+}
+
+.design-approach__item > span {
+  color: var(--cream);
+  font-weight: 700;
+}
+
+.design-approach__item h3 {
+  color: var(--cream);
+  font-size: clamp(0.68rem, 0.78vw, 0.82rem);
+  line-height: 1.2;
+}
+
+.design-approach__item p {
+  margin: 0.42rem 0 0;
+  color: var(--cream-dim);
+  font-size: clamp(0.64rem, 0.66vw, 0.72rem);
+  line-height: 1.48;
+}
+
+.design-approach__item:last-child {
+  border-right: 0;
 }
 
 .experience-track {
@@ -3448,6 +3515,14 @@ html.is-returning-to-portfolio body {
     grid-template-columns: 40% 34% 26%;
   }
 
+  .design-approach {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .design-approach__heading {
+    display: none;
+  }
+
   .experience-identity h2 {
     font-size: clamp(2.6rem, 4.6vw, 3.4rem);
   }
@@ -3754,6 +3829,45 @@ html.is-returning-to-portfolio body {
 
   .experience-profile {
     padding-bottom: 2rem;
+  }
+
+  .design-approach {
+    display: block;
+    border-top: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .design-approach__heading,
+  .design-approach__item {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: 0.8rem;
+    padding: 1.25rem var(--page-gutter);
+    border-right: 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .design-approach__heading {
+    display: block;
+    padding-top: 2rem;
+  }
+
+  .design-approach__heading h2 {
+    max-width: none;
+    font-size: 1.25rem;
+  }
+
+  .design-approach__item h3 {
+    margin-top: 0;
+    font-size: 0.84rem;
+  }
+
+  .design-approach__item p {
+    font-size: 0.75rem;
+  }
+
+  .design-approach__item:last-child {
+    border-bottom: 0;
   }
 
   .experience-profile dl div {
@@ -4144,6 +4258,7 @@ html.is-returning-to-portfolio body {
   }
 
   .contact-links > * {
+    min-height: 2.75rem;
     margin-right: 0;
   }
 
