@@ -56,7 +56,10 @@ if (host) {
     host.classList.add("is-pointer-active");
     pointerLightTarget.set(normalizedX * 3.8, 2.6 - normalizedY * 2.2, 3.2);
 
-    if (event.buttons === 0) stageTiltTarget.set(-normalizedY * 0.045, normalizedX * 0.07);
+    if (event.buttons === 0) {
+      const horizontalIntent = Math.abs(normalizedX) < 0.1 ? 0 : normalizedX;
+      stageTiltTarget.set(-normalizedY * 0.025, horizontalIntent * THREE.MathUtils.degToRad(30));
+    }
   };
 
   host.addEventListener("pointermove", updatePointerResponse);
@@ -102,8 +105,8 @@ if (host) {
   );
 
   const render = () => {
-    stage.rotation.x = THREE.MathUtils.lerp(stage.rotation.x, stageTiltTarget.x, 0.07);
-    stage.rotation.y = THREE.MathUtils.lerp(stage.rotation.y, stageTiltTarget.y, 0.07);
+    stage.rotation.x = THREE.MathUtils.lerp(stage.rotation.x, stageTiltTarget.x, 0.08);
+    stage.rotation.y = THREE.MathUtils.lerp(stage.rotation.y, stageTiltTarget.y, 0.1);
     rimLight.position.lerp(pointerLightTarget, 0.09);
     renderer.render(scene, camera);
     frameId = window.requestAnimationFrame(render);

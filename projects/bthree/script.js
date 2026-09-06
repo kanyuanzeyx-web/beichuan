@@ -283,6 +283,31 @@ if (!motionPreference.matches && "IntersectionObserver" in window) {
   }
 }
 
+const textRevealGroups = [
+  ...document.querySelectorAll(".hero__copy, .project-brief__intro, .section-heading, .decision-explorer__copy, .demo__aside, .system__board article, .system__references figcaption, .ai-process__steps, .delivery__list"),
+].filter((group, index, groups) => !groups.some((candidate, candidateIndex) => candidateIndex < index && candidate.contains(group)));
+
+textRevealGroups.forEach((group) => {
+  group.setAttribute("data-text-reveal-group", "");
+  [...group.children].forEach((item, index) => {
+    item.setAttribute("data-text-reveal-item", "");
+    item.style.setProperty("--text-reveal-index", index);
+  });
+});
+
+if (!motionPreference.matches && "IntersectionObserver" in window) {
+  const textRevealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-text-revealed");
+      observer.unobserve(entry.target);
+    });
+  }, { threshold:0.12, rootMargin:"0px 0px -8%" });
+  textRevealGroups.forEach((group) => textRevealObserver.observe(group));
+} else {
+  textRevealGroups.forEach((group) => group.classList.add("is-text-revealed"));
+}
+
 const navLinks = [...document.querySelectorAll('.topbar__nav a[href^="#"]')];
 const railLinks = [...document.querySelectorAll('.case-rail a[href^="#"]')];
 const sectionLinks = [...navLinks, ...railLinks];
@@ -340,18 +365,4 @@ if (problemStory) {
   window.addEventListener("resize", requestProblemUpdate);
   desktopStory.addEventListener?.("change", requestProblemUpdate);
   updateProblemStory();
-}
-
-if (heroPreview && !motionPreference.matches && window.matchMedia("(pointer: fine)").matches) {
-  heroPreview.addEventListener("pointermove", (event) => {
-    const rect = heroPreview.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 18;
-    const y = ((event.clientY - rect.top) / rect.height - 0.5) * 12;
-    heroPreview.style.setProperty("--hero-x", `${x}px`);
-    heroPreview.style.setProperty("--hero-y", `${y}px`);
-  });
-  heroPreview.addEventListener("pointerleave", () => {
-    heroPreview.style.setProperty("--hero-x", "0px");
-    heroPreview.style.setProperty("--hero-y", "0px");
-  });
 }
