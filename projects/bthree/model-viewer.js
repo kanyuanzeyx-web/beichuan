@@ -1,11 +1,26 @@
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.166.1/build/three.module.js";
-import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.166.1/examples/jsm/loaders/GLTFLoader.js";
-import { MeshoptDecoder } from "https://cdn.jsdelivr.net/npm/three@0.166.1/examples/jsm/libs/meshopt_decoder.module.js";
-
 const host = document.getElementById("product-model");
 const fallback = document.getElementById("product-model-fallback");
 
-if (host) {
+const startModelViewer = async () => {
+  if (!host) {
+    return;
+  }
+
+  let THREE;
+  let GLTFLoader;
+  let MeshoptDecoder;
+  try {
+    [THREE, { GLTFLoader }, { MeshoptDecoder }] = await Promise.all([
+      import("https://cdn.jsdelivr.net/npm/three@0.166.1/build/three.module.js"),
+      import("https://cdn.jsdelivr.net/npm/three@0.166.1/examples/jsm/loaders/GLTFLoader.js"),
+      import("https://cdn.jsdelivr.net/npm/three@0.166.1/examples/jsm/libs/meshopt_decoder.module.js"),
+    ]);
+  } catch (error) {
+    host.classList.add("is-model-error");
+    if (fallback) fallback.textContent = "三维模型加载失败，案例内容仍可正常阅读。";
+    return;
+  }
+
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
   camera.position.set(0.2, 2.35, 7.25);
@@ -122,4 +137,27 @@ if (host) {
     resizeObserver.disconnect();
     renderer.dispose();
   }, { once: true });
+};
+
+if (host) {
+  let started = false;
+  const scheduleStart = () => {
+    if (started) {
+      return;
+    }
+    started = true;
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(startModelViewer, { timeout: 1200 });
+      return;
+    }
+    window.setTimeout(startModelViewer, 180);
+  };
+  const visibilityObserver = new IntersectionObserver(([entry], observer) => {
+    if (!entry?.isIntersecting) {
+      return;
+    }
+    observer.disconnect();
+    scheduleStart();
+  }, { rootMargin: "160px 0px", threshold: 0.01 });
+  visibilityObserver.observe(host);
 }

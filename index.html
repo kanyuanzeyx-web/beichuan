@@ -12,6 +12,13 @@
   <meta name="twitter:card" content="summary_large_image">
   <title>北川 / Digital Designer</title>
   <script>
+    if (window.location.protocol === "file:") {
+      const localPreview = new URL("/index.html", "http://127.0.0.1:8130");
+      localPreview.search = window.location.search;
+      localPreview.hash = window.location.hash;
+      window.location.replace(localPreview.href);
+    }
+
     if (new URLSearchParams(window.location.search).get("return") === "projects") {
       document.documentElement.classList.add("is-returning-to-portfolio");
     }
@@ -28,7 +35,13 @@
     }
   </script>
   <link rel="icon" href="./assets/favicon.png" type="image/png">
-  <link rel="stylesheet" href="./styles.css?v=20260905-3">
+  <link rel="stylesheet" href="./styles.css?v=20260907-1">
+  <noscript>
+    <style>
+      .site-loader { display: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    </style>
+  </noscript>
 </head>
 <body class="personal-template">
   <div class="site-loader" id="site-loader" role="button" tabindex="0" aria-label="进入北川作品集" aria-describedby="site-loader-status">
@@ -114,11 +127,8 @@
         </div>
 
         <div class="hero-illustration is-working reveal" id="hero-illustration" data-state="working" aria-hidden="true">
-          <video class="hero-state-media hero-state-working" src="./assets/hero-working.mp4?v=20260615-2" poster="./assets/hero-working.png" muted loop playsinline autoplay preload="metadata"></video>
-          <video class="hero-state-media hero-state-thinking" poster="./assets/hero-thinking.png" muted loop playsinline preload="metadata">
-            <source src="./assets/hero-thinking-1080.mp4?v=20260902-2" type="video/mp4">
-            <source src="./assets/hero-thinking.mp4?v=20260831-1" type="video/mp4">
-          </video>
+          <video class="hero-state-media hero-state-working" src="./assets/hero-working.mp4?v=20260615-2" poster="./assets/hero-working.webp" muted loop playsinline autoplay preload="metadata"></video>
+          <video class="hero-state-media hero-state-thinking" poster="./assets/hero-thinking.webp" muted loop playsinline preload="none" data-src-desktop="./assets/hero-thinking-1080.mp4?v=20260902-2" data-src-mobile="./assets/hero-thinking.mp4?v=20260831-1"></video>
           <div class="hero-state-fx hero-state-fx-working"></div>
           <div class="hero-state-fx hero-state-fx-thinking"></div>
         </div>
@@ -162,9 +172,6 @@
                     <source srcset="./videos/hello-character.webp?v=20260902-14" type="image/webp">
                     <img class="hero-character-gif" src="./videos/hello-character.gif?v=20260902-14" alt="">
                   </picture>
-                  <video class="hero-character-video" autoplay muted loop playsinline preload="metadata">
-                    <source data-src="./videos/hello-character.webm" type="video/webm">
-                  </video>
                 </div>
               </div>
 
@@ -197,27 +204,27 @@
 
               <section class="design-approach" aria-labelledby="design-approach-title">
                 <header class="design-approach__heading">
-                  <span>DESIGN APPROACH</span>
-                  <h2 id="design-approach-title">HOW I DESIGN AI PRODUCTS</h2>
+                  <span>设计方法</span>
+                  <h2 id="design-approach-title">我如何设计 AI 产品</h2>
                 </header>
                 <article class="design-approach__item">
                   <span>01</span>
                   <div>
-                    <h3>MAKE COMPLEXITY VISIBLE</h3>
+                    <h3>让复杂变得可见</h3>
                     <p>先理解业务、角色、状态与流程，把复杂技术组织成用户可以理解的产品结构。</p>
                   </div>
                 </article>
                 <article class="design-approach__item">
                   <span>02</span>
                   <div>
-                    <h3>REDUCE DECISION COST</h3>
+                    <h3>降低决策成本</h3>
                     <p>用清晰层级、合理默认值与渐进式反馈，降低复杂 B 端产品的理解与决策成本。</p>
                   </div>
                 </article>
                 <article class="design-approach__item">
                   <span>03</span>
                   <div>
-                    <h3>DESIGN FOR UNCERTAINTY</h3>
+                    <h3>为不确定性而设计</h3>
                     <p>让 AI 结果始终可理解、可控制、可修改，并最终能够交付。</p>
                   </div>
                 </article>
@@ -359,7 +366,7 @@
             </div>
 
             <div class="work-listing" id="work-listing">
-              <article class="work-box reveal is-active" data-index="01" data-client="B.THREE / AI CONTENT PLATFORM" data-title="B.THREE AI 商品内容生成平台" data-description="将 3D 商品资产、专属模板与 AI 生成能力组织为从需求发起到图片、视频交付的 B 端生产链路。" data-period="AI 商品内容生成平台 / 从 0 到 1" data-time="2025.07 — 2026.07" data-project-role="高级 UI 设计师 / 产品体验 / 设计系统" data-cover="./assets/projects/bthree/cover-motion.gif" data-foot="UI/UX DESIGN · AI PRODUCT · DESIGN SYSTEM" data-kicker="AI CONTENT PLATFORM / B.THREE" data-mark="B.THREE" data-role="UI/UX DESIGN / AI PRODUCT / DESIGN SYSTEM" data-output="模型资产 / 模板中心 / 内容生成 / 项目结果" data-status="FULL CASE AVAILABLE" data-background="面向品牌与电商客户，需要将需求下单、3D 商品模型、模板化创作与 AI 渲染能力组织为可理解、可操作的 B 端生产流程。" data-role-detail="负责需求分析、信息架构、交互流程、高保真界面与设计规范建设，并协同产品、研发、测试、算法与 3D 团队推进上线。" data-process="以完成一次商品内容生产为主线，组织需求发起、模型资产、模板中心、项目编辑、内容生成与项目结果等核心模块。" data-solution="用任务化流程、分层配置与状态反馈降低 AI 能力的使用门槛，并让图片、视频关键帧与成片持续沉淀为项目资产。" data-result="完成 B.THREE AI 商品内容生成平台从 0 到 1 的产品设计与上线落地；百雀羚为已签约合作伙伴。" data-assets="代码案例已接入，展示真实产品架构、核心流程、界面状态与设计系统。" data-link="./projects/bthree/index.html">
+              <article class="work-box reveal is-active" data-index="01" data-client="B.THREE / AI CONTENT PLATFORM" data-title="B.THREE AI 商品内容生成平台" data-description="将 3D 商品资产、专属模板与 AI 生成能力组织为从需求发起到图片、视频交付的 B 端生产链路。" data-period="AI 商品内容生成平台 / 从 0 到 1" data-time="2025.07 — 2026.07" data-project-role="高级 UI 设计师 / 产品体验 / 设计系统" data-cover="./assets/projects/bthree/cover-motion-poster.webp" data-cover-motion="./assets/projects/bthree/cover-motion.webp" data-foot="UI/UX DESIGN · AI PRODUCT · DESIGN SYSTEM" data-kicker="AI CONTENT PLATFORM / B.THREE" data-mark="B.THREE" data-role="UI/UX DESIGN / AI PRODUCT / DESIGN SYSTEM" data-output="模型资产 / 模板中心 / 内容生成 / 项目结果" data-status="FULL CASE AVAILABLE" data-background="面向品牌与电商客户，需要将需求下单、3D 商品模型、模板化创作与 AI 渲染能力组织为可理解、可操作的 B 端生产流程。" data-role-detail="负责需求分析、信息架构、交互流程、高保真界面与设计规范建设，并协同产品、研发、测试、算法与 3D 团队推进上线。" data-process="以完成一次商品内容生产为主线，组织需求发起、模型资产、模板中心、项目编辑、内容生成与项目结果等核心模块。" data-solution="用任务化流程、分层配置与状态反馈降低 AI 能力的使用门槛，并让图片、视频关键帧与成片持续沉淀为项目资产。" data-result="完成 B.THREE AI 商品内容生成平台从 0 到 1 的产品设计与上线落地；百雀羚为已签约合作伙伴。" data-assets="代码案例已接入，展示真实产品架构、核心流程、界面状态与设计系统。" data-link="./projects/bthree/index.html">
                 <button class="work-hit" type="button">
                   <span class="work-index">01</span>
                   <span class="work-title">B.THREE AI 商品内容生成平台</span>
@@ -367,15 +374,7 @@
                 </button>
               </article>
 
-              <article class="work-box reveal" data-index="02" data-client="ROBAM 老板电器 / OFFICIAL WEBSITE" data-title="老板电器官网项目复盘" data-description="围绕官网与官方商城升级，重组品牌表达、产品理解、活动承接和交易路径。" data-period="官网复盘 / 设计系统整理" data-time="2020 · 官方网站升级" data-project-role="UI 设计 / 页面体验 / 规范沉淀" data-cover="./assets/project-material-cover.svg" data-foot="UI/UX DESIGN · OFFICIAL WEBSITE · CASE STUDY" data-kicker="OFFICIAL WEBSITE / ROBAM" data-mark="ROBAM" data-role="UI DESIGN / PAGE EXPERIENCE / DESIGN SYSTEM" data-output="官网首页 · 商品页 · 活动页 · 订单链路 · 规范沉淀" data-status="FULL CASE AVAILABLE" data-background="官网同时承接品牌展示、厨电产品教育、官方商城转化和售后信任，但旧页面的信息层级、运营模块和交易反馈缺少连续性。" data-role-detail="参与官网视觉升级、核心页面模块、商城链路梳理与设计规范沉淀，负责把复杂页面整理成可复用、可落地的设计资产。" data-process="围绕品牌认知、产品理解、活动承接和交易反馈梳理核心问题，再用页面方案、体验路径和设计规范呈现解决过程。" data-solution="以品牌首屏、品类入口、活动承接、商品详情、支付订单和服务反馈组成完整体验闭环，并用统一栅格、色彩、字号和组件规范支撑后续运营。" data-result="形成覆盖品牌首页、品类入口、活动承接、商品详情和交易状态的页面系统，并沉淀可复用的栅格与组件规范。" data-assets="当前案例展示信息架构、核心页面方案与设计规范；真实上线截图和业务数据将在确认公开范围后补充。" data-link="./projects/robam/index.html">
-                <button class="work-hit" type="button">
-                  <span class="work-index">02</span>
-                  <span class="work-title">老板电器官网项目复盘</span>
-                  <span class="work-type">UI/UX · WEB</span>
-                </button>
-              </article>
-
-              <article class="work-box reveal" data-index="03" data-client="AUSMAN / AIGC VIDEO" data-title="澳芝曼维 C 洁面泡沫新品宣传视频" data-description="面向电商新品展示，在 3 周内将客户基础脚本推进为完整传播路径与统一视觉的 AIGC 宣传视频。" data-period="3 WEEKS / SKINCARE AIGC VIDEO" data-time="2026 · 维 C 洁面泡沫新品" data-project-role="内容策划 / 分镜设计 / AIGC 视觉落地" data-cover="./assets/projects/ausman/cover-motion.webp" data-foot="AIGC VIDEO DESIGN · SKINCARE CAMPAIGN · 2026" data-kicker="SKINCARE AIGC / AUSMAN" data-mark="AUSMAN" data-role="CONTENT PLANNING / STORYBOARD / AIGC VISUAL" data-output="SCRIPT OPTIMIZATION / STORYBOARD / KEY FRAMES / FINAL FILM" data-status="PROJECT STORY AVAILABLE" data-background="项目面向新品展示期的电商传播场景。客户提供了基础脚本与核心卖点，但内容节奏、分镜表达和视觉统一性仍需补充，需要在较短周期内完成从内容梳理到视觉落地的完整推进。" data-role-detail="在客户基础脚本之上参与内容优化建议、分镜策划、镜头运动与转场表达梳理，并主导 AIGC 画面生成、重绘优化与提示词迭代，完成新品宣传视频的核心视觉表达。" data-process="围绕来源认知、卖点理解、使用代入、效果验证建立观看路径：先确立原料产地与自然氛围，再强化成分来源和用户痛点，最后以使用过程、效果验证与生活化场景收束。" data-solution="通过统一叠化转场、克制的镜头运动与泡沫细节停留衔接全片；结合关键帧生成、筛选、重绘、节点修复和高清重建，控制人物一致性、画面清晰度与整体风格。" data-result="完成澳芝曼维 C 洁面泡沫新品宣传视频的内容策划、分镜结构、AIGC 画面生成与成片视觉落地，验证从内容判断、画面控制到视频交付的可控生产路径。" data-assets="项目材料已整理：基础脚本优化、分镜线稿与定稿画面、AIGC 生成修复对比、镜头与转场设计、最终成片视觉。" data-pdf="./assets/pdf/ausman-case-study.pdf" data-preview-image="./assets/projects/ausman/case-page-01.jpg">
+              <article class="work-box reveal" data-index="03" data-client="AUSMAN / AIGC VIDEO" data-title="澳芝曼维 C 洁面泡沫新品宣传视频" data-description="面向电商新品展示，在 3 周内将客户基础脚本推进为完整传播路径与统一视觉的 AIGC 宣传视频。" data-period="3 WEEKS / SKINCARE AIGC VIDEO" data-time="2026 · 维 C 洁面泡沫新品" data-project-role="内容策划 / 分镜设计 / AIGC 视觉落地" data-cover="./assets/projects/ausman/cover-motion-poster.webp" data-cover-video="./assets/projects/ausman/cover-motion.webm" data-foot="AIGC VIDEO DESIGN · SKINCARE CAMPAIGN · 2026" data-kicker="SKINCARE AIGC / AUSMAN" data-mark="AUSMAN" data-role="CONTENT PLANNING / STORYBOARD / AIGC VISUAL" data-output="SCRIPT OPTIMIZATION / STORYBOARD / KEY FRAMES / FINAL FILM" data-status="PROJECT STORY AVAILABLE" data-background="项目面向新品展示期的电商传播场景。客户提供了基础脚本与核心卖点，但内容节奏、分镜表达和视觉统一性仍需补充，需要在较短周期内完成从内容梳理到视觉落地的完整推进。" data-role-detail="在客户基础脚本之上参与内容优化建议、分镜策划、镜头运动与转场表达梳理，并主导 AIGC 画面生成、重绘优化与提示词迭代，完成新品宣传视频的核心视觉表达。" data-process="围绕来源认知、卖点理解、使用代入、效果验证建立观看路径：先确立原料产地与自然氛围，再强化成分来源和用户痛点，最后以使用过程、效果验证与生活化场景收束。" data-solution="通过统一叠化转场、克制的镜头运动与泡沫细节停留衔接全片；结合关键帧生成、筛选、重绘、节点修复和高清重建，控制人物一致性、画面清晰度与整体风格。" data-result="完成澳芝曼维 C 洁面泡沫新品宣传视频的内容策划、分镜结构、AIGC 画面生成与成片视觉落地，验证从内容判断、画面控制到视频交付的可控生产路径。" data-assets="项目材料已整理：基础脚本优化、分镜线稿与定稿画面、AIGC 生成修复对比、镜头与转场设计、最终成片视觉。" data-pdf="./assets/pdf/ausman-case-study.pdf" data-preview-image="./assets/projects/ausman/case-page-01.jpg">
                 <button class="work-hit" type="button">
                   <span class="work-index">03</span>
                   <span class="work-title">澳芝曼 AIGC 新品宣传视频</span>
@@ -451,9 +450,10 @@
 
           <aside class="work-detail reveal" id="work-detail" data-project="01">
             <div class="detail-visual" aria-hidden="true">
-              <img class="detail-cover" id="detail-cover" src="./assets/project-material-cover.svg" alt="">
+              <img class="detail-cover" id="detail-cover" src="./assets/projects/bthree/cover-motion-poster.webp" alt="" loading="lazy" decoding="async">
+              <video class="detail-cover detail-cover-video" id="detail-cover-video" muted loop playsinline preload="none" hidden></video>
             </div>
-            <a class="detail-enter-link" id="detail-enter-link" href="./projects/robam/index.html" aria-label="进入老板电器官网项目复盘完整案例">
+            <a class="detail-enter-link" id="detail-enter-link" href="./projects/bthree/index.html" aria-label="进入 B.THREE AI 商品内容生成平台完整案例">
               <span>进入项目</span>
               <img src="./assets/group-3-arrow.svg" alt="" aria-hidden="true">
             </a>
@@ -516,9 +516,9 @@
       <button class="story-dialog__close" id="story-dialog-close" type="button" aria-label="关闭项目摘要">关闭</button>
     </div>
     <div class="story-dialog__intro">
-      <p id="story-client">ROBAM 老板电器 / OFFICIAL WEBSITE</p>
-      <h2 id="story-title">老板电器官网项目复盘</h2>
-      <p id="story-description">围绕官网与官方商城升级，重组品牌表达、产品理解、活动承接和交易路径。</p>
+      <p id="story-client">SELECTED PROJECT / PROJECT STORY</p>
+      <h2 id="story-title">项目摘要</h2>
+      <p id="story-description">选择项目后查看对应的背景、职责、设计方法与交付结果。</p>
     </div>
     <dl class="story-dialog__list">
       <div>
@@ -570,6 +570,6 @@
     </div>
   </dialog>
 
-  <script src="./script.js?v=20260905-1"></script>
+  <script src="./script.js?v=20260907-3"></script>
 </body>
 </html>

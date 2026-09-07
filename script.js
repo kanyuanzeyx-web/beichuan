@@ -23,10 +23,8 @@ const hiddenWorkStatuses = new Set([
   "VISUAL ASSETS PENDING",
   "SELECTED WORK HISTORY",
 ]);
-const hiddenWorkIndices = new Set(["02"]);
 const workBoxes = [...document.querySelectorAll(".work-box")].filter(
   (box) => !hiddenWorkStatuses.has(box.dataset.status || "")
-    && !hiddenWorkIndices.has(box.dataset.index || "")
 );
 const featuredWorkIndices = new Set(["01", "03", "06", "07", "10"]);
 const workTitleOverrides = new Map([
@@ -58,6 +56,7 @@ const experienceNodes = [...document.querySelectorAll(".experience-node")];
 const experienceItems = [...document.querySelectorAll(".experience-item")];
 
 const detailCover = document.getElementById("detail-cover");
+const detailCoverVideo = document.getElementById("detail-cover-video");
 const workDetail = document.getElementById("work-detail");
 const detailEnterLink = document.getElementById("detail-enter-link");
 const storyDialog = document.getElementById("project-story-dialog");
@@ -702,6 +701,22 @@ const bindHeroIllustrationStates = () => {
     thinking: heroThinkingVideo,
   };
 
+  const ensureThinkingVideo = () => {
+    if (!heroThinkingVideo || heroThinkingVideo.currentSrc || heroThinkingVideo.src) {
+      return;
+    }
+    const useLightweightSource = window.matchMedia("(max-width: 860px)").matches
+      || navigator.connection?.saveData === true;
+    const source = useLightweightSource
+      ? heroThinkingVideo.dataset.srcMobile
+      : heroThinkingVideo.dataset.srcDesktop;
+    if (!source) {
+      return;
+    }
+    heroThinkingVideo.src = source;
+    heroThinkingVideo.load();
+  };
+
   const playVideo = (video) => {
     if (!video || typeof video.play !== "function") {
       return;
@@ -733,6 +748,9 @@ const bindHeroIllustrationStates = () => {
     }
 
     const previousState = currentState;
+    if (nextState === "thinking") {
+      ensureThinkingVideo();
+    }
     currentState = nextState;
     heroPanel.dataset.heroState = nextState;
     if (heroMobileMode) {
@@ -942,35 +960,6 @@ const revealObserver = new IntersectionObserver(
 
 revealTargets.forEach((el) => revealObserver.observe(el));
 
-const initHeroCharacterVideo = () => {
-  const character = document.querySelector(".hero-character");
-  const video = character?.querySelector(".hero-character-video");
-  const source = video?.querySelector("source[data-src]");
-  const sourceUrl = source?.dataset.src;
-
-  if (!character || !video || !source || !sourceUrl) {
-    return;
-  }
-
-  fetch(sourceUrl, { method: "HEAD", cache: "no-store" })
-    .then((response) => {
-      if (!response.ok) {
-        return;
-      }
-
-      source.src = sourceUrl;
-      source.removeAttribute("data-src");
-      video.addEventListener("canplay", () => {
-        character.classList.add("has-video");
-        video.play().catch(() => {});
-      }, { once: true });
-      video.load();
-    })
-    .catch(() => {});
-};
-
-initHeroCharacterVideo();
-
 const progressObserver = new IntersectionObserver(
   (entries, observer) => {
     entries.forEach((entry) => {
@@ -1004,7 +993,23 @@ const setWorkDetail = (box) => {
   const nextProject = box.dataset.index || "01";
 
   if (detailCover) {
-    detailCover.src = box.dataset.cover || "./assets/project-material-cover.svg";
+    const coverMotion = normalizeCaseLink(box.dataset.coverMotion || "");
+    detailCover.src = coverMotion && workDetail?.dataset.mediaReady === "true" && !prefersReducedMotion()
+      ? coverMotion
+      : box.dataset.cover || "./assets/project-material-cover.svg";
+  }
+  if (detailCoverVideo) {
+    detailCoverVideo.pause();
+    detailCoverVideo.hidden = true;
+    detailCoverVideo.removeAttribute("src");
+    const coverVideo = normalizeCaseLink(box.dataset.coverVideo || "");
+    if (coverVideo && workDetail?.dataset.mediaReady === "true" && !prefersReducedMotion()) {
+      detailCoverVideo.src = coverVideo;
+      detailCoverVideo.poster = normalizeCaseLink(box.dataset.cover || "");
+      detailCoverVideo.hidden = false;
+      detailCoverVideo.load();
+      detailCoverVideo.play().catch(() => {});
+    }
   }
   if (detailEnterLink) {
     const hasCasePreview = Boolean((box.dataset.previewImage || "").trim());
@@ -1283,6 +1288,42 @@ const buildWorkShowcase = () => {
   workCaseTrack = document.createElement("div");
   workCaseTrack.className = "work-case-track";
 
+  const observeCoverVideo = (video, source) => {
+    if (!source || prefersReducedMotion()) {
+      return;
+    }
+    const startPlayback = () => {
+      if (!video.src) {
+        video.src = source;
+        video.load();
+      }
+      video.play().catch(() => {});
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry?.isIntersecting) {
+        return;
+      }
+      observer.disconnect();
+      startPlayback();
+    }, { rootMargin: "280px 0px", threshold: 0.01 });
+    video.addEventListener("loadeddata", startPlayback, { once: true });
+    observer.observe(workPanel || video);
+  };
+
+  const observeCoverMotionImage = (image, source) => {
+    if (!source || prefersReducedMotion()) {
+      return;
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry?.isIntersecting) {
+        return;
+      }
+      observer.disconnect();
+      image.src = source;
+    }, { rootMargin: "280px 0px", threshold: 0.01 });
+    observer.observe(workPanel || image);
+  };
+
   const createWorkAction = (box, caseTitle, compact = false) => {
     const caseLink = normalizeCaseLink(box.dataset.link || "");
     const hasCasePreview = Boolean((box.dataset.previewImage || "").trim());
@@ -1349,6 +1390,8 @@ const buildWorkShowcase = () => {
     const caseRole = box.dataset.projectRole || "";
     const caseStatus = box.dataset.status || "";
     const coverSource = normalizeCaseLink(box.dataset.cover || "");
+    const coverMotionSource = normalizeCaseLink(box.dataset.coverMotion || "");
+    const coverVideoSource = normalizeCaseLink(box.dataset.coverVideo || "");
     const typeSource = box.querySelector(".work-type")?.textContent || "CASE STUDY";
 
     const slide = document.createElement("article");
@@ -1367,6 +1410,22 @@ const buildWorkShowcase = () => {
       image.loading = index < 2 ? "eager" : "lazy";
       image.decoding = "async";
       media.append(image);
+      observeCoverMotionImage(image, coverMotionSource);
+      if (coverVideoSource) {
+        const video = document.createElement("video");
+        video.className = "work-case-cover-video";
+        video.poster = coverSource;
+        video.preload = "none";
+        video.autoplay = true;
+        video.muted = true;
+        video.defaultMuted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.setAttribute("aria-hidden", "true");
+        video.addEventListener("canplay", () => media.classList.add("has-motion"), { once: true });
+        media.append(video);
+        observeCoverVideo(video, coverVideoSource);
+      }
     } else {
       media.classList.add("is-placeholder");
       const placeholder = document.createElement("span");
@@ -1534,6 +1593,18 @@ buildWorkShowcase();
 
 const initialActive = document.querySelector(".work-box.is-active") || workBoxes[0];
 setWorkDetail(initialActive);
+
+if (workDetail && workPanel) {
+  const detailMediaObserver = new IntersectionObserver(([entry], observer) => {
+    if (!entry?.isIntersecting) {
+      return;
+    }
+    workDetail.dataset.mediaReady = "true";
+    setWorkDetail(activeWorkBox || initialActive);
+    observer.disconnect();
+  }, { rootMargin: "300px 0px", threshold: 0.01 });
+  detailMediaObserver.observe(workPanel);
+}
 
 workBoxes.forEach((box) => {
   box.addEventListener("mouseenter", () => setWorkDetail(box));
