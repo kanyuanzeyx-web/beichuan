@@ -455,13 +455,51 @@ body.has-open-dialog { overflow:hidden; }
   transition:opacity .24s ease,transform .42s cubic-bezier(.2,.8,.2,1);
 }
 .workflow__demo:hover .demo__browser img { transform:scale(1.002); }
-.workflow__demo.is-updating .demo__browser img { animation:workflow-screen-in .36s cubic-bezier(.2,.8,.2,1) both; }
+.demo__browser img.is-media-entering { animation:workflow-screen-in .36s cubic-bezier(.2,.8,.2,1) both; }
 @keyframes workflow-screen-in {
   from { opacity:.35; transform:translateY(7px); }
   to { opacity:1; transform:translateY(0); }
 }
 @media (prefers-reduced-motion:reduce) {
-  .workflow__demo.is-updating .demo__browser img { animation:none; }
+  .demo__browser img.is-media-entering { animation:none; }
+}
+
+.demo__browser.is-media-loading img,
+.decision-explorer__panel figure.is-media-loading img,
+.guideline-browser__viewport.is-media-loading img { opacity:0; }
+.demo__browser.is-media-loading::after,
+.decision-explorer__panel figure.is-media-loading::after,
+.guideline-browser__viewport.is-media-loading::after,
+.demo__browser.is-media-error::after,
+.decision-explorer__panel figure.is-media-error::after,
+.guideline-browser__viewport.is-media-error::after {
+  position:absolute;
+  z-index:4;
+  inset:0;
+  display:grid;
+  place-items:center;
+  color:rgba(242,237,218,.62);
+  background:linear-gradient(110deg,rgba(255,255,255,.018) 8%,rgba(255,255,255,.055) 18%,rgba(255,255,255,.018) 33%),#080b0e;
+  background-size:220% 100%;
+  font-size:11px;
+  letter-spacing:.12em;
+  pointer-events:none;
+}
+.demo__browser.is-media-loading::after,
+.decision-explorer__panel figure.is-media-loading::after,
+.guideline-browser__viewport.is-media-loading::after {
+  content:"正在载入";
+  animation:media-loading-sheen 1.2s linear infinite;
+}
+.demo__browser.is-media-error::after,
+.decision-explorer__panel figure.is-media-error::after,
+.guideline-browser__viewport.is-media-error::after { content:"图片载入失败，请重新选择"; }
+.decision-explorer__panel figure { position:relative; }
+@keyframes media-loading-sheen { to { background-position:-220% 0; } }
+@media (prefers-reduced-motion:reduce) {
+  .demo__browser.is-media-loading::after,
+  .decision-explorer__panel figure.is-media-loading::after,
+  .guideline-browser__viewport.is-media-loading::after { animation:none; }
 }
 
 /* 2026-08 narrative rebuild: product problems, AI method, and key decisions. */
@@ -667,7 +705,7 @@ a,button,[role="button"] { cursor:pointer !important; }
 .decision-explorer__copy dl div { display:grid; grid-template-columns:48px 1fr; gap:14px; padding:17px 0; border-bottom:1px solid var(--line); }
 .decision-explorer__copy dt { color:#79a9ff; font-size:11px; font-weight:700; }
 .decision-explorer__copy dd { margin:0; color:rgba(255,255,255,.72); font-size:12px; line-height:1.65; }
-.decision-explorer__panel.is-updating figure img { animation:decision-screen-in .42s cubic-bezier(.16,1,.3,1) both; }
+.decision-explorer__panel figure img.is-media-entering { animation:decision-screen-in .42s cubic-bezier(.16,1,.3,1) both; }
 .decision-explorer__panel.is-updating .decision-explorer__copy > * { animation:decision-copy-in .42s cubic-bezier(.16,1,.3,1) both; }
 .decision-explorer__panel.is-updating .decision-explorer__copy > *:nth-child(2) { animation-delay:.04s; }
 .decision-explorer__panel.is-updating .decision-explorer__copy > *:nth-child(3) { animation-delay:.08s; }
@@ -740,7 +778,7 @@ a,button,[role="button"] { cursor:pointer !important; }
 }
 
 @media (prefers-reduced-motion:reduce) {
-  .decision-explorer__panel.is-updating figure img,
+  .decision-explorer__panel figure img.is-media-entering,
   .decision-explorer__panel.is-updating .decision-explorer__copy > * { animation:none; }
 }
 
@@ -835,7 +873,7 @@ body { background:var(--bg); }
 .decision-explorer__panel { background:var(--bg-soft); }
 .decision-explorer__panel figure { background:#15181c; }
 .decision-explorer__panel figure img { clip-path:inset(0); }
-.decision-explorer__panel.is-updating figure img { animation:decision-clip-in .64s cubic-bezier(.16,1,.3,1) both; }
+.decision-explorer__panel figure img.is-media-entering { animation:decision-clip-in .64s cubic-bezier(.16,1,.3,1) both; }
 @keyframes decision-clip-in { from { opacity:.2; clip-path:inset(0 0 100% 0); transform:scale(1.025); } to { opacity:1; clip-path:inset(0); transform:none; } }
 
 .workflow { border-top:1px solid var(--line); background:var(--bg-soft); }
@@ -1419,7 +1457,7 @@ body.has-motion [data-text-reveal-group].is-text-revealed > [data-text-reveal-it
 }
 .guideline-browser__progress i { height:2px; background:rgba(240,236,217,.13); transition:background .3s ease,transform .3s ease; }
 .guideline-browser__progress i.is-active { background:var(--red); transform:scaleY(2); }
-.guideline-browser__panel.is-updating .guideline-browser__viewport img {
+.guideline-browser__viewport img.is-media-entering {
   animation:system-evidence-image-in .58s cubic-bezier(.16,1,.3,1) both;
 }
 .guideline-browser__panel.is-updating figcaption > * {
@@ -1503,6 +1541,6 @@ body.has-motion [data-text-reveal-group].is-text-revealed > [data-text-reveal-it
 
 @media (prefers-reduced-motion:reduce) {
   .iteration__ledger details > div { animation:none; }
-  .guideline-browser__panel.is-updating .guideline-browser__viewport img,
+  .guideline-browser__viewport img.is-media-entering,
   .guideline-browser__panel.is-updating figcaption > * { animation:none; }
 }

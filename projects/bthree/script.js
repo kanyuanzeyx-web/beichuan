@@ -198,6 +198,60 @@ function setActiveTab(buttons, activeButton) {
   });
 }
 
+const imageLoadCache = new Map();
+const imageSwapRequests = new WeakMap();
+
+function loadImage(source) {
+  const resolvedSource = new URL(source, document.baseURI).href;
+  if (imageLoadCache.has(resolvedSource)) return imageLoadCache.get(resolvedSource);
+
+  const pendingImage = new Image();
+  pendingImage.decoding = "async";
+  const request = new Promise((resolve, reject) => {
+    pendingImage.addEventListener("load", async () => {
+      try {
+        await pendingImage.decode?.();
+      } catch (error) {
+        // A completed load is still safe to display when decode() is unavailable.
+      }
+      resolve(resolvedSource);
+    }, { once: true });
+    pendingImage.addEventListener("error", reject, { once: true });
+    pendingImage.src = resolvedSource;
+  });
+
+  imageLoadCache.set(resolvedSource, request);
+  request.catch(() => imageLoadCache.delete(resolvedSource));
+  return request;
+}
+
+function swapImage(image, container, content) {
+  if (!image || !container) return;
+
+  const requestId = (imageSwapRequests.get(image) || 0) + 1;
+  imageSwapRequests.set(image, requestId);
+  container.classList.remove("is-media-error");
+  container.classList.add("is-media-loading");
+  container.setAttribute("aria-busy", "true");
+  image.classList.remove("is-media-entering");
+
+  loadImage(content.image).then(() => {
+    if (imageSwapRequests.get(image) !== requestId) return;
+
+    image.src = content.image;
+    image.alt = content.alt;
+    container.classList.remove("is-media-loading");
+    container.removeAttribute("aria-busy");
+    void image.offsetWidth;
+    image.classList.add("is-media-entering");
+  }).catch(() => {
+    if (imageSwapRequests.get(image) !== requestId) return;
+    container.classList.remove("is-media-loading");
+    container.classList.add("is-media-error");
+    container.removeAttribute("aria-busy");
+  });
+}
+
 function activateStage(button, focus = false) {
   const stage = button.dataset.stage;
   const content = stageData[stage];
@@ -216,10 +270,7 @@ function activateStage(button, focus = false) {
   crumbLabel.textContent = content.label;
   demoIndex.textContent = content.index;
   demoDecision.textContent = content.decision;
-  if (demoImage) {
-    demoImage.src = content.image;
-    demoImage.alt = content.alt;
-  }
+  swapImage(demoImage, demoImage?.closest(".demo__browser"), content);
   list.replaceChildren(...content.items.map((item) => {
     const li = document.createElement("li");
     li.textContent = item;
@@ -238,8 +289,7 @@ function activateDecision(button, focus = false) {
   decisionPanel.classList.remove("is-updating");
   void decisionPanel.offsetWidth;
   decisionPanel.classList.add("is-updating");
-  decisionImage.src = content.image;
-  decisionImage.alt = content.alt;
+  swapImage(decisionImage, decisionImage.closest("figure"), content);
   decisionIndex.textContent = content.index;
   decisionTitle.textContent = content.title;
   decisionCopy.textContent = content.copy;
@@ -271,8 +321,7 @@ function activateSystemEvidence(button, focus = false) {
   systemEvidencePanel.classList.remove("is-updating");
   void systemEvidencePanel.offsetWidth;
   systemEvidencePanel.classList.add("is-updating");
-  systemEvidenceImage.src = content.image;
-  systemEvidenceImage.alt = content.alt;
+  swapImage(systemEvidenceImage, systemEvidenceViewport, content);
   if (systemEvidenceViewport) {
     systemEvidenceViewport.href = content.image;
     systemEvidenceViewport.setAttribute("aria-label", `在新窗口查看完整${content.alt}`);
@@ -308,6 +357,33 @@ enableArrowTabNavigation(stageButtons, activateStage);
 enableArrowTabNavigation(decisionButtons, activateDecision);
 enableArrowTabNavigation(heroStepButtons, activateHeroStep);
 enableArrowTabNavigation(systemEvidenceButtons, activateSystemEvidence);
+
+const preloadCaseStudyImages = async () => {
+  if (navigator.connection?.saveData === true) return;
+  const sources = new Set([
+    ...Object.values(stageData),
+    ...Object.values(decisionData),
+    ...Object.values(systemEvidenceData),
+  ].map((item) => item.image));
+  for (const source of sources) {
+    try {
+      await loadImage(source);
+    } catch (error) {
+      // A failed optional preload is handled if the user selects that view.
+    }
+  }
+};
+
+const scheduleCaseStudyPreload = () => {
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(preloadCaseStudyImages, { timeout: 1800 });
+  } else {
+    window.setTimeout(preloadCaseStudyImages, 900);
+  }
+};
+
+if (document.readyState === "complete") scheduleCaseStudyPreload();
+else window.addEventListener("load", scheduleCaseStudyPreload, { once: true });
 
 const iterationDetails = [...document.querySelectorAll(".iteration__ledger details")];
 iterationDetails.forEach((detail) => {

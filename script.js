@@ -673,6 +673,9 @@ const bindHeroIllustrationStates = () => {
   }
 
   let currentState = heroIllustration.dataset.state || "working";
+  let requestedState = currentState;
+  let stateRequestId = 0;
+  let thinkingVideoReadyPromise = null;
   heroPanel.dataset.heroState = currentState;
   let heroIsVisible = true;
   const stateVideos = {
@@ -681,19 +684,44 @@ const bindHeroIllustrationStates = () => {
   };
 
   const ensureThinkingVideo = () => {
-    if (!heroThinkingVideo || heroThinkingVideo.currentSrc || heroThinkingVideo.src) {
-      return;
+    if (!heroThinkingVideo) {
+      return Promise.resolve(false);
+    }
+    if (heroThinkingVideo.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+      return Promise.resolve(true);
+    }
+    if (thinkingVideoReadyPromise) {
+      return thinkingVideoReadyPromise;
     }
     const useLightweightSource = window.matchMedia("(max-width: 860px)").matches
       || navigator.connection?.saveData === true;
     const source = useLightweightSource
       ? heroThinkingVideo.dataset.srcMobile
-      : heroThinkingVideo.dataset.srcDesktop;
+      : heroThinkingVideo.dataset.srcDesktop || heroThinkingVideo.dataset.srcMobile;
     if (!source) {
-      return;
+      return Promise.resolve(false);
     }
-    heroThinkingVideo.src = source;
-    heroThinkingVideo.load();
+
+    thinkingVideoReadyPromise = new Promise((resolve) => {
+      const settle = (ready) => {
+        window.clearTimeout(timeoutId);
+        heroThinkingVideo.removeEventListener("loadeddata", handleReady);
+        heroThinkingVideo.removeEventListener("error", handleError);
+        if (!ready) thinkingVideoReadyPromise = null;
+        resolve(ready);
+      };
+      const handleReady = () => settle(true);
+      const handleError = () => settle(false);
+      const timeoutId = window.setTimeout(() => settle(false), 15000);
+
+      heroThinkingVideo.addEventListener("loadeddata", handleReady, { once: true });
+      heroThinkingVideo.addEventListener("error", handleError, { once: true });
+      if (!heroThinkingVideo.getAttribute("src")) {
+        heroThinkingVideo.src = source;
+      }
+      heroThinkingVideo.load();
+    });
+    return thinkingVideoReadyPromise;
   };
 
   const playVideo = (video) => {
@@ -721,16 +749,21 @@ const bindHeroIllustrationStates = () => {
   playVideo(stateVideos[currentState]);
   renderHeroTitle(currentState);
 
-  const setState = (nextState) => {
-    if (nextState === currentState) {
-      return;
+  if (navigator.connection?.saveData !== true) {
+    const warmThinkingVideo = () => ensureThinkingVideo();
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(warmThinkingVideo, { timeout: 1600 });
+    } else {
+      window.setTimeout(warmThinkingVideo, 700);
     }
+  }
+
+  const commitState = (nextState) => {
+    if (nextState === currentState) return;
 
     const previousState = currentState;
-    if (nextState === "thinking") {
-      ensureThinkingVideo();
-    }
     currentState = nextState;
+    requestedState = nextState;
     heroPanel.dataset.heroState = nextState;
     if (heroMobileMode) {
       heroMobileMode.textContent = `TAP TO SWITCH · ${nextState === "working" ? "BUILD" : "THINK"} MODE`;
@@ -756,6 +789,30 @@ const bindHeroIllustrationStates = () => {
     }, motionTiming.heroVideoHold);
   };
 
+  const setState = (nextState) => {
+    if (nextState === requestedState) return;
+
+    requestedState = nextState;
+    const requestId = ++stateRequestId;
+
+    if (nextState === "thinking" && heroThinkingVideo?.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
+      heroIllustration.classList.add("is-state-loading");
+      ensureThinkingVideo().then((ready) => {
+        if (requestId !== stateRequestId || requestedState !== nextState) return;
+        heroIllustration.classList.remove("is-state-loading");
+        if (!ready) {
+          requestedState = currentState;
+          return;
+        }
+        commitState(nextState);
+      });
+      return;
+    }
+
+    heroIllustration.classList.remove("is-state-loading");
+    commitState(nextState);
+  };
+
   if (hasFinePointer()) {
     heroPanel.addEventListener("pointermove", (event) => {
       if (!isDesktopHorizontal()) {
@@ -765,9 +822,9 @@ const bindHeroIllustrationStates = () => {
       const rect = heroPanel.getBoundingClientRect();
       const pointerRatio = (event.clientX - rect.left) / Math.max(1, rect.width);
 
-      if (currentState === "working" && pointerRatio > 0.54) {
+      if (requestedState === "working" && pointerRatio > 0.54) {
         setState("thinking");
-      } else if (currentState === "thinking" && pointerRatio < 0.46) {
+      } else if (requestedState === "thinking" && pointerRatio < 0.46) {
         setState("working");
       }
     }, { passive: true });
@@ -778,7 +835,7 @@ const bindHeroIllustrationStates = () => {
       return;
     }
 
-    setState(currentState === "working" ? "thinking" : "working");
+    setState(requestedState === "working" ? "thinking" : "working");
   }, { passive: true });
 
   const mediaObserver = new IntersectionObserver(([entry]) => {
