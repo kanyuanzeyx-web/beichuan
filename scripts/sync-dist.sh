@@ -9,6 +9,7 @@ mkdir -p "$PUBLIC" "$ROOT/dist/.openai"
 
 rsync -a \
   "$ROOT/index.html" \
+  "$ROOT/analytics.js" \
   "$ROOT/script.js" \
   "$ROOT/styles.css" \
   "$PUBLIC/"
