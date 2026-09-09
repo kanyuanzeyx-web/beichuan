@@ -20,7 +20,7 @@
       }
     </script>
     <link rel="icon" href="../../assets/favicon.png" type="image/png" />
-    <link rel="stylesheet" href="./styles.css?v=20260906-4" />
+    <link rel="stylesheet" href="./styles.css?v=20260909-4" />
     <script type="importmap">
       { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.166.1/build/three.module.js" } }
     </script>
@@ -41,6 +41,7 @@
         <a href="#problem">产品问题</a>
         <a href="#decisions">设计决策</a>
         <a href="#workflow">产品链路</a>
+        <a href="#iteration">上线迭代</a>
         <a href="#system">设计系统</a>
         <a href="#delivery">项目结果</a>
       </nav>
@@ -51,8 +52,9 @@
       <a href="#problem"><span>02</span><b>问题</b></a>
       <a href="#decisions"><span>03</span><b>决策</b></a>
       <a href="#workflow"><span>04</span><b>链路</b></a>
-      <a href="#system"><span>05</span><b>系统</b></a>
-      <a href="#delivery"><span>06</span><b>结果</b></a>
+      <a href="#iteration"><span>05</span><b>迭代</b></a>
+      <a href="#system"><span>06</span><b>系统</b></a>
+      <a href="#delivery"><span>07</span><b>结果</b></a>
     </nav>
 
     <main id="main-content" tabindex="-1">
@@ -109,11 +111,30 @@
             <dl><dt>项目阶段</dt><dd>从 0 到 1｜正式上线｜持续迭代</dd></dl>
             <dl><dt>我的职责</dt><dd>产品体验｜UI 视觉｜设计规范｜前端验证</dd></dl>
           </div>
-          <div class="project-brief__progress" data-reveal-group aria-label="商品内容生产链路">
-            <article><span>01</span><strong>选择内容模板</strong><p>先看结果方向，再进入具体配置。</p></article>
-            <article><span>02</span><strong>关联商品模型</strong><p>系统示例、已有模型与本地上传共享一个入口。</p></article>
-            <article><span>03</span><strong>调整并生成</strong><p>用实时预览承接位置、比例与输出设置。</p></article>
-            <article><span>04</span><strong>管理与交付</strong><p>统一查看任务状态、结果版本与下载内容。</p></article>
+          <div class="project-brief__architecture" data-reveal>
+            <header>
+              <span>PRODUCT ARCHITECTURE</span>
+              <h3>一套产品，连接内容供给与真实生产。</h3>
+            </header>
+            <div class="architecture-flow" aria-label="B.THREE 产品架构">
+              <article>
+                <small>内容供给侧</small>
+                <strong>制作与发布模板</strong>
+                <p>组织镜头、3D 渲染与生成规则，经过检查后进入模板库。</p>
+              </article>
+              <i aria-hidden="true">→</i>
+              <article>
+                <small>用户生产侧</small>
+                <strong>选择模板并补齐商品</strong>
+                <p>从目标画面出发，在需要时选择系统示例或自己的模型。</p>
+              </article>
+              <i aria-hidden="true">→</i>
+              <article>
+                <small>云端执行与交付</small>
+                <strong>生成、追踪与管理结果</strong>
+                <p>处理渲染、任务状态、失败恢复、版本选择与下载交付。</p>
+              </article>
+            </div>
           </div>
         </div>
       </section>
@@ -129,8 +150,8 @@
             </div>
             <div class="problem__stage" aria-live="polite">
               <article class="is-active" data-problem-step><span>01 / ENTRY</span><b aria-hidden="true">01</b><h3>先准备资产，用户很难想象结果</h3><p>如果任务从上传与建模开始，用户要先投入成本，却还不知道能做出什么。入口需要先展示模板和产出方向。</p></article>
-              <article data-problem-step><span>02 / ONBOARDING</span><b aria-hidden="true">02</b><h3>快速体验与真实生产，需要共用一条路</h3><p>系统示例模型帮助用户立即体验；自己的模型、上传与扫描服务承接真实任务，但不能因此拆成多套流程。</p></article>
-              <article data-problem-step><span>03 / CONTROL</span><b aria-hidden="true">03</b><h3>简单操作与专业控制，必须同时存在</h3><p>位置、旋转、缩放和输出规格不能全部隐藏，也不能直接暴露技术参数，需要被转译成可预览、可判断的操作。</p></article>
+              <article data-problem-step><span>02 / CONTROL</span><b aria-hidden="true">02</b><h3>普通用户也需要控制专业的 3D 结果</h3><p>位置、旋转、缩放和输出规格不能全部隐藏，也不能直接暴露技术参数，需要被转译成可预览、可判断的操作。</p></article>
+              <article data-problem-step><span>03 / UNCERTAINTY</span><b aria-hidden="true">03</b><h3>点击生成，不代表任务已经完成</h3><p>加载、预处理、排队、失败和多版本结果都需要明确反馈，用户还要知道如何修正、重试、选择与交付。</p></article>
               <div class="problem__progress" aria-hidden="true"><i></i></div>
             </div>
           </div>
@@ -140,25 +161,24 @@
       <section class="decisions" id="decisions">
         <div class="container">
           <div class="section-heading section-heading--row">
-            <div><p class="eyebrow">04 / KEY DESIGN DECISIONS</p><h2>四个决定，把复杂能力收进一条清晰路径。</h2></div>
-            <p>选择不同决策，查看它解决的问题、界面证据与最终带来的产品变化。</p>
+            <div><p class="eyebrow">04 / KEY DESIGN DECISIONS</p><h2>三个决定，把生成能力变成生产路径。</h2></div>
+            <p>每个决定都对应一个真实阻力、一组界面证据，以及用户能够继续完成的下一步。</p>
           </div>
           <div class="decision-explorer" data-reveal>
             <div class="decision-explorer__tabs" role="tablist" aria-label="关键设计决策">
-              <button class="is-active" id="decision-tab-template" type="button" role="tab" aria-controls="decision-panel" aria-selected="true" tabindex="0" data-decision="template">01 模板先行</button>
-              <button id="decision-tab-trial" type="button" role="tab" aria-controls="decision-panel" aria-selected="false" tabindex="-1" data-decision="trial">02 降低冷启动</button>
-              <button id="decision-tab-control" type="button" role="tab" aria-controls="decision-panel" aria-selected="false" tabindex="-1" data-decision="control">03 直接操作</button>
-              <button id="decision-tab-result" type="button" role="tab" aria-controls="decision-panel" aria-selected="false" tabindex="-1" data-decision="result">04 结果闭环</button>
+              <button class="is-active" id="decision-tab-template" type="button" role="tab" aria-controls="decision-panel" aria-selected="true" tabindex="0" data-decision="template">01 先看结果</button>
+              <button id="decision-tab-control" type="button" role="tab" aria-controls="decision-panel" aria-selected="false" tabindex="-1" data-decision="control">02 直接控制</button>
+              <button id="decision-tab-result" type="button" role="tab" aria-controls="decision-panel" aria-selected="false" tabindex="-1" data-decision="result">03 状态闭环</button>
             </div>
             <div class="decision-explorer__panel" id="decision-panel" role="tabpanel" aria-labelledby="decision-tab-template" tabindex="0">
               <figure><img id="decision-image" src="../../assets/projects/bthree/workflow-03-template-selection.png" alt="B.THREE 内容模板库，用户先浏览目标画面再开始任务"></figure>
               <div class="decision-explorer__copy">
                 <p id="decision-index">DECISION 01 / ENTRY</p>
-                <h3 id="decision-title">先选择内容模板，再补齐商品模型。</h3>
-                <p id="decision-copy">用户首先看见可以产出的画面与内容类型，在确认方向后进入模板编辑，再选择自己的商品模型。</p>
+                <h3 id="decision-title">先选择内容模板，再用示例或自己的模型开始。</h3>
+                <p id="decision-copy">用户先看见可以产出的画面；没有准备资产时可直接使用系统示例模型，进入真实任务后再选择模型库、本地上传或扫描建模。</p>
                 <dl>
                   <div><dt>解决</dt><dd id="decision-problem">避免用户在还看不到结果时，就先处理上传与建模成本。</dd></div>
-                  <div><dt>结果</dt><dd id="decision-outcome">任务入口从“我有什么资产”转向“我想做什么内容”。</dd></div>
+                  <div><dt>结果</dt><dd id="decision-outcome">任务入口从“我有什么资产”转向“我想做什么内容”，试用与生产仍共用同一条路。</dd></div>
                 </dl>
               </div>
             </div>
@@ -198,43 +218,77 @@
         </div>
       </section>
 
-      <section class="system" id="system">
-        <div class="container split-layout">
-          <div class="section-heading sticky-copy"><p class="eyebrow">06 / DESIGN SYSTEM &amp; HANDOFF</p><h2>用统一的对象、状态与组件支撑持续生产。</h2><p>模型、模板、项目和生成结果都有清晰状态；界面组件、交互反馈与开发验收围绕同一套规则持续迭代。</p></div>
-          <div class="system__board" data-reveal>
-            <article class="token-panel"><span>Visual Language</span><div class="swatches"><i></i><i></i><i></i><i></i></div><p>近黑工具界面承载高密度任务，品牌蓝只提示主操作与当前状态，语义色负责区分进行中、成功与失败。</p></article>
-            <article class="type-panel"><span>System Layers</span><strong>01</strong><b>模型、模板与项目对象</b><strong>02</strong><b>创建、处理中与可用状态</b><strong>03</strong><b>组件、排版与交互反馈</b><strong>04</strong><b>研发规则与验收标准</b></article>
-            <div class="system__references">
-              <figure><img src="../../assets/projects/bthree/component-guidelines.png" alt="B.THREE 基础组件与交互状态规范" loading="lazy"><figcaption><span>DESIGN SYSTEM / 01</span><strong>导航、筛选、输入与任务状态</strong><p>让相同操作在不同生产环节保持一致，减少学习成本与开发偏差。</p></figcaption></figure>
-              <figure><img src="../../assets/projects/bthree/asset-states-guidelines.png" alt="B.THREE 资产管理规范" loading="lazy"><figcaption><span>DESIGN SYSTEM / 02</span><strong>模型、项目、渲染与材质资产</strong><p>统一业务对象与状态语言，为后续模型来源和生成能力扩展留下结构基础。</p></figcaption></figure>
-            </div>
+      <section class="iteration" id="iteration">
+        <div class="container iteration__grid">
+          <div class="section-heading sticky-copy">
+            <p class="eyebrow">06 / AFTER LAUNCH</p>
+            <h2>上线不是终点，真实使用重新定义下一轮设计。</h2>
+            <p>12 月的编辑器优化集中处理位置、角度与速度问题。我们没有增加更多功能，而是让关键操作更容易理解、等待过程更有反馈。</p>
+            <p class="iteration__release"><span>RELEASE</span><strong>12.15 正式上线</strong></p>
+          </div>
+          <div class="iteration__ledger" data-reveal>
+            <details open>
+              <summary><span>01</span><b>模型朝向难以判断</b><em>操作控制</em></summary>
+              <div><p><span>真实问题</span>上传模型后，用户难以判断商品朝向是否正确。</p><strong><span>设计回应</span>增加朝向引导与角度调整，并让模型查看默认回到正对视角。</strong></div>
+            </details>
+            <details>
+              <summary><span>02</span><b>加载过程容易被理解为失败</b><em>状态反馈</em></summary>
+              <div><p><span>真实问题</span>预览暂未出现时，用户无法区分等待、失败或不可继续。</p><strong><span>设计回应</span>展示模型预处理状态，并明确说明场景加载中仍可继续生成。</strong></div>
+            </details>
+            <details>
+              <summary><span>03</span><b>高密度编辑界面干扰任务</b><em>操作效率</em></summary>
+              <div><p><span>真实问题</span>工具和说明同时展开，挤压核心画面并增加视觉干扰。</p><strong><span>设计回应</span>默认收起右侧工具栏，补充格式提示，Scene Video 在 hover 时播放预览。</strong></div>
+            </details>
+            <details>
+              <summary><span>04</span><b>预览与生成界面出现卡顿</b><em>性能体验</em></summary>
+              <div><p><span>真实问题</span>高帧率没有增加判断价值，却让预览与生成界面出现卡顿。</p><strong><span>设计回应</span>将帧率从 30 调整为 15，在保留必要动态信息的同时降低资源消耗。</strong></div>
+            </details>
           </div>
         </div>
       </section>
 
-      <section class="scenario scenario--compact" id="scenario">
+      <section class="system" id="system">
         <div class="container">
-          <div class="ai-process" data-reveal>
-            <div class="section-heading ai-process__heading">
-              <p class="eyebrow">07 / MY AI-ASSISTED WORKFLOW</p>
-              <h2>AI 加速推演，判断与交付仍由我负责。</h2>
-              <p>我把真实需求、业务规则和设计规范整理成上下文，让流程、异常分支与原型更早进入讨论；再由我完成业务取舍、体验整合、规范校准与开发验收。</p>
+          <div class="system__intro">
+            <div class="section-heading"><p class="eyebrow">07 / SYSTEM &amp; SCALE</p><h2>把复杂生产规则，沉淀为可以共同执行的界面语言。</h2></div>
+            <p>规范不是项目末尾的视觉总结，而是设计、研发与验收持续协作的工作底稿。六份真实交付从基础语言延伸到业务模块，形成一套可持续执行的产品规则。</p>
+          </div>
+          <div class="guideline-browser" data-system-evidence data-reveal>
+            <header class="guideline-browser__header">
+              <div><span>INTERFACE DESIGN GUIDELINES</span><strong>真实规范交付档案</strong></div>
+              <p><b id="system-evidence-count">01 / 06</b><span>选择目录查看对应原稿</span></p>
+            </header>
+            <div class="guideline-browser__body">
+              <div class="guideline-browser__tabs" role="tablist" aria-label="B.THREE 界面设计规范目录">
+                <button class="is-active" id="system-tab-cover" type="button" role="tab" aria-controls="system-evidence-panel" aria-selected="true" tabindex="0" data-system-view="cover"><span>01</span>规范总览</button>
+                <button id="system-tab-colors" type="button" role="tab" aria-controls="system-evidence-panel" aria-selected="false" tabindex="-1" data-system-view="colors"><span>02</span>颜色系统</button>
+                <button id="system-tab-typography" type="button" role="tab" aria-controls="system-evidence-panel" aria-selected="false" tabindex="-1" data-system-view="typography"><span>03</span>字体层级</button>
+                <button id="system-tab-icons" type="button" role="tab" aria-controls="system-evidence-panel" aria-selected="false" tabindex="-1" data-system-view="icons"><span>04</span>图标语言</button>
+                <button id="system-tab-components" type="button" role="tab" aria-controls="system-evidence-panel" aria-selected="false" tabindex="-1" data-system-view="components"><span>05</span>组件状态</button>
+                <button id="system-tab-pages" type="button" role="tab" aria-controls="system-evidence-panel" aria-selected="false" tabindex="-1" data-system-view="pages"><span>06</span>业务模块</button>
+              </div>
+              <figure class="guideline-browser__panel" id="system-evidence-panel" role="tabpanel" aria-labelledby="system-tab-cover" tabindex="0">
+                <a class="guideline-browser__viewport" id="system-evidence-viewport" href="../../assets/projects/bthree/guideline-cover.png" target="_blank" rel="noopener" aria-label="在新窗口查看完整界面设计规范">
+                  <img id="system-evidence-image" src="../../assets/projects/bthree/guideline-cover.png" alt="B.THREE 项目界面设计规范封面" loading="lazy">
+                  <span>查看原稿 <b aria-hidden="true">↗</b></span>
+                </a>
+                <figcaption>
+                  <span id="system-evidence-index">GUIDELINE / 01</span>
+                  <strong id="system-evidence-title">同一套规则，连接设计与开发</strong>
+                  <p id="system-evidence-copy">以真实规范交付为索引，覆盖颜色、文字、图标、组件状态与核心业务页面。</p>
+                  <div class="guideline-browser__progress" aria-hidden="true"><i class="is-active"></i><i></i><i></i><i></i><i></i><i></i></div>
+                </figcaption>
+              </figure>
             </div>
-            <ol class="ai-process__steps" aria-label="AI 辅助设计流程">
-              <li><span>01</span><b>输入上下文</b><p>需求、角色、业务规则与验收标准</p></li>
-              <li><span>02</span><b>并行推演</b><p>流程分支、异常状态与原型骨架</p></li>
-              <li><span>03</span><b>设计收敛</b><p>调用既有规范形成可讨论方案</p></li>
-              <li><span>04</span><b>真实验证</b><p>前端验证、跨团队评审与最终交付</p></li>
-            </ol>
           </div>
         </div>
       </section>
 
       <section class="delivery" id="delivery">
         <div class="container delivery__grid">
-          <div class="section-heading"><p class="eyebrow">08 / DELIVERY &amp; OUTCOME</p><h2>从复杂技术能力，到真实可用的生产工具。</h2></div>
+          <div class="section-heading"><p class="eyebrow">08 / DELIVERY &amp; OUTCOME</p><h2>从复杂技术能力，到真实可用的生产工具。</h2><p>我负责从需求理解、信息架构、交互与 UI，到规范、前端验证和跨团队落地；结果以已经交付的产品事实为准。</p></div>
           <ol class="delivery__list" data-reveal>
-            <li><span>01</span><div><h3>完成正式上线与开发交付</h3><p>B.THREE 已完成开发交付并正式上线，核心链路覆盖模型准备、模板选择、内容生成和项目资产沉淀。</p></div></li>
+            <li><span>01</span><div><h3>完成正式上线与开发交付</h3><p>B.THREE 已完成开发交付并正式上线，核心链路覆盖模板选择、模型准备、实时调整、内容生成和项目资产沉淀。</p></div></li>
             <li><span>02</span><div><h3>进入真实品牌项目</h3><p>平台从内部验证进入实际商品内容生产场景，开始承担真实的图片与视频内容任务。</p></div></li>
             <li><span>03</span><div><h3>建立可持续扩展的产品基础</h3><p>统一的业务对象、状态和组件体系，让新的模型来源、模板与生成能力能够沿用同一条产品路径继续扩展。</p></div></li>
           </ol>
@@ -245,6 +299,6 @@
     <footer class="footer"><a data-case-return href="../../index.html?return=projects#projects">返回北川作品集</a><span>B.THREE AI CONTENT PLATFORM CASE STUDY</span></footer>
     <script src="../../scripts/case-return.js?v=20260901-2"></script>
     <script type="module" src="./model-viewer.js?v=20260906-1"></script>
-    <script src="./script.js?v=20260906-3"></script>
+    <script src="./script.js?v=20260909-4"></script>
   </body>
 </html>

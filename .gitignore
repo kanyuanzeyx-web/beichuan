@@ -1,5 +1,10 @@
 dist/
 build/
+.agents/
+audit/
+audits/
+output/
+tmp/
 assets/hero-thinking.mov
 assets/pdf/ausman-case-study.pdf
 assets/projects/ausman/case-page-01.png

@@ -19,32 +19,11 @@ const heroButtons = [...document.querySelectorAll(".hero-bottom .button")];
 const heroParticleCanvas = document.getElementById("hero-particle-canvas");
 const navLinks = [...document.querySelectorAll(".nav-link")];
 const panels = [...document.querySelectorAll(".panel")];
-const hiddenWorkStatuses = new Set([
-  "VISUAL ASSETS PENDING",
-  "SELECTED WORK HISTORY",
-]);
-const workBoxes = [...document.querySelectorAll(".work-box")].filter(
-  (box) => !hiddenWorkStatuses.has(box.dataset.status || "")
-);
-const featuredWorkIndices = new Set(["01", "03", "06", "07", "10"]);
-const workTitleOverrides = new Map([
-  ["07", "Fancy 电商数据监控小程序"],
-  ["08", "工业与环保数据可视化"],
-  ["11", "3维视觉与插画"],
-]);
-workBoxes.forEach((box) => {
-  const nextTitle = workTitleOverrides.get(box.dataset.index || "");
-  if (!nextTitle) {
-    return;
-  }
-  box.dataset.title = nextTitle;
-  const title = box.querySelector(".work-title");
-  if (title) {
-    title.textContent = nextTitle;
-  }
-});
-const featuredWorkBoxes = workBoxes.filter((box) => featuredWorkIndices.has(box.dataset.index || ""));
-const additionalWorkBoxes = workBoxes.filter((box) => !featuredWorkIndices.has(box.dataset.index || ""));
+const workBoxes = [...document.querySelectorAll(".work-box")];
+const workBoxesByIndex = new Map(workBoxes.map((box) => [box.dataset.index || "", box]));
+const selectWorkBoxes = (indices) => indices.map((index) => workBoxesByIndex.get(index)).filter(Boolean);
+const featuredWorkBoxes = selectWorkBoxes(["01", "03", "07", "10"]);
+const additionalWorkBoxes = selectWorkBoxes(["06", "08", "09", "11"]);
 const workListing = document.getElementById("work-listing");
 const workPanel = document.getElementById("projects");
 const workLayout = workPanel?.querySelector(".work-layout") || null;
@@ -1307,7 +1286,10 @@ const buildWorkShowcase = () => {
       startPlayback();
     }, { rootMargin: "280px 0px", threshold: 0.01 });
     video.addEventListener("loadeddata", startPlayback, { once: true });
-    observer.observe(workPanel || video);
+    video.addEventListener("playing", () => {
+      video.parentElement?.classList.add("has-motion");
+    }, { once: true });
+    observer.observe(video);
   };
 
   const observeCoverMotionImage = (image, source) => {
@@ -1327,6 +1309,7 @@ const buildWorkShowcase = () => {
   const createWorkAction = (box, caseTitle, compact = false) => {
     const caseLink = normalizeCaseLink(box.dataset.link || "");
     const hasCasePreview = Boolean((box.dataset.previewImage || "").trim());
+    const actionLabel = box.dataset.ctaLabel || (caseLink ? "VIEW CASE STUDY" : "VIEW PROJECT");
     let action;
 
     if (caseLink) {
@@ -1334,13 +1317,13 @@ const buildWorkShowcase = () => {
       const caseUrl = new URL(caseLink, window.location.href);
       caseUrl.searchParams.set("from", box.dataset.index || "");
       action.href = caseUrl.href;
-      action.setAttribute("aria-label", `进入${caseTitle}完整案例`);
+      action.setAttribute("aria-label", actionLabel === "VIEW ARCHIVE" ? `查看${caseTitle}归档` : `查看${caseTitle}完整案例`);
       action.addEventListener("click", () => rememberPortfolioReturn(box));
     } else {
       action = document.createElement("button");
       action.type = "button";
       action.setAttribute("aria-haspopup", "dialog");
-      action.setAttribute("aria-label", hasCasePreview ? `预览${caseTitle}完整案例` : `查看${caseTitle}项目详情`);
+      action.setAttribute("aria-label", hasCasePreview ? `查看${caseTitle}项目预览` : `查看${caseTitle}项目详情`);
       action.addEventListener("click", () => {
         setWorkDetail(box);
         if (hasCasePreview && casePreviewDialog) {
@@ -1357,6 +1340,7 @@ const buildWorkShowcase = () => {
     }
 
     action.className = compact ? "work-more-card" : "work-case-action";
+    action.dataset.actionLabel = actionLabel;
     return action;
   };
 
@@ -1382,9 +1366,11 @@ const buildWorkShowcase = () => {
   };
 
   featuredWorkBoxes.forEach((box, index) => {
-    const caseIndex = box.dataset.index || String(index + 1).padStart(2, "0");
+    const caseIndex = box.dataset.index || "";
+    const displayIndex = String(index + 1).padStart(2, "0");
     const caseTitle = box.dataset.title || box.querySelector(".work-title")?.textContent?.trim() || "案例项目";
     const caseDescription = box.dataset.description || "";
+    const caseOutcome = box.dataset.outcome || "";
     const caseClient = box.dataset.client || "SELECTED PROJECT";
     const caseTime = box.dataset.time || "";
     const caseRole = box.dataset.projectRole || "";
@@ -1422,7 +1408,6 @@ const buildWorkShowcase = () => {
         video.loop = true;
         video.playsInline = true;
         video.setAttribute("aria-hidden", "true");
-        video.addEventListener("canplay", () => media.classList.add("has-motion"), { once: true });
         media.append(video);
         observeCoverVideo(video, coverVideoSource);
       }
@@ -1438,7 +1423,7 @@ const buildWorkShowcase = () => {
 
     const eyebrow = document.createElement("p");
     eyebrow.className = "work-case-eyebrow";
-    eyebrow.textContent = `${caseIndex} / ${caseClient.split("/")[0].trim()}`;
+    eyebrow.textContent = `${displayIndex} / ${caseClient.split("/")[0].trim()}`;
 
     const heading = document.createElement("h3");
     heading.id = `work-case-title-${caseIndex}`;
@@ -1455,6 +1440,12 @@ const buildWorkShowcase = () => {
     const description = document.createElement("p");
     description.className = "work-case-description";
     description.textContent = caseDescription;
+
+    const outcome = document.createElement("p");
+    outcome.className = "work-case-outcome";
+    const outcomeLabel = document.createElement("span");
+    outcomeLabel.textContent = "OUTCOME";
+    outcome.append(outcomeLabel, document.createTextNode(caseOutcome));
 
     const meta = document.createElement("dl");
     meta.className = "work-case-meta";
@@ -1475,9 +1466,17 @@ const buildWorkShowcase = () => {
     });
 
     const action = createWorkAction(box, caseTitle);
-    action.innerHTML = "<span class=\"work-case-action__label\">进入案例</span><img class=\"work-case-action__arrow\" src=\"./assets/group-3-arrow.svg\" alt=\"\" aria-hidden=\"true\">";
+    const actionText = document.createElement("span");
+    actionText.className = "work-case-action__label";
+    actionText.textContent = action.dataset.actionLabel || "VIEW PROJECT";
+    const actionArrow = document.createElement("img");
+    actionArrow.className = "work-case-action__arrow";
+    actionArrow.src = "./assets/group-3-arrow.svg";
+    actionArrow.alt = "";
+    actionArrow.setAttribute("aria-hidden", "true");
+    action.append(actionText, actionArrow);
 
-    copy.append(eyebrow, heading, tags, description, meta, action);
+    copy.append(eyebrow, heading, tags, description, outcome, meta, action);
     slide.append(media, copy);
     workCaseTrack.append(slide);
 
@@ -1525,8 +1524,8 @@ const buildWorkShowcase = () => {
     const grid = document.createElement("div");
     grid.className = "work-more-grid";
 
-    additionalWorkBoxes.forEach((box) => {
-      const caseIndex = box.dataset.index || "";
+    additionalWorkBoxes.forEach((box, index) => {
+      const displayIndex = String(index + 1).padStart(2, "0");
       const caseTitle = box.dataset.title || "案例项目";
       const card = createWorkAction(box, caseTitle, true);
 
@@ -1543,12 +1542,16 @@ const buildWorkShowcase = () => {
       copy.className = "work-more-card__copy";
       const meta = document.createElement("span");
       meta.className = "work-more-card__meta";
-      meta.textContent = `${caseIndex} / ${box.dataset.time || "SELECTED WORK"}`;
+      meta.textContent = `${displayIndex} / ${box.dataset.time || "SELECTED WORK"}`;
       const title = document.createElement("strong");
       setCaseTitleLines(title, caseTitle);
-      const description = document.createElement("span");
-      description.textContent = box.dataset.description || "";
-      copy.append(meta, title, description);
+      const category = document.createElement("span");
+      category.className = "work-more-card__category";
+      category.textContent = box.querySelector(".work-type")?.textContent?.trim() || "SELECTED WORK";
+      const archiveCta = document.createElement("span");
+      archiveCta.className = "work-more-card__cta";
+      archiveCta.textContent = `${card.dataset.actionLabel || "VIEW ARCHIVE"} →`;
+      copy.append(meta, title, category, archiveCta);
 
       card.append(media, copy);
       grid.append(card);

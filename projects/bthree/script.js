@@ -26,7 +26,7 @@ const stageData = {
     label: "实时预览",
     items: ["移动商品位置", "旋转与缩放", "检查场景关系"],
     decision: "保留专业控制能力，但把它转译成看得见结果的视觉操作，降低非专业用户的理解成本。",
-    image: "../../assets/projects/bthree/upload-materials-home.png",
+    image: "../../assets/projects/bthree/workflow-03-realtime-preview.png",
     alt: "B.THREE 模板编辑界面，用户可在场景中调整商品模型并实时预览",
   },
   generate: {
@@ -54,33 +54,24 @@ const stageData = {
 const decisionData = {
   template: {
     index: "DECISION 01 / ENTRY",
-    title: "先选择内容模板，再补齐商品模型。",
-    copy: "用户首先看见可以产出的画面与内容类型，在确认方向后进入模板编辑，再选择自己的商品模型。",
+    title: "先选择内容模板，再用示例或自己的模型开始。",
+    copy: "用户先看见可以产出的画面；没有准备资产时可直接使用系统示例模型，进入真实任务后再选择模型库、本地上传或扫描建模。",
     problem: "避免用户在还看不到结果时，就先处理上传与建模成本。",
-    outcome: "任务入口从“我有什么资产”转向“我想做什么内容”。",
+    outcome: "任务入口从“我有什么资产”转向“我想做什么内容”，试用与生产仍共用同一条路。",
     image: "../../assets/projects/bthree/workflow-03-template-selection.png",
     alt: "B.THREE 内容模板库，用户先浏览目标画面再开始任务",
   },
-  trial: {
-    index: "DECISION 02 / ONBOARDING",
-    title: "用系统示例模型，让用户立即理解产品。",
-    copy: "没有准备商品资产的用户也可以直接选择系统模型完成一次体验；进入真实任务时，再切换为模型库、本地上传或扫描建模。",
-    problem: "首次体验不应该被模型文件、格式和建模周期挡住。",
-    outcome: "试用与真实生产共用同一条流程，体验不会变成孤立 Demo。",
-    image: "../../assets/projects/bthree/workflow-02-model-selection.png",
-    alt: "B.THREE 模型选择弹窗，包含系统示例模型和用户上传入口",
-  },
   control: {
-    index: "DECISION 03 / CONTROL",
+    index: "DECISION 02 / CONTROL",
     title: "让专业参数变成可以直接操作的画面。",
     copy: "位置、旋转与缩放不再只是数值输入。用户在模板场景里调整商品，并通过实时预览判断构图和比例。",
     problem: "完全隐藏参数会失去控制，全部暴露参数又会提高使用门槛。",
     outcome: "用户保留必要控制，同时不必先学习 3D 软件。",
-    image: "../../assets/projects/bthree/upload-materials-home.png",
+    image: "../../assets/projects/bthree/decision-direct-control.png",
     alt: "B.THREE 模板编辑界面中的商品模型直接操作与实时预览",
   },
   result: {
-    index: "DECISION 04 / DELIVERY",
+    index: "DECISION 03 / DELIVERY",
     title: "把不确定的生成过程，变成可追踪的结果闭环。",
     copy: "进行中、失败与已完成任务都保留在项目中，用户可以比较结果、重新生成、选择版本并完成下载交付。",
     problem: "AI 生成结果不稳定，点击生成并不等于任务完成。",
@@ -90,8 +81,60 @@ const decisionData = {
   },
 };
 
+const systemEvidenceData = {
+  cover: {
+    count: "01 / 06",
+    index: "GUIDELINE / 01",
+    title: "同一套规则，连接设计与开发",
+    copy: "以真实规范交付为索引，覆盖颜色、文字、图标、组件状态与核心业务页面。",
+    image: "../../assets/projects/bthree/guideline-cover.png",
+    alt: "B.THREE 项目界面设计规范封面",
+  },
+  colors: {
+    count: "02 / 06",
+    index: "GUIDELINE / 02",
+    title: "用颜色区分操作优先级与任务状态",
+    copy: "品牌色承担关键操作，语义色明确反馈进行中、成功、警告与失败。",
+    image: "../../assets/projects/bthree/guideline-colors.png",
+    alt: "B.THREE 品牌色与语义色规范",
+  },
+  typography: {
+    count: "03 / 06",
+    index: "GUIDELINE / 03",
+    title: "让高密度界面仍有稳定的信息层级",
+    copy: "统一字号、字重与行高，让标题、正文、辅助信息和数据在不同页面保持一致。",
+    image: "../../assets/projects/bthree/guideline-typography.png",
+    alt: "B.THREE 字体层级与排版规范",
+  },
+  icons: {
+    count: "04 / 06",
+    index: "GUIDELINE / 04",
+    title: "建立跨任务复用的操作语言",
+    copy: "用统一的图标语义与视觉尺寸，降低模型、模板和项目管理之间的切换成本。",
+    image: "../../assets/projects/bthree/guideline-icons.png",
+    alt: "B.THREE 产品图标语言规范",
+  },
+  components: {
+    count: "05 / 06",
+    index: "GUIDELINE / 05",
+    title: "把交互反馈落实到组件状态",
+    copy: "导航、筛选、输入和状态组件覆盖默认、悬停、选中与不可用场景，减少研发偏差。",
+    image: "../../assets/projects/bthree/guideline-components.png",
+    alt: "B.THREE 基础组件与交互状态规范",
+  },
+  pages: {
+    count: "06 / 06",
+    index: "GUIDELINE / 06",
+    title: "让业务对象在完整页面中保持一致",
+    copy: "模型、项目、渲染与材质等核心对象沿用同一套结构与状态语言，支持后续扩展。",
+    image: "../../assets/projects/bthree/guideline-page-modules.png",
+    alt: "B.THREE 一级页面组件与业务对象状态规范",
+  },
+};
+
 const stageButtons = [...document.querySelectorAll(".workflow__tabs [data-stage]")];
 const decisionButtons = [...document.querySelectorAll(".decision-explorer__tabs [data-decision]")];
+const systemEvidenceButtons = [...document.querySelectorAll(".guideline-browser__tabs [data-system-view]")];
 const demo = document.getElementById("workflow-demo");
 const title = document.getElementById("demo-title");
 const copy = document.getElementById("demo-copy");
@@ -108,6 +151,14 @@ const decisionTitle = document.getElementById("decision-title");
 const decisionCopy = document.getElementById("decision-copy");
 const decisionProblem = document.getElementById("decision-problem");
 const decisionOutcome = document.getElementById("decision-outcome");
+const systemEvidencePanel = document.getElementById("system-evidence-panel");
+const systemEvidenceViewport = document.getElementById("system-evidence-viewport");
+const systemEvidenceImage = document.getElementById("system-evidence-image");
+const systemEvidenceCount = document.getElementById("system-evidence-count");
+const systemEvidenceIndex = document.getElementById("system-evidence-index");
+const systemEvidenceTitle = document.getElementById("system-evidence-title");
+const systemEvidenceCopy = document.getElementById("system-evidence-copy");
+const systemEvidenceProgress = [...document.querySelectorAll(".guideline-browser__progress i")];
 const heroPreview = document.querySelector(".product-preview");
 const heroStepButtons = [...document.querySelectorAll("[data-hero-step]")];
 const heroStepKicker = document.getElementById("hero-step-kicker");
@@ -211,6 +262,30 @@ function activateHeroStep(button, focus = false) {
   if (focus) button.focus();
 }
 
+function activateSystemEvidence(button, focus = false) {
+  const content = systemEvidenceData[button.dataset.systemView];
+  if (!content || !systemEvidencePanel || !systemEvidenceImage || !systemEvidenceCount || !systemEvidenceIndex || !systemEvidenceTitle || !systemEvidenceCopy) return;
+
+  setActiveTab(systemEvidenceButtons, button);
+  systemEvidencePanel.setAttribute("aria-labelledby", button.id);
+  systemEvidencePanel.classList.remove("is-updating");
+  void systemEvidencePanel.offsetWidth;
+  systemEvidencePanel.classList.add("is-updating");
+  systemEvidenceImage.src = content.image;
+  systemEvidenceImage.alt = content.alt;
+  if (systemEvidenceViewport) {
+    systemEvidenceViewport.href = content.image;
+    systemEvidenceViewport.setAttribute("aria-label", `在新窗口查看完整${content.alt}`);
+  }
+  systemEvidenceCount.textContent = content.count;
+  systemEvidenceIndex.textContent = content.index;
+  systemEvidenceTitle.textContent = content.title;
+  systemEvidenceCopy.textContent = content.copy;
+  const activeIndex = systemEvidenceButtons.indexOf(button);
+  systemEvidenceProgress.forEach((item, index) => item.classList.toggle("is-active", index === activeIndex));
+  if (focus) button.focus();
+}
+
 function enableArrowTabNavigation(buttons, activate) {
   buttons.forEach((button, index) => {
     button.addEventListener("click", () => activate(button));
@@ -232,6 +307,17 @@ function enableArrowTabNavigation(buttons, activate) {
 enableArrowTabNavigation(stageButtons, activateStage);
 enableArrowTabNavigation(decisionButtons, activateDecision);
 enableArrowTabNavigation(heroStepButtons, activateHeroStep);
+enableArrowTabNavigation(systemEvidenceButtons, activateSystemEvidence);
+
+const iterationDetails = [...document.querySelectorAll(".iteration__ledger details")];
+iterationDetails.forEach((detail) => {
+  detail.addEventListener("toggle", () => {
+    if (!detail.open) return;
+    iterationDetails.forEach((item) => {
+      if (item !== detail) item.open = false;
+    });
+  });
+});
 
 heroStepAdvance?.addEventListener("click", () => {
   const currentIndex = heroStepButtons.findIndex((button) => button.classList.contains("is-active"));
@@ -253,7 +339,16 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 const alignInitialHash = () => {
   if (!window.location.hash) return;
   const target = document.querySelector(window.location.hash);
-  target?.scrollIntoView({ behavior: "instant", block: "start" });
+  if (!target) return;
+  target.scrollIntoView({ behavior: "instant", block: "start" });
+  const visibleTargets = [
+    target,
+    ...target.querySelectorAll("[data-reveal], [data-reveal-group], [data-text-reveal-group]"),
+  ];
+  visibleTargets.forEach((element) => {
+    element.classList.add("is-revealed");
+    element.classList.add("is-text-revealed");
+  });
 };
 
 window.addEventListener("load", () => window.setTimeout(alignInitialHash, 180), { once: true });
@@ -284,7 +379,7 @@ if (!motionPreference.matches && "IntersectionObserver" in window) {
 }
 
 const textRevealGroups = [
-  ...document.querySelectorAll(".hero__copy, .project-brief__intro, .section-heading, .decision-explorer__copy, .demo__aside, .system__board article, .system__references figcaption, .ai-process__steps, .delivery__list"),
+  ...document.querySelectorAll(".hero__copy, .project-brief__intro, .project-brief__architecture, .section-heading, .decision-explorer__copy, .demo__aside, .iteration__ledger, .guideline-browser__header, .guideline-browser__panel figcaption, .delivery__list"),
 ].filter((group, index, groups) => !groups.some((candidate, candidateIndex) => candidateIndex < index && candidate.contains(group)));
 
 textRevealGroups.forEach((group) => {
